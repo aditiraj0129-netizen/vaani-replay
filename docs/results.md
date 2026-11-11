@@ -19,6 +19,6 @@ halved limit: 80, 86.7, 80, 100.
 daily limit exhausted: 53.3 in every mode, which is the quota ceiling.
 flaky: 100 in every mode.
 
-Controlled mode never sends a request that gets a 429, but it gives up on some that miss their deadline (burst 55%, overload 24%). Reasons for refusals in the stand-in runs: provider 429 96, local deadline shed 64, local budget gate 14, late answer 4.
+Controlled mode never sends a request that gets a 429, but it gives up on some that miss their deadline (burst 55%, overload 24%). Reasons for refusals in the stand-in runs: provider 429 93 (stand-in; the 3 real 429s in the limit probe are counted separately), local deadline shed 64, local budget gate 14, late answer 4.
 
 Not measured: paid-equivalent cost (no prices file) and queue length for real runs.

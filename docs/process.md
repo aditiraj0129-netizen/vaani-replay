@@ -11,6 +11,6 @@ What went wrong and how it was fixed.
 3. The citation checker treated the delay pattern [0, 2, 2, 2] in Q10 as a citation. A citation never repeats a number, so such groups are now ignored. Two rows moved from invalid to cited.
 4. A diagnostic line about bibliography pieces misled me, because the hit I blamed was an appendix mislabelled as references. I stopped using it.
 
-What I could not fix. Retrieval still misses Q02, Q06, Q07, Q11, Q12 and Q13 in every setting. I left it and wrote it down.
+What I could not fix. Q02 was refused in all three settings and Q14 in setting A although the papers answer them. I left it and wrote it down.
 
-Grading. The assistant drafted a first set of grades. Those were only a draft. I went through them against the cited passages and the grades in data/eval/grades.csv are the ones I stand behind. Equal scores across the three settings are real on this sample, and I say so in the write-up instead of hiding it.
+Grading. The assistant drafted a first set of grades. Those were only a draft. No row of the first draft has been changed so far, so the grades are not an independent human grading. Equal scores across the three settings are real on this sample, and I say so in the write-up instead of hiding it.
