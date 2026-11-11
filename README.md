@@ -35,7 +35,7 @@ What I fixed along the way
 
 Four things went wrong in my own measurements, and I fixed each without touching the raw evidence. The originals are kept in data/raw/real_archive and the fixed lines say what changed.
 
-First, the reference-list filter. My first version clipped real appendix text where a reference list and an appendix shared a segment. I changed it to detect where the last entry ends, and it now only drops text that looks like a bibliography under a References label. About 5,000 words of reference text per paper set were removed. A small leak of around 60 words at the start of two lists remains, and I left it rather than risk deleting real content.
+First, the reference-list filter. My first version clipped real appendix text where a reference list and an appendix shared a segment. I changed it to detect where the last entry ends, and it now only drops text that looks like a bibliography under a References label. In total 8,271 words of reference-list text were removed (attention 944, moshi 4,033, dynamic_chunking 3,294). Appendix material was not removed and stays indexed; some appendix passages carry a misleading [References] label. A small leak of around 60 words at the start of two lists remains, and I left it rather than risk deleting real content.
 
 Second, pacing. Stage A showed four answers marked "late". That was my own pacing sleep (about 56 seconds, used to stay under the token-per-minute limit) being counted as latency. The service itself had answered in about one second. I fixed the runner so the wait is recorded separately, restated those 16 lines of Stage A, and ran B and C with the fix in place.
 
