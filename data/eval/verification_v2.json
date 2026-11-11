@@ -1,0 +1,942 @@
+[
+  {
+    "id": "Q01",
+    "question": "How is scaled dot-product attention calculated?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "dot product",
+        "softmax",
+        "values"
+      ],
+      [
+        "scaled dot-product attention",
+        "softmax"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0008",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.1 Scaled Dot-Product Attention",
+        "pages": [
+          3,
+          4
+        ],
+        "excerpt": "mension dk, and values of dimension dv. We compute the dot products of the query with all keys, divide each by \u221adk, and apply a softmax function to obtain the weights on the values. In practice, we compute the attention"
+      },
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0009",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.1 Scaled Dot-Product Attention",
+        "pages": [
+          4,
+          4
+        ],
+        "excerpt": "isms perform similarly, additive attention outperforms dot product attention without scaling for larger values of dk [3]. We suspect that for large values of dk, the dot products grow large in magnitude, pushing the soft"
+      },
+      {
+        "group": 1,
+        "chunk_id": "attention-B-0012",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.3 Applications of Attention in our Model",
+        "pages": [
+          5,
+          5
+        ],
+        "excerpt": "auto-regressive property. We implement this inside of scaled dot-product attention by masking out (setting to \u2212\u221e) all values in the input of the softmax which correspond to illegal connections. See Figure 2. 3.3 Positio"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q02",
+    "question": "Why does the Transformer divide the attention scores by the square root of the key dimension?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "small gradients",
+        "softmax"
+      ],
+      [
+        "large magnitude/large in magnitude",
+        "softmax"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0009",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.1 Scaled Dot-Product Attention",
+        "pages": [
+          4,
+          4
+        ],
+        "excerpt": "e softmax function into regions where it has extremely small gradients 4. To counteract this effect, we scale the dot products by 1 \u221adk . 3.2.2 Multi-Head Attention Instead of performing a single attention function with"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C)"
+  },
+  {
+    "id": "Q03",
+    "question": "What is the purpose of multi-head attention?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "representation subspaces"
+      ],
+      [
+        "multi-head",
+        "jointly/different positions"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 1,
+        "chunk_id": "attention-B-0004",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "2 Background",
+        "pages": [
+          2,
+          2
+        ],
+        "excerpt": "ntion-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2. Self-attention, sometimes called intra-attention is an attention mechanism relating different positions of a single"
+      },
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0010",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.2 Multi-Head Attention",
+        "pages": [
+          4,
+          5
+        ],
+        "excerpt": "model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this. MultiHead(Q, K, V ) = Concat(head1, ..., headh)W O where head"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 3,
+      "B": 4,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 3,
+      "B": 4,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q04",
+    "question": "How does positional encoding provide sequence-order information?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "sine",
+        "cosine",
+        "position"
+      ],
+      [
+        "relative or absolute position"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0014",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.5 Positional Encoding",
+        "pages": [
+          6,
+          6
+        ],
+        "excerpt": "encodings, learned and fixed [9]. In this work, we use sine and cosine functions of different frequencies: PE(pos,2i) = sin(pos/100002i/dmodel) PE(pos,2i+1) = cos(pos/100002i/dmodel) where pos is the position and i is th"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q05",
+    "question": "How does masking prevent the decoder from attending to future positions?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "leftward information flow"
+      ],
+      [
+        "subsequent positions",
+        "mask"
+      ],
+      [
+        "-\u221e/\u2212\u221e/-inf",
+        "softmax",
+        "illegal"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 1,
+        "chunk_id": "attention-B-0007",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.1 Encoder and Decoder Stacks",
+        "pages": [
+          3,
+          4
+        ],
+        "excerpt": "e decoder stack to prevent positions from attending to subsequent positions. This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position i can depend"
+      },
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0012",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.3 Applications of Attention in our Model",
+        "pages": [
+          5,
+          5
+        ],
+        "excerpt": "up to and including that position. We need to prevent leftward information flow in the decoder to preserve the auto-regressive property. We implement this inside of scaled dot-product attention by masking out (setting t"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q06",
+    "question": "What problem is Moshi designed to solve in real-time spoken dialogue?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "latency",
+        "turn/dialogue",
+        "seconds"
+      ],
+      [
+        "overlap/interruption"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0000",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "Abstract",
+        "pages": [
+          1,
+          1
+        ],
+        "excerpt": "real conversations. First, their complexity induces a latency of several seconds between interactions. Second, text being the intermediate modality for dialogue, non-linguistic information that modifies meaning\u2014 such as"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0002",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          2
+        ],
+        "excerpt": "erfaces remains far from natural conversations. First, latency compounds along the many components of these pipelines, resulting in a typical global latency of several seconds. This is unlike natural conversations which"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0003",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          2
+        ],
+        "excerpt": "erfaces remains far from natural conversations. First, latency compounds along the many components of these pipelines, resulting in a typical global latency of several seconds. This is unlike natural conversations which"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 7,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 7,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q07",
+    "question": "How does Moshi represent speech and text during dialogue?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "audio tokens",
+        "text tokens"
+      ],
+      [
+        "inner monologue",
+        "streams"
+      ],
+      [
+        "multi-stream/multistream/two streams"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0001",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "Abstract",
+        "pages": [
+          1,
+          2
+        ],
+        "excerpt": "first predict time-aligned text tokens as a prefix to audio tokens. Not only this \u201cInner Monologue\u201d method significantly improves the linguistic quality of generated speech, but we also illustrate how it can provide str"
+      },
+      {
+        "group": 2,
+        "chunk_id": "moshi-B-0004",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          3
+        ],
+        "excerpt": "vers et al., 2009). We furthermore introduce the first multi-stream audio language model, i.e. a model that explicitly processes the input and output audio streams jointly into two autoregressive token streams. This alto"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0006",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          3,
+          3
+        ],
+        "excerpt": "er Transformer (Vaswani et al., 2017) model to predict audio tokens in a hierarchical and streaming fashion. We show how challenging it is for such unconditioned audio language models to generate intelligible speech, and"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 2,
+      "B": 3,
+      "C": 3
+    },
+    "rank_paper_restricted": {
+      "A": 2,
+      "B": 3,
+      "C": 3
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q08",
+    "question": "What role does the Mimi audio codec play in the Moshi architecture?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "mimi",
+        "12.5"
+      ],
+      [
+        "mimi",
+        "codec",
+        "1.1 kbps/1.1kbps"
+      ],
+      [
+        "mimi",
+        "semantic",
+        "distill"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 2,
+        "chunk_id": "moshi-B-0005",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          3
+        ],
+        "excerpt": "pretraining data collection and filtering. \u2022 We train Mimi, a neural audio codec (Zeghidour et al., 2022; D \u0301efossez et al., 2023) that converts audio into the discrete tokens predicted by Moshi and back, using residual"
+      },
+      {
+        "group": 2,
+        "chunk_id": "moshi-B-0006",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          3,
+          3
+        ],
+        "excerpt": "Section 3.3 describes the architecture and training of Mimi while Section 5.2 details ablation studies. \u2022 We propose Moshi, a new architecture for audio language modeling, which combines Helium with a smaller Transformer"
+      },
+      {
+        "group": 2,
+        "chunk_id": "moshi-B-0015",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "2 Related Work",
+        "pages": [
+          5,
+          6
+        ],
+        "excerpt": "owledge distilled from a self-supervised speech model (Mimi, Section 3.3); the streaming, hierarchical generation of semantic and acoustic tokens for both the user and Moshi, along with time-aligned text tokens for Moshi"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 3,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 3,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q09",
+    "question": "What is the purpose of Moshi's inner-monologue mechanism?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "inner monologue",
+        "text tokens"
+      ],
+      [
+        "inner monologue",
+        "prefix/predict/before"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0001",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "Abstract",
+        "pages": [
+          1,
+          2
+        ],
+        "excerpt": "ext tokens as a prefix to audio tokens. Not only this \u201cInner Monologue\u201d method significantly improves the linguistic quality of generated speech, but we also illustrate how it can provide streaming speech recognition and"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0006",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          3,
+          3
+        ],
+        "excerpt": "es this architecture. \u2022 In Section 3.4.4, we introduce Inner Monologue, a new training and inference setup for audio language models that significantly improves the factuality and linguistic quality of generated speech b"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0013",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "2 Related Work",
+        "pages": [
+          5,
+          5
+        ],
+        "excerpt": "a prefix to generate speech. In this work, we propose Inner Monologue as a main architectural and training component to combine aligned text and speech data. Inner Monologue decomposes speech into a chain of text, seman"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 5,
+      "B": 4,
+      "C": 3
+    },
+    "rank_paper_restricted": {
+      "A": 5,
+      "B": 4,
+      "C": 3
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q10",
+    "question": "What evidence does the paper provide about latency or real-time performance?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "160 ms/160ms"
+      ],
+      [
+        "200 ms/200ms"
+      ],
+      [
+        "latency",
+        "real-time/realtime",
+        "gpu"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0001",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "Abstract",
+        "pages": [
+          1,
+          2
+        ],
+        "excerpt": "backbone, Moshi generates speech as tokens from the residual quantizer of a neural audio codec, while modeling separately its own speech and that of the user into parallel streams. This allows for the removal of explicit"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0004",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          3
+        ],
+        "excerpt": "erarchical architecture, with a theoretical latency of 160 ms\u2014lower than the 230 ms average in natural conversations measured over 10 languages (Stivers et al., 2009). We furthermore introduce the first multi-stream audi"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0080",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "5.4 Audio language modeling",
+        "pages": [
+          26,
+          27
+        ],
+        "excerpt": "tokens with Inner Monologue is, even in an audio-to-audio setting. Given the positive impact of depthwise parametrization and a weight of 100 for the semantic token, both are used in all our subsequent experiments, as we"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 1,
+      "B": 3,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 1,
+      "B": 2,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q11",
+    "question": "What problem does the paper's dynamic chunking approach address?",
+    "kind_proposed": "answerable",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "tokeniz",
+        "end-to-end"
+      ],
+      [
+        "dynamic chunking",
+        "tokeniz"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0000",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "Abstract",
+        "pages": [
+          1,
+          1
+        ],
+        "excerpt": "data. Despite this trend, pre-processing steps such as tokenization remain a barrier to true end-to-end foundation models. We introduce a collection of new techniques that enable a dynamic chunking mechanism which automa"
+      },
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0001",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "Abstract",
+        "pages": [
+          1,
+          1
+        ],
+        "excerpt": "cit supervision. Finally, the H-Net\u2019s improvement over tokenized pipelines is further increased in languages and modalities with weaker tokenization heuristics, such as Chinese and code, or DNA sequences (nearly 4\u00d7 impro"
+      },
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0002",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "1 Introduction",
+        "pages": [
+          1,
+          1
+        ],
+        "excerpt": "ls (LMs) (Grattafiori et al. 2024; Brown et al. 2020). Tokenization comes with a host of well-documented drawbacks, from poor character-level understanding to lack of meaning and interpretability to degraded performance"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 6,
+      "B": 5,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": 6,
+      "B": 5,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs C)"
+  },
+  {
+    "id": "Q12",
+    "question": "How does the proposed method determine or use chunk boundaries?",
+    "kind_proposed": "answerable",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "routing module",
+        "cosine"
+      ],
+      [
+        "boundary/boundaries",
+        "probabilit",
+        "cosine"
+      ],
+      [
+        "boundary",
+        "adjacent/consecutive"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0017",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "2.2.1 Chunking Layer",
+        "pages": [
+          6,
+          6
+        ],
+        "excerpt": "The chunking layer (Chunk in equation (2)) contains a routing module and downsampler, as illustrated in Figure 1- ( bottom-right ). Routing Module. In natural data, meaningful boundaries tend to emerge at points of cont"
+      },
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0018",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "2.2.1 Chunking Layer",
+        "pages": [
+          6,
+          6
+        ],
+        "excerpt": "nsecutive vectors should exhibit lower similarity. The routing module implements this intuition through cosine similarity between adjacent encoder outputs. Given encoder outputs \u02c6X, it calculates boundary probabilities p"
+      },
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0063",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "3.2 Alternate Language Datasets",
+        "pages": [
+          17,
+          17
+        ],
+        "excerpt": "e smoothing module (w/o smoothing), (ii) replacing the routing module that is based on scaled cosine similarity, with direct probability prediction from individual inputs (w/o cosine routing), and (iii)"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C)"
+  },
+  {
+    "id": "Q13",
+    "question": "What is the role of hierarchical sequence modeling in the proposed approach?",
+    "kind_proposed": "answerable",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "main network",
+        "dechunking"
+      ],
+      [
+        "hierarch",
+        "encoder",
+        "decoder",
+        "chunk"
+      ],
+      [
+        "h-net",
+        "hierarch",
+        "stage"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 2,
+        "chunk_id": "dynamic_chunking-B-0000",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "Abstract",
+        "pages": [
+          1,
+          1
+        ],
+        "excerpt": "orporating this into an explicit hierarchical network (H-Net) allows replacing the (implicitly hierarchical) tokenization\u2013LM\u2013 detokenization pipeline with a single model learned fully end-to-end. When compute- and data-"
+      },
+      {
+        "group": 2,
+        "chunk_id": "dynamic_chunking-B-0001",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "Abstract",
+        "pages": [
+          1,
+          1
+        ],
+        "excerpt": "atching the token-based Transformer of twice its size. H-Nets pretrained on English show significantly increased character-level robustness, and qualitatively learn meaningful data-dependent chunking strategies without a"
+      },
+      {
+        "group": 1,
+        "chunk_id": "dynamic_chunking-B-0005",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          2
+        ],
+        "excerpt": "segmentation learned from data. Hierarchical Processing. The H-Net adopts the hierarchical architecture from prior work (Goel et al. 2022; Nawrot, Tworkowski, et al. 2022; Slagle 2024), resembling an autoregressive U-Net"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 2,
+      "B": 1,
+      "C": 2
+    },
+    "rank_paper_restricted": {
+      "A": 2,
+      "B": 1,
+      "C": 2
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q14",
+    "question": "What experiments or ablations support the proposed method?",
+    "kind_proposed": "answerable",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "ablation",
+        "smoothing"
+      ],
+      [
+        "ablation",
+        "routing/chunking"
+      ],
+      [
+        "bits-per-byte/bpb",
+        "h-net"
+      ],
+      [
+        "dna/genom",
+        "h-net"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 3,
+        "chunk_id": "dynamic_chunking-B-0001",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "Abstract",
+        "pages": [
+          1,
+          1
+        ],
+        "excerpt": "tokenization heuristics, such as Chinese and code, or DNA sequences (nearly 4\u00d7 improvement in data efficiency over baselines), showing the potential of true end-to-end models that learn and scale better from unprocessed"
+      },
+      {
+        "group": 3,
+        "chunk_id": "dynamic_chunking-B-0010",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "1 Introduction",
+        "pages": [
+          4,
+          4
+        ],
+        "excerpt": "on XWinograd-zh compared to tokenized Transformer) and DNA language modeling (3.6\u00d7 improved data efficiency compared to isotropic models). We publicly release model code5 and pretrained checkpoints6. 2 H-Net Architecture"
+      },
+      {
+        "group": 3,
+        "chunk_id": "dynamic_chunking-B-0014",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "2.1.2 Design Principles",
+        "pages": [
+          5,
+          5
+        ],
+        "excerpt": "fine-grained data including audio (Goel et al. 2022), DNA sequences (Schiff et al. 2024), and robotic control signals (Lu et al. 2023). Based on these insights, we employ Mamba-2 layers (Dao and Gu 2024) as the primary"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": 2,
+      "C": 1
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C); paper-restricted search finds it for B, C, so other papers crowd it out"
+  },
+  {
+    "id": "Q15",
+    "question": "What limitations or unresolved questions do the authors identify?",
+    "kind_proposed": "partial",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "limitation"
+      ],
+      [
+        "future work/future direction"
+      ],
+      [
+        "unresolved/open question"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 1,
+        "chunk_id": "dynamic_chunking-B-0074",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "4 Discussion",
+        "pages": [
+          22,
+          22
+        ],
+        "excerpt": "re not fundamental and will be an important subject of future work; just as how related dynamic sparsity and conditional compute methods such as Mixture-of-Experts and speculative decoding"
+      },
+      {
+        "group": 1,
+        "chunk_id": "dynamic_chunking-B-0075",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "4 Discussion",
+        "pages": [
+          22,
+          22
+        ],
+        "excerpt": "re not fundamental and will be an important subject of future work; just as how related dynamic sparsity and conditional compute methods such as Mixture-of-Experts and speculative decoding (Leviathan, Kalman, and Matias"
+      },
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0076",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "4 Discussion",
+        "pages": [
+          22,
+          22
+        ],
+        "excerpt": "ive compression of sequence length may alleviate their limitations in retrieval on long sequences. This may be considered a form of dynamic state allocation. This paper has not focused on such implications, which would b"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 1,
+      "B": 2,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  }
+]

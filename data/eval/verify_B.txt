@@ -1,0 +1,112 @@
+15 questions; chars/4 estimate for B averages 1815; scale to the measured 1783 = x0.98
+config   prompt tok  per req typ  per req high  total typ  total high
+A              1242         1306          1679      19596       25181
+B              1783         1847          2300      27705       34507
+C              1570         1634          2056      24515       30838
+
+real calls (minimum): 45   expected tokens: 71815   upper bound (+10% retries): 99578   pure sending time at the token limit: 10.6 min
+
+Q01 [answerable] How is scaled dot-product attention calculated?
+   1. attention p.3-4 [3.2.1 Scaled Dot-Product Attention] to an output, where the query, keys, values, and output are all vectors. The output is computed as a weighted sum Scaled Dot-Product Attention Multi-H
+   2. attention p.3-4 [3.1 Encoder and Decoder Stacks] Sublayer(x) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the
+   3. attention p.4 [3.2.1 Scaled Dot-Product Attention] outputs as: Attention(Q, K, V ) = softmax(QKT √dk )V (1) The two most commonly used attention functions are additive attention [2], and dot-product (m
+   4. attention p.5 [3.2.3 Applications of Attention in our Model] all of the keys, values and queries come from the same place, in this case, the output of the previous layer in the encoder. Each position in the enco
+   5. attention p.1 [Abstract] 2014 Englishto-German translation task, improving over the existing best results, including ensembles, by over 2 BLEU. On the WMT 2014 English-to-Fren
+
+Q02 [answerable] Why does the Transformer divide the attention scores by the square root of the key dimension?
+   1. attention p.3-4 [3.2.1 Scaled Dot-Product Attention] to an output, where the query, keys, values, and output are all vectors. The output is computed as a weighted sum Scaled Dot-Product Attention Multi-H
+   2. dynamic_chunking p.35-36 [References] to the (1) square root of batch size (Malladi et al. 2022; Merrill et al. 2025), and (2) inverse square root of hidden dimension (Vaswani et al. 2017;
+   3. dynamic_chunking p.35 [References] num_heads) – SSD: 2 × 3 × seq_len × (expand × d_model) × d_state – Depthwise Convolution: 2 × seq_len × d_model × window_size – Gating: 5 × seq_len × 
+   4. attention p.7-8 [5.4 Regularization] with β1 = 0.9, β2 = 0.98 and ε = 10−9. We varied the learning rate over the course of training, according to the formula: lrate = d−0.5 model · min(st
+   5. attention p.3-4 [3.1 Encoder and Decoder Stacks] Sublayer(x) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the
+
+Q03 [answerable] What is the purpose of multi-head attention?
+   1. attention p.3-4 [3.1 Encoder and Decoder Stacks] Sublayer(x) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the
+   2. attention p.3-4 [3.2.1 Scaled Dot-Product Attention] to an output, where the query, keys, values, and output are all vectors. The output is computed as a weighted sum Scaled Dot-Product Attention Multi-H
+   3. attention p.5 [3.2.3 Applications of Attention in our Model] i , V W V i ) Where the projections are parameter matrices W Q i ∈Rdmodel×dk, W K i ∈Rdmodel×dk, W V i ∈Rdmodel×dv and W O ∈Rhdv×dmodel. In this work 
+   4. attention p.4-5 [3.2.2 Multi-Head Attention] attention function with dmodel-dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values h times w
+   5. attention p.4 [3.2.1 Scaled Dot-Product Attention] outputs as: Attention(Q, K, V ) = softmax(QKT √dk )V (1) The two most commonly used attention functions are additive attention [2], and dot-product (m
+
+Q04 [answerable] How does positional encoding provide sequence-order information?
+   1. attention p.6 [3.5 Positional Encoding] representation dimension, k is the kernel size of convolutions and r the size of the neighborhood in restricted self-attention. Layer Type Complexity 
+   2. attention p.6 [3.5 Positional Encoding] different frequencies: PE(pos,2i) = sin(pos/100002i/dmodel) PE(pos,2i+1) = cos(pos/100002i/dmodel) where pos is the position and i is the dimension. T
+   3. attention p.9 [6.2 Model Variations] results in Table 3. In Table 3 rows (A), we vary the number of attention heads and the attention key and value dimensions, keeping the amount of compu
+   4. moshi p.24 [5.2 Audio Tokenization] adversarial losses only, with a MUSHRA score of 81.0 against 58.8 when using the mix of loss functions used in Encodec. Mimi moreover significantly ou
+   5. moshi p.39-40 [7.3 Helium (text)] both cases the sampling is parameterized by a hash function that preferably depends on a local context. These solutions were improved by Fernandez et 
+
+Q05 [answerable] How does masking prevent the decoder from attending to future positions?
+   1. attention p.3-4 [3.1 Encoder and Decoder Stacks] Sublayer(x) is the function implemented by the sub-layer itself. To facilitate these residual connections, all sub-layers in the model, as well as the
+   2. attention p.5 [3.2.3 Applications of Attention in our Model] all of the keys, values and queries come from the same place, in this case, the output of the previous layer in the encoder. Each position in the enco
+   3. dynamic_chunking p.9 [2.4 Autoregressive Training and Inference] adjusted based on effective batch size and model dimensions. The specific scaling factor we use accounts for both the total number of inputs processed
+   4. attention p.6-7 [4 Why Self-Attention] in Table 1, a self-attention layer connects all positions with a constant number of sequentially executed operations, whereas a recurrent layer requir
+   5. attention p.5 [3.2.3 Applications of Attention in our Model] i , V W V i ) Where the projections are parameter matrices W Q i ∈Rdmodel×dk, W K i ∈Rdmodel×dk, W V i ∈Rdmodel×dv and W O ∈Rhdv×dmodel. In this work 
+
+Q06 [answerable] What problem is Moshi designed to solve in real-time spoken dialogue?
+   1. moshi p.1 [Abstract] Moshi: a speech-text foundation model for real-time dialogue Moshi: a speech-text foundation model for real-time dialogue Alexandre D ́efossez∗ alex@k
+   2. moshi p.41 [7.3 Helium (text)] data” by Sablayrolles et al. (2020). 7 Conclusion In this work, we introduce Moshi, the first real-time, full-duplex spoken dialogue system. The first
+   3. moshi p.41 [7.3 Helium (text)] tolerance to moderate temporal shift is especially important. • The text could be marked instead of the audio. One downside is that text is a lowercap
+   4. moshi p.5-6 [2 Related Work] knowledge and reasoning abilities that make it amenable to helpful and enjoyable conversations. Spectron benefits from its underlying text LLM (as mea
+   5. moshi p.5 [2 Related Work] rather than a single speaker. Besides, this hierarchical modeling described in Section 3.4.4 allows decomposing the generation task without increasing
+
+Q07 [answerable] How does Moshi represent speech and text during dialogue?
+   1. moshi p.3-4 [2 Related Work] state of the art among existing speech-text models for speech modeling and spoken question answering while being streaming compatible and able to mode
+   2. moshi p.1 [Abstract] Moshi: a speech-text foundation model for real-time dialogue Moshi: a speech-text foundation model for real-time dialogue Alexandre D ́efossez∗ alex@k
+   3. moshi p.7-8 [3.2.2 Pre-training data filtering] sources is too small to train a LLM, we also rely on web crawled data, specifically from CommonCrawl, to extend our dataset. See more details on data 
+   4. moshi p.18-19 [4.3 Speech-Text Instruct data] the TTS engine on the voice of a single actor, who recorded monologues covering more than 70 speaking styles, as listed in Table 19. Experiments on vo
+   5. moshi p.6-7 [2 Related Work] not model acoustic information as it only models semantic tokens. Moshi addresses these limitations altogether: by modeling two streams of semantic an
+
+Q08 [answerable] What role does the Mimi audio codec play in the Moshi architecture?
+   1. moshi p.2-3 [1 Introduction] and interruptions. Our resulting model is the first full-duplex— 1. https://www.alexa.com 2. https://www.apple.com/siri 3. https://assistant.google.co
+   2. moshi p.9-10 [3.3.1 Architecture] generation. Semantic tokens are typically not causal and can thus only be computed in an offline manner. Moreover, generating acoustic and semantic to
+   3. moshi p.7 [3.1 Overview] build from scratch (Section 3.2), relying on high-quality text data to provide strong reasoning abilities to the model. We also propose Inner Monologu
+   4. moshi p.41 [7.3 Helium (text)] data” by Sablayrolles et al. (2020). 7 Conclusion In this work, we introduce Moshi, the first real-time, full-duplex spoken dialogue system. The first
+   5. moshi p.22-23 [5.1 Text Language Modeling] trained using significantly more compute than Helium. Results. We report results in Table 2, and we observe that on most benchmarks, Helium is on-par 
+
+Q09 [answerable] What is the purpose of Moshi's inner-monologue mechanism?
+   1. moshi p.29 [7.3 Helium (text)] When evaluating Moshi, we insert the audio tokens of the question into the user stream to simulate a user interaction. Baselines. We compare to Spectr
+   2. moshi p.28 [5.4 Audio language modeling] initialized randomly and pretrained only on audio data and without Inner Monologue. The second category includes models that start from a pretrained t
+   3. moshi p.41-42 [7.3 Helium (text)] summarize, we introduce a complete suite of models and recipes, from text LLMs to neural audio codecs and generative audio models, which we combine in
+   4. moshi p.16-17 [3.4.4 Inner Monologue] padded text tokens sequence. Experiments in Section 5.7 show how a single delay hyper-parameter allows for switching from an ASR to a TTS model with n
+   5. moshi p.6-7 [2 Related Work] not model acoustic information as it only models semantic tokens. Moshi addresses these limitations altogether: by modeling two streams of semantic an
+
+Q10 [answerable] What evidence does the paper provide about latency or real-time performance?
+   1. moshi p.26 [5.3 Ablations on generative modeling] is incompatible with the requirements of a real-time dialogue model. We thus switch to a reduced latency of 240ms with the pattern [0, 2, 2, 2, 2, 2, 
+   2. dynamic_chunking p.23 [4 Discussion] MLP layers within an H-Net. Scale. The largest models in this paper were FLOP-matched to the equivalent of a 1.3B parameter Transformer. While we beli
+   3. moshi p.1-2 [Abstract] backbone, Moshi generates speech as tokens from the residual quantizer of a neural audio codec, while modeling separately its own speech and that of t
+   4. dynamic_chunking p.22-23 [4 Discussion] 2025). As discussed in Section 2.4, H-Net is also capable of dynamically changing compute per output generated; thus, it can be viewed as a model that
+   5. moshi p.24 [5.2 Audio Tokenization] adversarial losses only, with a MUSHRA score of 81.0 against 58.8 when using the mix of loss functions used in Encodec. Mimi moreover significantly ou
+
+Q11 [answerable] What problem does the paper's dynamic chunking approach address?
+   1. dynamic_chunking p.6-7 [2.2.2 Dechunking] of boundary-marked vectors for its simplicity and effectiveness (see Appendix E.1 for ablations). As illustrated in Figure 1-(b), this approach follow
+   2. dynamic_chunking p.8 [2.2.3 Ratio Loss] loss effectively guides the model toward the desired compression ratio. Combined together with the autoregressive prediction loss (i.e., L = LAR + αÍS
+   3. dynamic_chunking p.6 [2.2.1 Chunking Layer] in dimensions without an additional linear layer, we adopt the technique used in SpaceByte (Slagle 2024) with the marginal change: to expand dimension
+   4. dynamic_chunking p.34 [References] of increasing a vocabulary in tokenized models (which would generally increase the average length of tokens). SuperBPE (Liu et al. 2025) shows that al
+   5. dynamic_chunking p.2 [1 Introduction] SpaceByte (Slagle 2024) and Byte Latent Transformer (Pagnoni et al. 2024) introduce data-dependent chunking strategies such as delimiter- or entropy-b
+
+Q12 [answerable] How does the proposed method determine or use chunk boundaries?
+   1. dynamic_chunking p.31 [References] A.3 mentions other works in non-language modalities related to tokenization. We summarize our discussion on tokenizer-free architectures in Table 6. A
+   2. dynamic_chunking p.32 [References] natural delimiters at higher semantic levels. AU-Net (Videau et al. 2025) is a concurrent work that augments SpaceByte with additional stages of hiera
+   3. dynamic_chunking p.10-11 [3 Experiments] learning rate multipliers on the outer networks. H-Net (space) differs from our full H-Net only through the chunking function. 10Here, we use token in
+   4. dynamic_chunking p.32 [References] with static downsampling is to use content-aware chunking strategies that attempt to identify natural token boundaries based on semantic or statistica
+   5. dynamic_chunking p.33-34 [References] modeling objective), but does not need the tokenizer at inference time. We also note that such techniques are particular to non-autoregressive models,
+
+Q13 [answerable] What is the role of hierarchical sequence modeling in the proposed approach?
+   1. dynamic_chunking p.31 [References] A.3 mentions other works in non-language modalities related to tokenization. We summarize our discussion on tokenizer-free architectures in Table 6. A
+   2. moshi p.5 [2 Related Work] of it being represented as text or speech, as measured through commonsense evaluation. Another approach, adopted by Spectron (Nachmani et al., 2024) a
+   3. dynamic_chunking p.32 [References] with static downsampling is to use content-aware chunking strategies that attempt to identify natural token boundaries based on semantic or statistica
+   4. dynamic_chunking p.34 [References] do, they frequently need to turn raw perceptual data (images and videos) into shorter sequences of representations. One approach is the simple patchif
+   5. dynamic_chunking p.33-34 [References] modeling objective), but does not need the tokenizer at inference time. We also note that such techniques are particular to non-autoregressive models,
+
+Q14 [answerable] What experiments or ablations support the proposed method?
+   1. moshi p.26 [5.3 Ablations on generative modeling] is incompatible with the requirements of a real-time dialogue model. We thus switch to a reduced latency of 240ms with the pattern [0, 2, 2, 2, 2, 2, 
+   2. moshi p.39 [7.3 Helium (text)] With aggressive Pink-Noise, one needs a relatively long sequence to get a high detection score. However, the mark is not robust to a strong compressio
+   3. moshi p.26 [5.3 Ablations on generative modeling] experiments, we also observed that the individual losses per RVQ level were conflicting with one another, despite each level being more important in t
+   4. moshi p.41-42 [7.3 Helium (text)] summarize, we introduce a complete suite of models and recipes, from text LLMs to neural audio codecs and generative audio models, which we combine in
+   5. dynamic_chunking p.33 [References] we believe to be representative of the external-chunking family of methods and competitive to the entropy-based chunking strategy of BLT (for our main
+
+Q15 [partial] What limitations or unresolved questions do the authors identify?
+   1. moshi p.35-36 [7.3 Helium (text)] recent quantization techniques (Tseng et al., 2024), we may expect improved performance at lower bitwidth by using quantized aware finetuning instead 
+   2. dynamic_chunking p.32 [References] natural delimiters at higher semantic levels. AU-Net (Videau et al. 2025) is a concurrent work that augments SpaceByte with additional stages of hiera
+   3. moshi p.28-29 [5.4 Audio language modeling] not consistently provide good guidance in developing a dialogue model like Moshi. In particular, we find the lack of correlation between common sense 
+   4. moshi p.19-20 [4.3 Speech-Text Instruct data] also generate questions containing a false or misleading fact (such as “Is the Eiffel Tower in Beijing?”), to train the model to answer “No” and corre
+   5. moshi p.29 [5.4 Audio language modeling] (Nachmani et al., 2024). For Web Questions and Trivia QA, we synthesize our own, keeping all of the questions. For Moshi, we only prepend one of the r

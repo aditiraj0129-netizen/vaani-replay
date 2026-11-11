@@ -1,0 +1,712 @@
+[
+  {
+    "id": "Q01",
+    "question": "How is scaled dot-product attention calculated?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "apply a softmax function to obtain the weights on the values"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0008",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.1 Scaled Dot-Product Attention",
+        "pages": [
+          3,
+          4
+        ],
+        "excerpt": "ts of the query with all keys, divide each by \u221adk, and apply a softmax function to obtain the weights on the values. In practice, we compute the attention function on a set of queries simultaneously, packed together into"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": 1,
+      "C": 1
+    },
+    "label": "RETRIEVAL FAILURE (configs A)"
+  },
+  {
+    "id": "Q02",
+    "question": "Why does the Transformer divide the attention scores by the square root of the key dimension?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "extremely small gradients"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0009",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.1 Scaled Dot-Product Attention",
+        "pages": [
+          4,
+          4
+        ],
+        "excerpt": "pushing the softmax function into regions where it has extremely small gradients 4. To counteract this effect, we scale the dot products by 1 \u221adk . 3.2.2 Multi-Head Attention Instead of performing a single attention func"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C)"
+  },
+  {
+    "id": "Q03",
+    "question": "What is the purpose of multi-head attention?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "jointly attend to information from different representation subspaces"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0010",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.2 Multi-Head Attention",
+        "pages": [
+          4,
+          5
+        ],
+        "excerpt": "in Figure 2. Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this. MultiHead(Q, K,"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 3,
+      "B": 4,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 3,
+      "B": 4,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q04",
+    "question": "How does positional encoding provide sequence-order information?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "sine and cosine functions of different frequencies"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0014",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.5 Positional Encoding",
+        "pages": [
+          6,
+          6
+        ],
+        "excerpt": "encodings, learned and fixed [9]. In this work, we use sine and cosine functions of different frequencies: PE(pos,2i) = sin(pos/100002i/dmodel) PE(pos,2i+1) = cos(pos/100002i/dmodel) where pos is the position and i is th"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 3,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 3,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q05",
+    "question": "How does masking prevent the decoder from attending to future positions?",
+    "kind_proposed": "answerable",
+    "paper": "attention",
+    "groups": [
+      [
+        "prevent leftward information flow"
+      ],
+      [
+        "to prevent positions from attending to subsequent positions"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 1,
+        "chunk_id": "attention-B-0007",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.1 Encoder and Decoder Stacks",
+        "pages": [
+          3,
+          4
+        ],
+        "excerpt": "dify the self-attention sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This masking, combined with fact that the output embeddings are offset by one position, ensures that the"
+      },
+      {
+        "group": 0,
+        "chunk_id": "attention-B-0012",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "section": "3.2.3 Applications of Attention in our Model",
+        "pages": [
+          5,
+          5
+        ],
+        "excerpt": "decoder up to and including that position. We need to prevent leftward information flow in the decoder to preserve the auto-regressive property. We implement this inside of scaled dot-product attention by masking out (s"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q06",
+    "question": "What problem is Moshi designed to solve in real-time spoken dialogue?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "latency compounds along the many components"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0002",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          2
+        ],
+        "excerpt": "erfaces remains far from natural conversations. First, latency compounds along the many components of these pipelines, resulting in a typical global latency of several seconds. This is unlike natural conversations which"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0003",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          2
+        ],
+        "excerpt": "erfaces remains far from natural conversations. First, latency compounds along the many components of these pipelines, resulting in a typical global latency of several seconds. This is unlike natural conversations which"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C)"
+  },
+  {
+    "id": "Q07",
+    "question": "How does Moshi represent speech and text during dialogue?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "time-aligned text tokens as a prefix to audio tokens"
+      ],
+      [
+        "first multi-stream audio language model"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0001",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "Abstract",
+        "pages": [
+          1,
+          2
+        ],
+        "excerpt": "tic token generation of previous work to first predict time-aligned text tokens as a prefix to audio tokens. Not only this \u201cInner Monologue\u201d method significantly improves the linguistic quality of generated speech, but w"
+      },
+      {
+        "group": 1,
+        "chunk_id": "moshi-B-0004",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          3
+        ],
+        "excerpt": "s (Stivers et al., 2009). We furthermore introduce the first multi-stream audio language model, i.e. a model that explicitly processes the input and output audio streams jointly into two autoregressive token streams. Thi"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C)"
+  },
+  {
+    "id": "Q08",
+    "question": "What role does the Mimi audio codec play in the Moshi architecture?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "converts audio into the discrete tokens predicted by moshi and back"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0005",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          3
+        ],
+        "excerpt": "(Zeghidour et al., 2022; D \u0301efossez et al., 2023) that converts audio into the discrete tokens predicted by Moshi and back, using residual vector quantization (RVQ). Audio language models typically combine such acoustic"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 2,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 2,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q09",
+    "question": "What is the purpose of Moshi's inner-monologue mechanism?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "inner monologue decomposes speech into a chain of text"
+      ],
+      [
+        "improves the factuality and linguistic quality of generated speech"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 1,
+        "chunk_id": "moshi-B-0006",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          3,
+          3
+        ],
+        "excerpt": "nce setup for audio language models that significantly improves the factuality and linguistic quality of generated speech by predicting time-aligned text tokens before audio tokens. Moshi is a speech-to-speech model as i"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0013",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "2 Related Work",
+        "pages": [
+          5,
+          5
+        ],
+        "excerpt": "ing component to combine aligned text and speech data. Inner Monologue decomposes speech into a chain of text, semantic and acoustic tokens, and predicts this structured sequence in a hierarchical manner. Unlike Spirit-L"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 6,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": 6,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs B, C)"
+  },
+  {
+    "id": "Q10",
+    "question": "What evidence does the paper provide about latency or real-time performance?",
+    "kind_proposed": "answerable",
+    "paper": "moshi",
+    "groups": [
+      [
+        "theoretical latency of 160"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0001",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "Abstract",
+        "pages": [
+          1,
+          2
+        ],
+        "excerpt": "l-time full-duplex spoken large language model, with a theoretical latency of 160ms, 200ms in practice, and is available at github.com/kyutai-labs/moshi. Keywords: speech, text, multimodal, foundation, spoken dialogue 1"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0004",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          3
+        ],
+        "excerpt": "design a streaming, hierarchical architecture, with a theoretical latency of 160 ms\u2014lower than the 230 ms average in natural conversations measured over 10 languages (Stivers et al., 2009). We furthermore introduce the"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0080",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "5.4 Audio language modeling",
+        "pages": [
+          26,
+          27
+        ],
+        "excerpt": "Moreover, and as described in Table 1, we settle on a theoretical latency of 160ms by pretraining Moshi with an acoustic delay of 2 and finetuning it with an acoustic delay of 1. 5.4 Audio language modeling Metrics. We"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 1,
+      "B": 4,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 1,
+      "B": 2,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q11",
+    "question": "What problem does the paper's dynamic chunking approach address?",
+    "kind_proposed": "answerable",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "remain a barrier to true end-to-end"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0000",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "Abstract",
+        "pages": [
+          1,
+          1
+        ],
+        "excerpt": "this trend, pre-processing steps such as tokenization remain a barrier to true end-to-end foundation models. We introduce a collection of new techniques that enable a dynamic chunking mechanism which automatically learn"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C)"
+  },
+  {
+    "id": "Q12",
+    "question": "How does the proposed method determine or use chunk boundaries?",
+    "kind_proposed": "answerable",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "implements this intuition through cosine similarity"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0017",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "2.2.1 Chunking Layer",
+        "pages": [
+          6,
+          6
+        ],
+        "excerpt": "rs should exhibit lower similarity. The routing module implements this intuition through cosine similarity between adjacent encoder outputs. Given encoder outputs \u02c6X, it calculates boundary"
+      },
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0018",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "2.2.1 Chunking Layer",
+        "pages": [
+          6,
+          6
+        ],
+        "excerpt": "rs should exhibit lower similarity. The routing module implements this intuition through cosine similarity between adjacent encoder outputs. Given encoder outputs \u02c6X, it calculates boundary probabilities ptand boundary i"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C)"
+  },
+  {
+    "id": "Q13",
+    "question": "How does the Moshi paper's full-duplex dialogue contribution differ from the hierarchical modeling contribution of the dynamic chunking (H-Net) paper?",
+    "kind_proposed": "answerable",
+    "paper": "moshi|dynamic_chunking",
+    "groups": [
+      [
+        "full-duplex spoken dialogue system"
+      ],
+      [
+        "the h-net adopts the hierarchical architecture"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0124",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "7.3 Helium (text)",
+        "pages": [
+          41,
+          41
+        ],
+        "excerpt": "In this work, we introduce Moshi, the first real-time, full-duplex spoken dialogue system. The first component of Moshi is Helium, a 7B parameter text LLM which is competitive with open-weights models trained"
+      },
+      {
+        "group": 0,
+        "chunk_id": "moshi-B-0125",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "section": "7.3 Helium (text)",
+        "pages": [
+          41,
+          41
+        ],
+        "excerpt": "In this work, we introduce Moshi, the first real-time, full-duplex spoken dialogue system. The first component of Moshi is Helium, a 7B parameter text LLM which is competitive with open-weights models trained with a simi"
+      },
+      {
+        "group": 1,
+        "chunk_id": "dynamic_chunking-B-0004",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "1 Introduction",
+        "pages": [
+          2,
+          2
+        ],
+        "excerpt": "gmentation learned from data. Hierarchical Processing. The H-Net adopts the hierarchical architecture from prior work (Goel et al. 2022; Nawrot, Tworkowski, et al. 2022; Slagle 2024), resembling an autoregressive U-Net ("
+      }
+    ],
+    "rank_unfiltered": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "rank_paper_restricted": {
+      "A": null,
+      "B": null,
+      "C": null
+    },
+    "label": "RETRIEVAL FAILURE (configs A, B, C)"
+  },
+  {
+    "id": "Q14",
+    "question": "What does the ablation show when the routing module is replaced by direct probability prediction?",
+    "kind_proposed": "answerable",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "direct probability prediction from individual inputs"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0063",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "3.2 Alternate Language Datasets",
+        "pages": [
+          17,
+          17
+        ],
+        "excerpt": "module that is based on scaled cosine similarity, with direct probability prediction from individual inputs (w/o cosine routing), and (iii)"
+      },
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0064",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "3.3 Ablation Studies",
+        "pages": [
+          17,
+          18
+        ],
+        "excerpt": "module that is based on scaled cosine similarity, with direct probability prediction from individual inputs (w/o cosine routing), and (iii) skipping the straight-through estimator in equation (9) (w/o STE). The smoothing"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "rank_paper_restricted": {
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q15",
+    "question": "What limitations or future work do the H-Net authors discuss?",
+    "kind_proposed": "partial",
+    "paper": "dynamic_chunking",
+    "groups": [
+      [
+        "will be an important subject of future work"
+      ],
+      [
+        "alleviate their limitations in retrieval"
+      ]
+    ],
+    "evidence": [
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0074",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "4 Discussion",
+        "pages": [
+          22,
+          22
+        ],
+        "excerpt": "lieve that such considerations are not fundamental and will be an important subject of future work; just as how related dynamic sparsity and conditional compute methods such as Mixture-of-Experts and speculative decoding"
+      },
+      {
+        "group": 0,
+        "chunk_id": "dynamic_chunking-B-0075",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "4 Discussion",
+        "pages": [
+          22,
+          22
+        ],
+        "excerpt": "lieve that such considerations are not fundamental and will be an important subject of future work; just as how related dynamic sparsity and conditional compute methods such as Mixture-of-Experts and speculative decoding"
+      },
+      {
+        "group": 1,
+        "chunk_id": "dynamic_chunking-B-0076",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "section": "4 Discussion",
+        "pages": [
+          22,
+          22
+        ],
+        "excerpt": "arly, the recursive compression of sequence length may alleviate their limitations in retrieval on long sequences. This may be considered a form of dynamic state allocation. This paper has not focused on such implication"
+      }
+    ],
+    "rank_unfiltered": {
+      "A": 4,
+      "B": 4,
+      "C": 2
+    },
+    "rank_paper_restricted": {
+      "A": 4,
+      "B": 4,
+      "C": 2
+    },
+    "label": "ok: evidence found and retrieved by every config"
+  },
+  {
+    "id": "Q16",
+    "question": "What BLEU score does the Transformer achieve on the WMT 2016 English\u2013Romanian test set?",
+    "kind_proposed": "unanswerable",
+    "paper": "attention",
+    "groups": [],
+    "evidence": [],
+    "rank_unfiltered": {},
+    "rank_paper_restricted": {},
+    "label": "NO TERMS PROPOSED"
+  }
+]

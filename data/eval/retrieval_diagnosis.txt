@@ -1,0 +1,110 @@
+RETRIEVAL DIAGNOSIS (free, no API calls). Gold = pieces matching the evidence terms; used only to measure.
+
+Q01 [answerable] How is scaled dot-product attention calculated?
+   A: WORDING_MISMATCH         gold pieces=1 bm25_rank=22 in_paper_rank=15 rerank_rank=None sent_rank=None question-words-in-gold=0.2
+      gold score 4.373 vs best piece 24.744 (attention [3.2.1 Scaled Dot-Product Attention] p.4); question words missing from gold: ['calculated', 'dot', 'product', 'scaled']
+   B: OK                       gold pieces=1 bm25_rank=1 in_paper_rank=1 rerank_rank=None sent_rank=1 question-words-in-gold=0.8
+   C: OK                       gold pieces=1 bm25_rank=1 in_paper_rank=1 rerank_rank=1 sent_rank=1 question-words-in-gold=0.8
+
+Q02 [answerable] Why does the Transformer divide the attention scores by the square root of the key dimension?
+   A: WORDING_MISMATCH         gold pieces=2 bm25_rank=55 in_paper_rank=30 rerank_rank=None sent_rank=None question-words-in-gold=0.12
+      gold score 4.23 vs best piece 19.635 (attention [3.2.1 Scaled Dot-Product Attention] p.4); question words missing from gold: ['dimension', 'divide', 'key', 'root', 'scores', 'square', 'transformer']
+   B: WORDING_MISMATCH         gold pieces=1 bm25_rank=32 in_paper_rank=17 rerank_rank=None sent_rank=None question-words-in-gold=0.12
+      gold score 4.46 vs best piece 17.058 (attention [3.2.1 Scaled Dot-Product Attention] p.3); question words missing from gold: ['dimension', 'divide', 'key', 'root', 'scores', 'square', 'transformer']
+   C: WORDING_MISMATCH         gold pieces=1 bm25_rank=33 in_paper_rank=15 rerank_rank=None sent_rank=None question-words-in-gold=0.12
+      gold score 3.901 vs best piece 16.616 (attention [3.2.1 Scaled Dot-Product Attention] p.3); question words missing from gold: ['dimension', 'divide', 'key', 'root', 'scores', 'square', 'transformer']
+
+Q03 [answerable] What is the purpose of multi-head attention?
+   A: OK                       gold pieces=1 bm25_rank=3 in_paper_rank=3 rerank_rank=None sent_rank=3 question-words-in-gold=0.75
+   B: OK                       gold pieces=1 bm25_rank=4 in_paper_rank=4 rerank_rank=None sent_rank=4 question-words-in-gold=0.75
+   C: OK                       gold pieces=2 bm25_rank=1 in_paper_rank=1 rerank_rank=1 sent_rank=1 question-words-in-gold=0.75
+
+Q04 [answerable] How does positional encoding provide sequence-order information?
+   A: OK                       gold pieces=1 bm25_rank=3 in_paper_rank=3 rerank_rank=None sent_rank=3 question-words-in-gold=0.33
+   B: OK                       gold pieces=1 bm25_rank=1 in_paper_rank=1 rerank_rank=None sent_rank=1 question-words-in-gold=0.83
+   C: OK                       gold pieces=1 bm25_rank=1 in_paper_rank=1 rerank_rank=1 sent_rank=1 question-words-in-gold=0.83
+
+Q05 [answerable] How does masking prevent the decoder from attending to future positions?
+   A: OK                       gold pieces=3 bm25_rank=1 in_paper_rank=1 rerank_rank=None sent_rank=1 question-words-in-gold=0.83
+   B: OK                       gold pieces=2 bm25_rank=1 in_paper_rank=1 rerank_rank=None sent_rank=1 question-words-in-gold=0.83
+   C: OK                       gold pieces=3 bm25_rank=1 in_paper_rank=1 rerank_rank=1 sent_rank=1 question-words-in-gold=0.83
+
+Q06 [answerable] What problem is Moshi designed to solve in real-time spoken dialogue?
+   A: NO_QUERY_TERM_OVERLAP    gold pieces=1 bm25_rank=None in_paper_rank=None rerank_rank=None sent_rank=None question-words-in-gold=0.0
+      gold score None vs best piece 15.403 (moshi [(front matter)] p.1); question words missing from gold: ['designed', 'dialogue', 'moshi', 'problem', 'real', 'solve', 'spoken', 'time']
+   B: BM25_SCORING             gold pieces=2 bm25_rank=9 in_paper_rank=9 rerank_rank=None sent_rank=None question-words-in-gold=0.62
+      gold score 10.902 vs best piece 12.504 (moshi [Abstract] p.1); question words missing from gold: ['designed', 'problem', 'solve']
+   C: RERANK_DID_NOT_PROMOTE   gold pieces=2 bm25_rank=5 in_paper_rank=5 rerank_rank=4 sent_rank=None question-words-in-gold=0.62
+      gold score 9.975 vs best piece 11.772 (moshi [Abstract] p.1); question words missing from gold: ['designed', 'problem', 'solve']
+
+Q07 [answerable] How does Moshi represent speech and text during dialogue?
+   A: WORDING_MISMATCH         gold pieces=2 bm25_rank=109 in_paper_rank=108 rerank_rank=None sent_rank=None question-words-in-gold=0.33
+      gold score 5.175 vs best piece 11.51 (moshi [(front matter)] p.1); question words missing from gold: ['dialogue', 'during', 'moshi', 'represent']
+   B: BM25_SCORING             gold pieces=2 bm25_rank=11 in_paper_rank=11 rerank_rank=None sent_rank=None question-words-in-gold=0.67
+      gold score 7.306 vs best piece 9.787 (moshi [2 Related Work] p.3); question words missing from gold: ['during', 'represent']
+   C: RERANK_DID_NOT_PROMOTE   gold pieces=3 bm25_rank=6 in_paper_rank=6 rerank_rank=8 sent_rank=None question-words-in-gold=0.67
+      gold score 7.411 vs best piece 8.677 (moshi [2 Related Work] p.3); question words missing from gold: ['during', 'represent']
+
+Q08 [answerable] What role does the Mimi audio codec play in the Moshi architecture?
+   A: OK                       gold pieces=2 bm25_rank=2 in_paper_rank=2 rerank_rank=None sent_rank=2 question-words-in-gold=0.71
+   B: OK                       gold pieces=1 bm25_rank=1 in_paper_rank=1 rerank_rank=None sent_rank=1 question-words-in-gold=0.71
+   C: OK                       gold pieces=1 bm25_rank=1 in_paper_rank=1 rerank_rank=1 sent_rank=1 question-words-in-gold=0.71
+
+Q09 [answerable] What is the purpose of Moshi's inner-monologue mechanism?
+   A: OK                       gold pieces=2 bm25_rank=6 in_paper_rank=6 rerank_rank=None sent_rank=6 question-words-in-gold=0.67
+   B: BM25_SCORING             gold pieces=2 bm25_rank=11 in_paper_rank=11 rerank_rank=None sent_rank=None question-words-in-gold=0.67
+      gold score 7.221 vs best piece 11.192 (moshi [7.3 Helium (text)] p.29); question words missing from gold: ['mechanism', 'purpose']
+   C: RERANK_DID_NOT_PROMOTE   gold pieces=3 bm25_rank=4 in_paper_rank=4 rerank_rank=9 sent_rank=None question-words-in-gold=0.5
+      gold score 7.912 vs best piece 9.854 (moshi [7.3 Helium (text)] p.29); question words missing from gold: ['mechanism', 'purpose', 's']
+
+Q10 [answerable] What evidence does the paper provide about latency or real-time performance?
+   A: OK                       gold pieces=5 bm25_rank=1 in_paper_rank=1 rerank_rank=None sent_rank=1 question-words-in-gold=0.57
+   B: OK                       gold pieces=3 bm25_rank=4 in_paper_rank=2 rerank_rank=None sent_rank=4 question-words-in-gold=0.57
+   C: OK                       gold pieces=5 bm25_rank=1 in_paper_rank=1 rerank_rank=1 sent_rank=1 question-words-in-gold=0.57
+
+Q11 [answerable] What problem does the paper's dynamic chunking approach address?
+   A: WORDING_MISMATCH         gold pieces=2 bm25_rank=51 in_paper_rank=49 rerank_rank=None sent_rank=None question-words-in-gold=0.29
+      gold score 5.327 vs best piece 14.457 (dynamic_chunking [2.2.2 Dechunking] p.6); question words missing from gold: ['address', 'approach', 'paper', 'problem', 's']
+   B: WORDING_MISMATCH         gold pieces=1 bm25_rank=27 in_paper_rank=27 rerank_rank=None sent_rank=None question-words-in-gold=0.29
+      gold score 5.567 vs best piece 14.238 (dynamic_chunking [2.2.2 Dechunking] p.6); question words missing from gold: ['address', 'approach', 'paper', 'problem', 's']
+   C: WORDING_MISMATCH         gold pieces=1 bm25_rank=21 in_paper_rank=21 rerank_rank=None sent_rank=None question-words-in-gold=0.43
+      gold score 6.23 vs best piece 12.17 (dynamic_chunking [2.2.1 Chunking Layer] p.6); question words missing from gold: ['address', 'approach', 'paper', 'problem']
+
+Q12 [answerable] How does the proposed method determine or use chunk boundaries?
+   A: NO_QUERY_TERM_OVERLAP    gold pieces=1 bm25_rank=None in_paper_rank=None rerank_rank=None sent_rank=None question-words-in-gold=0.0
+      gold score None vs best piece 12.268 (dynamic_chunking [References] p.32); question words missing from gold: ['boundaries', 'chunk', 'determine', 'method', 'proposed', 'use']
+   B: WORDING_MISMATCH         gold pieces=2 bm25_rank=18 in_paper_rank=16 rerank_rank=None sent_rank=None question-words-in-gold=0.33
+      gold score 5.773 vs best piece 11.482 (dynamic_chunking [References] p.31); question words missing from gold: ['determine', 'method', 'proposed', 'use']
+   C: BM25_SCORING             gold pieces=2 bm25_rank=22 in_paper_rank=18 rerank_rank=None sent_rank=None question-words-in-gold=0.5
+      gold score 5.121 vs best piece 12.538 (dynamic_chunking [References] p.32); question words missing from gold: ['determine', 'method', 'proposed']
+
+Q13 [answerable] How does the Moshi paper's full-duplex dialogue contribution differ from the hierarchical modeling contribution of the dynamic chunking (H-Net) paper?
+   A: WORDING_MISMATCH         gold pieces=2 bm25_rank=14 in_paper_rank=14 rerank_rank=None sent_rank=None question-words-in-gold=0.36
+      gold score 13.667 vs best piece 22.528 (dynamic_chunking [2.2.3 Ratio Loss] p.8); question words missing from gold: ['chunking', 'contribution', 'differ', 'dynamic', 'h', 'hierarchical', 'net', 'paper', 's']
+   B: WORDING_MISMATCH         gold pieces=4 bm25_rank=7 in_paper_rank=7 rerank_rank=None sent_rank=None question-words-in-gold=0.43
+      gold score 14.834 vs best piece 18.94 (dynamic_chunking [2.2.3 Ratio Loss] p.8); question words missing from gold: ['contribution', 'dialogue', 'differ', 'duplex', 'full', 'moshi', 'paper', 's']
+   C: RERANK_DID_NOT_PROMOTE   gold pieces=2 bm25_rank=5 in_paper_rank=5 rerank_rank=4 sent_rank=None question-words-in-gold=0.5
+      gold score 15.61 vs best piece 18.028 (moshi [Abstract] p.1); question words missing from gold: ['contribution', 'dialogue', 'differ', 'duplex', 'full', 'moshi', 'paper']
+
+Q14 [answerable] What does the ablation show when the routing module is replaced by direct probability prediction?
+   A: OK                       gold pieces=2 bm25_rank=1 in_paper_rank=1 rerank_rank=None sent_rank=1 question-words-in-gold=0.62
+   B: OK                       gold pieces=2 bm25_rank=1 in_paper_rank=1 rerank_rank=None sent_rank=1 question-words-in-gold=0.88
+   C: OK                       gold pieces=1 bm25_rank=1 in_paper_rank=1 rerank_rank=1 sent_rank=1 question-words-in-gold=0.88
+
+Q15 [partial] What limitations or future work do the H-Net authors discuss?
+   A: OK                       gold pieces=2 bm25_rank=4 in_paper_rank=4 rerank_rank=None sent_rank=4 question-words-in-gold=0.57
+   B: OK                       gold pieces=3 bm25_rank=4 in_paper_rank=4 rerank_rank=None sent_rank=4 question-words-in-gold=0.57
+   C: OK                       gold pieces=3 bm25_rank=2 in_paper_rank=2 rerank_rank=2 sent_rank=2 question-words-in-gold=0.71
+
+Q16 [unanswerable] What BLEU score does the Transformer achieve on the WMT 2016 English–Romanian test set?
+   no evidence terms (expected for an unanswerable question)
+
+BIBLIOGRAPHY PIECES AMONG THE PIECES SENT (a reference list is never evidence for an answer)
+   A: 17 of 120 pieces sent
+   B: 9 of 75 pieces sent
+   C: 5 of 45 pieces sent
+
+CAUSE COUNTS PER CONFIG
+   A: OK=8, NO_QUERY_TERM_OVERLAP=2, WORDING_MISMATCH=5
+   B: OK=8, WORDING_MISMATCH=4, BM25_SCORING=3
+   C: OK=8, RERANK_DID_NOT_PROMOTE=4, WORDING_MISMATCH=2, BM25_SCORING=1

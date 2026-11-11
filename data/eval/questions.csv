@@ -1,0 +1,17 @@
+id,question,kind,paper,expected_answer,must_include,evidence_page
+Q01,How is scaled dot-product attention calculated?,answerable,attention,,,
+Q02,Why does the Transformer divide the attention scores by the square root of the key dimension?,answerable,attention,,,
+Q03,What is the purpose of multi-head attention?,answerable,attention,,,
+Q04,How does positional encoding provide sequence-order information?,answerable,attention,,,
+Q05,How does masking prevent the decoder from attending to future positions?,answerable,attention,,,
+Q06,What problem is Moshi designed to solve in real-time spoken dialogue?,answerable,moshi,,,
+Q07,How does Moshi represent speech and text during dialogue?,answerable,moshi,,,
+Q08,What role does the Mimi audio codec play in the Moshi architecture?,answerable,moshi,,,
+Q09,What is the purpose of Moshi's inner-monologue mechanism?,answerable,moshi,,,
+Q10,What evidence does the paper provide about latency or real-time performance?,answerable,moshi,,160 ms|230 ms,moshi PDF p.2-3 (1 Introduction)
+Q11,What problem does the paper's dynamic chunking approach address?,answerable,dynamic_chunking,,,
+Q12,How does the proposed method determine or use chunk boundaries?,answerable,dynamic_chunking,,,
+Q13,How does the Moshi paper's full-duplex dialogue contribution differ from the hierarchical modeling contribution of the dynamic chunking (H-Net) paper?,answerable,moshi|dynamic_chunking,,,moshi PDF p.2-3 and p.41; dynamic_chunking PDF p.2
+Q14,What does the ablation show when the routing module is replaced by direct probability prediction?,answerable,dynamic_chunking,,,dynamic_chunking PDF p.17
+Q15,What limitations or future work do the H-Net authors discuss?,partial,dynamic_chunking,,,dynamic_chunking PDF p.22 (scattered statements)
+Q16,What BLEU score does the Transformer achieve on the WMT 2016 English–Romanian test set?,unanswerable,attention,REFUSE: the paper reports no WMT 2016 English-Romanian result (only WMT 2014 English-to-German and English-to-French); a correct answer says the paper does not report it and gives no Romanian number,,none expected; absence check output in data/eval/absence_check.txt

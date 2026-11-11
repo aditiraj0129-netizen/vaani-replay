@@ -1,0 +1,1041 @@
+[
+  {
+    "id": "Q01",
+    "question": "How is scaled dot-product attention calculated?",
+    "kind": "answerable",
+    "paper": "attention",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 1,
+        "bm25_rank": 22,
+        "paper_rank": 15,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.2,
+        "missing_terms": [
+          "calculated",
+          "dot",
+          "product",
+          "scaled"
+        ],
+        "top1": "attention [3.2.1 Scaled Dot-Product Attention] p.4",
+        "gold_score": 4.373,
+        "top_score": 24.744,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "WORDING_MISMATCH"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 1,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": null,
+        "final_rank": 1,
+        "coverage": 0.8,
+        "missing_terms": [
+          "calculated"
+        ],
+        "top1": "attention [3.2.1 Scaled Dot-Product Attention] p.3",
+        "gold_score": 25.827,
+        "top_score": 25.827,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 1,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": 1,
+        "final_rank": 1,
+        "coverage": 0.8,
+        "missing_terms": [
+          "calculated"
+        ],
+        "top1": "attention [3.2.1 Scaled Dot-Product Attention] p.3",
+        "gold_score": 22.809,
+        "top_score": 22.809,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "OK"
+      }
+    }
+  },
+  {
+    "id": "Q02",
+    "question": "Why does the Transformer divide the attention scores by the square root of the key dimension?",
+    "kind": "answerable",
+    "paper": "attention",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 2,
+        "bm25_rank": 55,
+        "paper_rank": 30,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.12,
+        "missing_terms": [
+          "dimension",
+          "divide",
+          "key",
+          "root",
+          "scores",
+          "square",
+          "transformer"
+        ],
+        "top1": "attention [3.2.1 Scaled Dot-Product Attention] p.4",
+        "gold_score": 4.23,
+        "top_score": 19.635,
+        "n_sent": 8,
+        "refs_sent": 2,
+        "cause": "WORDING_MISMATCH"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 1,
+        "bm25_rank": 32,
+        "paper_rank": 17,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.12,
+        "missing_terms": [
+          "dimension",
+          "divide",
+          "key",
+          "root",
+          "scores",
+          "square",
+          "transformer"
+        ],
+        "top1": "attention [3.2.1 Scaled Dot-Product Attention] p.3",
+        "gold_score": 4.46,
+        "top_score": 17.058,
+        "n_sent": 5,
+        "refs_sent": 1,
+        "cause": "WORDING_MISMATCH"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 1,
+        "bm25_rank": 33,
+        "paper_rank": 15,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.12,
+        "missing_terms": [
+          "dimension",
+          "divide",
+          "key",
+          "root",
+          "scores",
+          "square",
+          "transformer"
+        ],
+        "top1": "attention [3.2.1 Scaled Dot-Product Attention] p.3",
+        "gold_score": 3.901,
+        "top_score": 16.616,
+        "n_sent": 3,
+        "refs_sent": 1,
+        "cause": "WORDING_MISMATCH"
+      }
+    }
+  },
+  {
+    "id": "Q03",
+    "question": "What is the purpose of multi-head attention?",
+    "kind": "answerable",
+    "paper": "attention",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 1,
+        "bm25_rank": 3,
+        "paper_rank": 3,
+        "rerank_rank": null,
+        "final_rank": 3,
+        "coverage": 0.75,
+        "missing_terms": [
+          "purpose"
+        ],
+        "top1": "attention [3.2 Attention] p.3",
+        "gold_score": 12.404,
+        "top_score": 14.655,
+        "n_sent": 8,
+        "refs_sent": 1,
+        "cause": "OK"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 1,
+        "bm25_rank": 4,
+        "paper_rank": 4,
+        "rerank_rank": null,
+        "final_rank": 4,
+        "coverage": 0.75,
+        "missing_terms": [
+          "purpose"
+        ],
+        "top1": "attention [3.1 Encoder and Decoder Stacks] p.3",
+        "gold_score": 10.437,
+        "top_score": 12.812,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 2,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": 1,
+        "final_rank": 1,
+        "coverage": 0.75,
+        "missing_terms": [
+          "purpose"
+        ],
+        "top1": "attention [3.2.2 Multi-Head Attention] p.4",
+        "gold_score": 11.547,
+        "top_score": 11.547,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "OK"
+      }
+    }
+  },
+  {
+    "id": "Q04",
+    "question": "How does positional encoding provide sequence-order information?",
+    "kind": "answerable",
+    "paper": "attention",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 1,
+        "bm25_rank": 3,
+        "paper_rank": 3,
+        "rerank_rank": null,
+        "final_rank": 3,
+        "coverage": 0.33,
+        "missing_terms": [
+          "encoding",
+          "information",
+          "order",
+          "provide"
+        ],
+        "top1": "attention [3.5 Positional Encoding] p.6",
+        "gold_score": 9.318,
+        "top_score": 20.147,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 1,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": null,
+        "final_rank": 1,
+        "coverage": 0.83,
+        "missing_terms": [
+          "provide"
+        ],
+        "top1": "attention [3.5 Positional Encoding] p.6",
+        "gold_score": 18.854,
+        "top_score": 18.854,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 1,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": 1,
+        "final_rank": 1,
+        "coverage": 0.83,
+        "missing_terms": [
+          "provide"
+        ],
+        "top1": "attention [3.5 Positional Encoding] p.5",
+        "gold_score": 16.874,
+        "top_score": 16.874,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "OK"
+      }
+    }
+  },
+  {
+    "id": "Q05",
+    "question": "How does masking prevent the decoder from attending to future positions?",
+    "kind": "answerable",
+    "paper": "attention",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 3,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": null,
+        "final_rank": 1,
+        "coverage": 0.83,
+        "missing_terms": [
+          "future"
+        ],
+        "top1": "attention [3.1 Encoder and Decoder Stacks] p.3",
+        "gold_score": 25.786,
+        "top_score": 25.786,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 2,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": null,
+        "final_rank": 1,
+        "coverage": 0.83,
+        "missing_terms": [
+          "future"
+        ],
+        "top1": "attention [3.1 Encoder and Decoder Stacks] p.3",
+        "gold_score": 22.299,
+        "top_score": 22.299,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 3,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": 1,
+        "final_rank": 1,
+        "coverage": 0.83,
+        "missing_terms": [
+          "future"
+        ],
+        "top1": "attention [3.1 Encoder and Decoder Stacks] p.2",
+        "gold_score": 19.589,
+        "top_score": 19.589,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "OK"
+      }
+    }
+  },
+  {
+    "id": "Q06",
+    "question": "What problem is Moshi designed to solve in real-time spoken dialogue?",
+    "kind": "answerable",
+    "paper": "moshi",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 1,
+        "bm25_rank": null,
+        "paper_rank": null,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.0,
+        "missing_terms": [
+          "designed",
+          "dialogue",
+          "moshi",
+          "problem",
+          "real",
+          "solve",
+          "spoken",
+          "time"
+        ],
+        "top1": "moshi [(front matter)] p.1",
+        "gold_score": null,
+        "top_score": 15.403,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "NO_QUERY_TERM_OVERLAP"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 2,
+        "bm25_rank": 9,
+        "paper_rank": 9,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.62,
+        "missing_terms": [
+          "designed",
+          "problem",
+          "solve"
+        ],
+        "top1": "moshi [Abstract] p.1",
+        "gold_score": 10.902,
+        "top_score": 12.504,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "BM25_SCORING"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 2,
+        "bm25_rank": 5,
+        "paper_rank": 5,
+        "rerank_rank": 4,
+        "final_rank": null,
+        "coverage": 0.62,
+        "missing_terms": [
+          "designed",
+          "problem",
+          "solve"
+        ],
+        "top1": "moshi [Abstract] p.1",
+        "gold_score": 9.975,
+        "top_score": 11.772,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "RERANK_DID_NOT_PROMOTE"
+      }
+    }
+  },
+  {
+    "id": "Q07",
+    "question": "How does Moshi represent speech and text during dialogue?",
+    "kind": "answerable",
+    "paper": "moshi",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 2,
+        "bm25_rank": 109,
+        "paper_rank": 108,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.33,
+        "missing_terms": [
+          "dialogue",
+          "during",
+          "moshi",
+          "represent"
+        ],
+        "top1": "moshi [(front matter)] p.1",
+        "gold_score": 5.175,
+        "top_score": 11.51,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "WORDING_MISMATCH"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 2,
+        "bm25_rank": 11,
+        "paper_rank": 11,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.67,
+        "missing_terms": [
+          "during",
+          "represent"
+        ],
+        "top1": "moshi [2 Related Work] p.3",
+        "gold_score": 7.306,
+        "top_score": 9.787,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "BM25_SCORING"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 3,
+        "bm25_rank": 6,
+        "paper_rank": 6,
+        "rerank_rank": 8,
+        "final_rank": null,
+        "coverage": 0.67,
+        "missing_terms": [
+          "during",
+          "represent"
+        ],
+        "top1": "moshi [2 Related Work] p.3",
+        "gold_score": 7.411,
+        "top_score": 8.677,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "RERANK_DID_NOT_PROMOTE"
+      }
+    }
+  },
+  {
+    "id": "Q08",
+    "question": "What role does the Mimi audio codec play in the Moshi architecture?",
+    "kind": "answerable",
+    "paper": "moshi",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 2,
+        "bm25_rank": 2,
+        "paper_rank": 2,
+        "rerank_rank": null,
+        "final_rank": 2,
+        "coverage": 0.71,
+        "missing_terms": [
+          "play",
+          "role"
+        ],
+        "top1": "moshi [3.1 Overview] p.7",
+        "gold_score": 11.799,
+        "top_score": 12.519,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 1,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": null,
+        "final_rank": 1,
+        "coverage": 0.71,
+        "missing_terms": [
+          "play",
+          "role"
+        ],
+        "top1": "moshi [1 Introduction] p.2",
+        "gold_score": 11.067,
+        "top_score": 11.067,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 1,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": 1,
+        "final_rank": 1,
+        "coverage": 0.71,
+        "missing_terms": [
+          "play",
+          "role"
+        ],
+        "top1": "moshi [1 Introduction] p.2",
+        "gold_score": 10.266,
+        "top_score": 10.266,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "OK"
+      }
+    }
+  },
+  {
+    "id": "Q09",
+    "question": "What is the purpose of Moshi's inner-monologue mechanism?",
+    "kind": "answerable",
+    "paper": "moshi",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 2,
+        "bm25_rank": 6,
+        "paper_rank": 6,
+        "rerank_rank": null,
+        "final_rank": 6,
+        "coverage": 0.67,
+        "missing_terms": [
+          "mechanism",
+          "purpose"
+        ],
+        "top1": "moshi [7.3 Helium (text)] p.29",
+        "gold_score": 9.717,
+        "top_score": 13.103,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 2,
+        "bm25_rank": 11,
+        "paper_rank": 11,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.67,
+        "missing_terms": [
+          "mechanism",
+          "purpose"
+        ],
+        "top1": "moshi [7.3 Helium (text)] p.29",
+        "gold_score": 7.221,
+        "top_score": 11.192,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "BM25_SCORING"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 3,
+        "bm25_rank": 4,
+        "paper_rank": 4,
+        "rerank_rank": 9,
+        "final_rank": null,
+        "coverage": 0.5,
+        "missing_terms": [
+          "mechanism",
+          "purpose",
+          "s"
+        ],
+        "top1": "moshi [7.3 Helium (text)] p.29",
+        "gold_score": 7.912,
+        "top_score": 9.854,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "RERANK_DID_NOT_PROMOTE"
+      }
+    }
+  },
+  {
+    "id": "Q10",
+    "question": "What evidence does the paper provide about latency or real-time performance?",
+    "kind": "answerable",
+    "paper": "moshi",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 5,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": null,
+        "final_rank": 1,
+        "coverage": 0.57,
+        "missing_terms": [
+          "evidence",
+          "paper",
+          "performance"
+        ],
+        "top1": "moshi [Abstract] p.1",
+        "gold_score": 12.026,
+        "top_score": 12.026,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 3,
+        "bm25_rank": 4,
+        "paper_rank": 2,
+        "rerank_rank": null,
+        "final_rank": 4,
+        "coverage": 0.57,
+        "missing_terms": [
+          "evidence",
+          "paper",
+          "performance"
+        ],
+        "top1": "moshi [5.3 Ablations on generative modeling] p.26",
+        "gold_score": 9.0,
+        "top_score": 9.476,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 5,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": 1,
+        "final_rank": 1,
+        "coverage": 0.57,
+        "missing_terms": [
+          "evidence",
+          "paper",
+          "performance"
+        ],
+        "top1": "moshi [1 Introduction] p.1",
+        "gold_score": 9.955,
+        "top_score": 9.955,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "OK"
+      }
+    }
+  },
+  {
+    "id": "Q11",
+    "question": "What problem does the paper's dynamic chunking approach address?",
+    "kind": "answerable",
+    "paper": "dynamic_chunking",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 2,
+        "bm25_rank": 51,
+        "paper_rank": 49,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.29,
+        "missing_terms": [
+          "address",
+          "approach",
+          "paper",
+          "problem",
+          "s"
+        ],
+        "top1": "dynamic_chunking [2.2.2 Dechunking] p.6",
+        "gold_score": 5.327,
+        "top_score": 14.457,
+        "n_sent": 8,
+        "refs_sent": 2,
+        "cause": "WORDING_MISMATCH"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 1,
+        "bm25_rank": 27,
+        "paper_rank": 27,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.29,
+        "missing_terms": [
+          "address",
+          "approach",
+          "paper",
+          "problem",
+          "s"
+        ],
+        "top1": "dynamic_chunking [2.2.2 Dechunking] p.6",
+        "gold_score": 5.567,
+        "top_score": 14.238,
+        "n_sent": 5,
+        "refs_sent": 2,
+        "cause": "WORDING_MISMATCH"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 1,
+        "bm25_rank": 21,
+        "paper_rank": 21,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.43,
+        "missing_terms": [
+          "address",
+          "approach",
+          "paper",
+          "problem"
+        ],
+        "top1": "dynamic_chunking [2.2.1 Chunking Layer] p.6",
+        "gold_score": 6.23,
+        "top_score": 12.17,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "WORDING_MISMATCH"
+      }
+    }
+  },
+  {
+    "id": "Q12",
+    "question": "How does the proposed method determine or use chunk boundaries?",
+    "kind": "answerable",
+    "paper": "dynamic_chunking",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 1,
+        "bm25_rank": null,
+        "paper_rank": null,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.0,
+        "missing_terms": [
+          "boundaries",
+          "chunk",
+          "determine",
+          "method",
+          "proposed",
+          "use"
+        ],
+        "top1": "dynamic_chunking [References] p.32",
+        "gold_score": null,
+        "top_score": 12.268,
+        "n_sent": 8,
+        "refs_sent": 6,
+        "cause": "NO_QUERY_TERM_OVERLAP"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 2,
+        "bm25_rank": 18,
+        "paper_rank": 16,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.33,
+        "missing_terms": [
+          "determine",
+          "method",
+          "proposed",
+          "use"
+        ],
+        "top1": "dynamic_chunking [References] p.31",
+        "gold_score": 5.773,
+        "top_score": 11.482,
+        "n_sent": 5,
+        "refs_sent": 4,
+        "cause": "WORDING_MISMATCH"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 2,
+        "bm25_rank": 22,
+        "paper_rank": 18,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.5,
+        "missing_terms": [
+          "determine",
+          "method",
+          "proposed"
+        ],
+        "top1": "dynamic_chunking [References] p.32",
+        "gold_score": 5.121,
+        "top_score": 12.538,
+        "n_sent": 3,
+        "refs_sent": 3,
+        "cause": "BM25_SCORING"
+      }
+    }
+  },
+  {
+    "id": "Q13",
+    "question": "How does the Moshi paper's full-duplex dialogue contribution differ from the hierarchical modeling contribution of the dynamic chunking (H-Net) paper?",
+    "kind": "answerable",
+    "paper": "moshi|dynamic_chunking",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 2,
+        "bm25_rank": 14,
+        "paper_rank": 14,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.36,
+        "missing_terms": [
+          "chunking",
+          "contribution",
+          "differ",
+          "dynamic",
+          "h",
+          "hierarchical",
+          "net",
+          "paper",
+          "s"
+        ],
+        "top1": "dynamic_chunking [2.2.3 Ratio Loss] p.8",
+        "gold_score": 13.667,
+        "top_score": 22.528,
+        "n_sent": 8,
+        "refs_sent": 0,
+        "cause": "WORDING_MISMATCH"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 4,
+        "bm25_rank": 7,
+        "paper_rank": 7,
+        "rerank_rank": null,
+        "final_rank": null,
+        "coverage": 0.43,
+        "missing_terms": [
+          "contribution",
+          "dialogue",
+          "differ",
+          "duplex",
+          "full",
+          "moshi",
+          "paper",
+          "s"
+        ],
+        "top1": "dynamic_chunking [2.2.3 Ratio Loss] p.8",
+        "gold_score": 14.834,
+        "top_score": 18.94,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "WORDING_MISMATCH"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 2,
+        "bm25_rank": 5,
+        "paper_rank": 5,
+        "rerank_rank": 4,
+        "final_rank": null,
+        "coverage": 0.5,
+        "missing_terms": [
+          "contribution",
+          "dialogue",
+          "differ",
+          "duplex",
+          "full",
+          "moshi",
+          "paper"
+        ],
+        "top1": "moshi [Abstract] p.1",
+        "gold_score": 15.61,
+        "top_score": 18.028,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "RERANK_DID_NOT_PROMOTE"
+      }
+    }
+  },
+  {
+    "id": "Q14",
+    "question": "What does the ablation show when the routing module is replaced by direct probability prediction?",
+    "kind": "answerable",
+    "paper": "dynamic_chunking",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 2,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": null,
+        "final_rank": 1,
+        "coverage": 0.62,
+        "missing_terms": [
+          "ablation",
+          "replaced",
+          "show"
+        ],
+        "top1": "dynamic_chunking [3.3 Ablation Studies] p.17",
+        "gold_score": 22.74,
+        "top_score": 22.74,
+        "n_sent": 8,
+        "refs_sent": 2,
+        "cause": "OK"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 2,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": null,
+        "final_rank": 1,
+        "coverage": 0.88,
+        "missing_terms": [
+          "replaced"
+        ],
+        "top1": "dynamic_chunking [3.2 Alternate Language Datasets] p.17",
+        "gold_score": 24.376,
+        "top_score": 24.376,
+        "n_sent": 5,
+        "refs_sent": 0,
+        "cause": "OK"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 1,
+        "bm25_rank": 1,
+        "paper_rank": 1,
+        "rerank_rank": 1,
+        "final_rank": 1,
+        "coverage": 0.88,
+        "missing_terms": [
+          "replaced"
+        ],
+        "top1": "dynamic_chunking [3.3 Ablation Studies] p.17",
+        "gold_score": 22.729,
+        "top_score": 22.729,
+        "n_sent": 3,
+        "refs_sent": 0,
+        "cause": "OK"
+      }
+    }
+  },
+  {
+    "id": "Q15",
+    "question": "What limitations or future work do the H-Net authors discuss?",
+    "kind": "partial",
+    "paper": "dynamic_chunking",
+    "configs": {
+      "A": {
+        "config": "A",
+        "n_gold": 2,
+        "bm25_rank": 4,
+        "paper_rank": 4,
+        "rerank_rank": null,
+        "final_rank": 4,
+        "coverage": 0.57,
+        "missing_terms": [
+          "authors",
+          "discuss",
+          "limitations"
+        ],
+        "top1": "dynamic_chunking [References] p.31",
+        "gold_score": 10.249,
+        "top_score": 12.229,
+        "n_sent": 8,
+        "refs_sent": 4,
+        "cause": "OK"
+      },
+      "B": {
+        "config": "B",
+        "n_gold": 3,
+        "bm25_rank": 4,
+        "paper_rank": 4,
+        "rerank_rank": null,
+        "final_rank": 4,
+        "coverage": 0.57,
+        "missing_terms": [
+          "authors",
+          "discuss",
+          "limitations"
+        ],
+        "top1": "dynamic_chunking [References] p.31",
+        "gold_score": 8.95,
+        "top_score": 12.958,
+        "n_sent": 5,
+        "refs_sent": 2,
+        "cause": "OK"
+      },
+      "C": {
+        "config": "C",
+        "n_gold": 3,
+        "bm25_rank": 2,
+        "paper_rank": 2,
+        "rerank_rank": 2,
+        "final_rank": 2,
+        "coverage": 0.71,
+        "missing_terms": [
+          "authors",
+          "discuss"
+        ],
+        "top1": "dynamic_chunking [References] p.31",
+        "gold_score": 11.185,
+        "top_score": 16.312,
+        "n_sent": 3,
+        "refs_sent": 1,
+        "cause": "OK"
+      }
+    }
+  },
+  {
+    "id": "Q16",
+    "question": "What BLEU score does the Transformer achieve on the WMT 2016 English\u2013Romanian test set?",
+    "kind": "unanswerable",
+    "configs": {},
+    "note": "no evidence terms (expected for an unanswerable question)"
+  }
+]

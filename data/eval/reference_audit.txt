@@ -1,0 +1,345 @@
+REFERENCE-LIST FILTER AUDIT (free, no API calls)
+Words under a References/Bibliography heading are cut into 60-word segments. A segment is removed only if it has at least 3 bibliography markers and 3.0 per 100 words (or sits between / right after bibliography segments).
+Flagged segments carry the References label but do not read like a bibliography: they are KEPT.
+
+CONFIG A: pieces before 966, after 830, removed 136
+   attention          pieces  101 ->   86 (removed  15); words removed 944 of 6065 (p.10-12); flagged segments 7
+      first removed words: References [1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization.
+      last removed words : of the 51st Annual Meeting of the ACL (Volume 1: Long Papers), pages 434–443.
+      FLAGGED kept p.13-13 markers=0 per100=0.0: have passed new laws since 2009 making the registration or voting process more difficult . <EOS> <pad> <pad> <pad> <pad>
+      FLAGGED kept p.13-14 markers=0 per100=0.0: the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6. Many of the 
+      FLAGGED kept p.14-14 markers=0 per100=0.0: application should be just - this is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect , b
+      FLAGGED kept p.14-14 markers=0 per100=0.0: is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect , but its application should be just 
+      FLAGGED kept p.14-15 markers=0 per100=0.0: 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5 and 6. Note that the attentions are very s
+      FLAGGED kept p.15-15 markers=0 per100=0.0: its application should be just - this is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect
+      FLAGGED kept p.15-15 markers=0 per100=0.0: this is what we are missing , in my opinion . <EOS> <pad> Figure 5: Many of the attention heads exhibit behaviour that s
+   moshi              pieces  499 ->  432 (removed  67); words removed 4033 of 29913 (p.42-52); flagged segments 5
+      first removed words: References Scott Aaronson and Hendrik Kirchner. Watermarking gpt outputs, 2023. URL https: //www.scottaaronson.com/talks/watermark.ppt. 39
+      last removed words : Yu. Generative pre-trained speech language model with efficient hierarchical transformer. arXiv preprint arXiv:2406.00976, 2024.
+      FLAGGED kept p.43-43 markers=1 per100=1.7: Emily Reif, Nan Du, Benton C. Hutchinson, Reiner Pope, James Bradbury, Jacob Austin, Michael Isard, Guy Gur-Ari, Pengche
+      FLAGGED kept p.43-43 markers=2 per100=3.3: Dai, Thanumalayan Sankaranarayana Pillai, Marie Pellat, Aitor Lewkowycz, Erica Oliveira Moreira, Rewon Child, Oleksandr 
+      FLAGGED kept p.53-53 markers=0 per100=0.0: Moshi: a speech-text foundation model for real-time dialogue Appendix A. Additional ablation on Mimi codec Table 17: Abl
+      FLAGGED kept p.53-53 markers=0 per100=0.0: 50% of the time during training (independently from quantizer dropout), as described in Section 3.3. Quantization Transf
+      FLAGGED kept p.53-53 markers=0 per100=0.0: 23.6% 2.72 2.89 ✓ ✓ ✓ 23.3% 2.82 2.89 ✓ ✓ ✓ ✓ 6.5% 2.13 2.87 ✓ ✓ ✓ ✓ 10.8% 2.68 2.84 ✓ ✓ ✓ ✓ 8.1% 2.49 2.71 ✓ ✓ ✓ ✓ 8.0%
+   dynamic_chunking   pieces  366 ->  312 (removed  54); words removed 3294 of 21976 (p.25-30); flagged segments 91
+      first removed words: All Languages Cost the Same? Tokenization in the Era of Commercial Language Models”. In:
+      last removed words : of Highquality Chinese Datasets for LLM Training. 2025. arXiv: 2501.08197 [cs.CL]. url: https://arxiv.org/abs/ 2501.08197.
+      FLAGGED kept p.25-25 markers=2 per100=3.3: References [1] Orevaoghene Ahia, Sachin Kumar, Hila Gonen, Valentin Hofmann, Tomasz Limisiewicz, Yulia Tsvetkov, and Noa
+      FLAGGED kept p.30-31 markers=2 per100=3.3: Bisk, Ali Farhadi, and Yejin Choi. “HellaSwag: Can a Machine Really Finish Your Sentence?” In: Proceedings of the 57th A
+      FLAGGED kept p.31-31 markers=0 per100=0.0: computationally efficient representations manifests across multiple domains through implicit chunking processes. In lang
+      FLAGGED kept p.31-31 markers=0 per100=0.0: al. 2023; Grattafiori et al. 2024). Computer vision addresses similar challenges through spatial pooling operations (Ron
+      FLAGGED kept p.31-31 markers=0 per100=0.0: when handling adversarial inputs, and show lower performance on character-level tasks (Petrov et al. 2023; Ahia, Kumar, 
+      FLAGGED kept p.31-31 markers=0 per100=0.0: methods have emerged that avoid the reliance on predefined vocabularies. • In Appendix A.1, we discuss the most directly
+      FLAGGED kept p.31-31 markers=0 per100=0.0: which provide possible extensions of H-Net in future work. However, we provide this delineation because it marks an impo
+      FLAGGED kept p.31-31 markers=0 per100=0.0: prior work on autoregressive tokenizers for architectures can be divided into four categories: 1. Non-hierarchical isotr
+      FLAGGED kept p.31-31 markers=0 per100=0.0: where chunk boundaries are content-dependent and learned end-to-end. A.1.1 Isotropic Architectures The most direct appro
+      FLAGGED kept p.31-31 markers=0 per100=0.0: similarly use Mamba(-2) (Dao and Gu 2024) layers in the outer stages of an H-Net. Notably, through extensive ablations w
+      FLAGGED kept p.31-32 markers=0 per100=0.0: methods operate independently of input context, partitioning sequences using fixed-size intervals. Many strategies could
+      FLAGGED kept p.32-32 markers=0 per100=0.0: recent variants include the Block Transformer (Ho et al. 2024) and Multiscale Byte Language Model (MBLM) (Egli, Manica, 
+      FLAGGED kept p.32-32 markers=0 per100=0.0: (Krizhevsky, Sutskever, and Hinton 2012; He et al. 2016). While these content-agnostic methods have simple and efficient
+      FLAGGED kept p.32-32 markers=0 per100=0.0: be called “autoregressive U-Nets”, characterized by the U-Net multi-scale architecture (Ronneberger, Fischer, and Brox 2
+      FLAGGED kept p.32-32 markers=0 per100=0.0: language. SaShiMi specifically operated over 8-bit quantized audio inputs, hence also was a form of byte-level modeling 
+      FLAGGED kept p.32-32 markers=0 per100=0.0: propose using the boundaries provided by an external module, with two main variations appearing. Delimiter-based methods
+      FLAGGED kept p.32-32 markers=0 per100=0.0: token. SpaceByte (Slagle 2024) extends this to “space-like” delimiters (e.g., /, ], :) as natural boundary signals. This
+      FLAGGED kept p.32-32 markers=0 per100=0.0: be extended to multi-level hierarchical chunking due to ambiguities in defining natural delimiters at higher semantic le
+      FLAGGED kept p.32-32 markers=0 per100=0.0: In this work, we show that SpaceByte’s delimiter chunking strategy can be a very powerful baseline on appropriate langua
+      FLAGGED kept p.32-32 markers=0 per100=0.0: conditional entropy as a heuristic to identify semantic boundaries. This was first proposed by the Dynamic Pooling Trans
+      FLAGGED kept p.32-32 markers=0 per100=0.0: entropy-based approaches face several practical limitations. First, they require extensive domain-specific hyperparamete
+      FLAGGED kept p.32-33 markers=0 per100=0.0: computing cross-entropy loss requires access to target vocabularies, which are unavailable for intermediate latent repre
+      FLAGGED kept p.33-33 markers=0 per100=0.0: which can be considered an orthogonal architectural component which may be incorporated into H-Net as well if desired. I
+      FLAGGED kept p.33-33 markers=0 per100=0.0: Dynamic Chunking The ideal tokenizer-free architecture would incorporate a dynamic chunking method that attempts to lear
+      FLAGGED kept p.33-33 markers=0 per100=0.0: of that attempted a true dynamic chunking method is (one variant of) the Dynamic Pooling Transformer (DPT) (Nawrot, Chor
+      FLAGGED kept p.33-33 markers=0 per100=0.0: requires careful tuning of noise magnitudes and introduces high-variance gradients that destabilize training, making it 
+      FLAGGED kept p.33-33 markers=0 per100=0.0: from expanding to multiple hierarchical stages, constraining these methods to single-stage chunking. We additionally hig
+      FLAGGED kept p.33-33 markers=0 per100=0.0: from Appendix A.1 has corresponding non-autoregressive variants as well. Although these often have similar design princi
+      FLAGGED kept p.33-33 markers=0 per100=0.0: bytes using a bidirectional encoder-decoder architecture, showing improved performance with small models (because more p
+      FLAGGED kept p.33-33 markers=0 per100=0.0: with convolution-based static downsampling; their method also targets non-autoregressive language models. Charformer (Ta
+      FLAGGED kept p.33-33 markers=0 per100=0.0: also be endowed with implicit supervision from external tokenizers; for example, Canine proposes a variant that uses sub
+      FLAGGED kept p.33-34 markers=0 per100=0.0: modeling objective. Hierarchical (External). Thawani et al. (2023) propose the eByte method, which resembles MegaByte bu
+      FLAGGED kept p.34-34 markers=0 per100=0.0: method that predicts segmentation boundaries and pools bytes into blocks using a matching objective. MrT5 (Kallini et al
+      FLAGGED kept p.34-34 markers=0 per100=0.0: use tokenizers like BPE in the same way as language models do, they frequently need to turn raw perceptual data (images 
+      FLAGGED kept p.34-34 markers=0 per100=0.0: redundancies. A number of more recent approaches attempt to produce variable length tokenizations that adapt to the info
+      FLAGGED kept p.34-34 markers=0 per100=0.0: length encoding") with heuristics (Bolya et al. 2022; Choudhury et al. 2024). In the audio domain, SlowAE (Dieleman et a
+      FLAGGED kept p.34-34 markers=0 per100=0.0: Cosine Transform (DCT) with BPE. Vocabulary Scaling. While scaling laws for language models have generally kept tokenize
+      FLAGGED kept p.34-34 markers=0 per100=0.0: al. (2025) directly show that it is more optimal to scale an LLM’s vocabulary together with the rest of the model parame
+      FLAGGED kept p.34-34 markers=0 per100=0.0: one expects that more iterations of hierarchy can be added (increasing effective chunk size), or the chunk size can dire
+      FLAGGED kept p.34-34 markers=0 per100=0.0: boundaries can also improve performance. This is related to H-Net’s motivation of higher-level chunking of words into ph
+      FLAGGED kept p.34-34 markers=0 per100=0.0: example for cross-language or crossmodality usage, or for knowledge distillation). Other Effects of Tokenization. Lee et
+      FLAGGED kept p.34-34 markers=0 per100=0.0: trained on. Tokenization Theory. Schmidt et al. (2024) examined the hypothesis that the primary role of tokenization is 
+      FLAGGED kept p.34-35 markers=0 per100=0.0: against the hypothesis. Rajaraman, Jiao, and Ramchandran (2024) showed that for certain data distributions, applying tok
+      FLAGGED kept p.35-35 markers=0 per100=0.0: boundary" problem, the ability to compare different LLMs with different tokenizers, and simply produces better estimates
+      FLAGGED kept p.35-35 markers=0 per100=0.0: al. (2022) with two marginally updated computations: (1) add computations for Mamba2 (Dao and Gu 2024), and (2) modify c
+      FLAGGED kept p.35-35 markers=0 per100=0.0: • Attention: – QKVprojections: 2 × 3 × seq_len × d_model × (num_heads × head_dim) – Attention Logit Calculation: 2 × seq
+      FLAGGED kept p.35-35 markers=0 per100=0.0: × head_dim) × d_model • Mamba-2: – XZprojections: 2 × seq_len × d_model × (2 × expand × d_model) – BCΔtprojections: 2 × 
+      FLAGGED kept p.35-35 markers=0 per100=0.0: × d_model – Output projection: 2 × seq_len × d_model × d_model • Gated MLP: – In, Gate, Out projections: 2 × seq_len × (
+      FLAGGED kept p.35-35 markers=0 per100=0.0: C Learning Rate Modulation As discussed in Section 2.3, we employ modulated learning rates for each stage by multiplying
+      FLAGGED kept p.35-35 markers=0 per100=0.0: we follow previous works and set learning rates to be proportionally to the (1) square root of batch size (Malladi et al
+      FLAGGED kept p.35-36 markers=0 per100=0.0: Ni· DS Ds, NS= 1.0 (11) Mean/Max Pooling (b) Q KV KV Q Cross Attention Pooling (c) (a) Default 60B 80B 100B 120B 140B To
+      FLAGGED kept p.36-36 markers=0 per100=0.0: Channel-wise max and mean pooling within boundaries (left-b). XAttn: Cross-attention pooling within boundaries (left-c).
+      FLAGGED kept p.36-36 markers=0 per100=0.0: active area of research, and our scaling factors are just heuristics that can likely be improved. D Additional Experimen
+      FLAGGED kept p.36-36 markers=0 per100=0.0: . This score measures the percentage of original (unperturbed) performance that is captured by the model in the perturbe
+      FLAGGED kept p.36-36 markers=0 per100=0.0: Methods in the Chunking Layer Given the dynamically determined boundaries from the boundary predictor, we explore variou
+      FLAGGED kept p.36-37 markers=0 per100=0.0: in H-Net performs on-par with the other variants as demonstrated in Figure 13-right. This shows that the sequence mixing
+      FLAGGED kept p.37-37 markers=0 per100=0.0: + M4 66M 2.697 H-Net M4 + T15 + M4 62M 2.722 H-Net M4 + M15 + M4 64M 2.706 H-Net M4 + T1M13T1 + M4 64M 2.706 Table 7: En
+      FLAGGED kept p.37-37 markers=0 per100=0.0: 5). Transformers in the encoder network do not appear to be helpful for text (Figure 8), suggesting that this finding ma
+      FLAGGED kept p.37-37 markers=0 per100=0.0: training. The pure Mamba-2 model is more unstable with a loss spike. Adding Transformer layers to the main network near 
+      FLAGGED kept p.37-37 markers=0 per100=0.0: and on code, finding superior scaling for H-Net (2-stage) versus the other architectures. Here, we describe additional d
+      FLAGGED kept p.37-37 markers=0 per100=0.0: GPT-3 XL, including dmodel and encoder/decoder architecture for H-Net models. However, we adjusted the number of layers 
+      FLAGGED kept p.37-37 markers=0 per100=0.0: and results are also in Table 4. E.3 DNA Architecture Ablations H-Net (1-stage) with an M3T1 encoder achieves 3.6× the d
+      FLAGGED kept p.37-37 markers=0 per100=0.0: to be helpful for text (Figure 8). Thus, it is possible the Transformer being useful is a DNA-specific result. Interesti
+      FLAGGED kept p.37-37 markers=0 per100=0.0: for dealing directly with compressed input (see Figure 10). The new, principled main network architecture improved stabi
+      FLAGGED kept p.37-37 markers=0 per100=0.0: an embedding space that the main model backbone can process. Given this similarity, we investigated whether it would be 
+      FLAGGED kept p.37-38 markers=0 per100=0.0: for both the encoder and decoder with a hidden dimension of 1536. Because the Llama model has a hidden dimension of 3072
+      FLAGGED kept p.38-38 markers=0 per100=0.0: ... BCE Loss Ground Truth Embeddings Copy + Shift MSE Loss Figure 15: Auxiliary loss strategy for training the encoder o
+      FLAGGED kept p.38-38 markers=0 per100=0.0: we pass through to the main network. These losses encourage the encoder to tokenize once at the start of every token, wh
+      FLAGGED kept p.38-38 markers=0 per100=0.0: average of the benchmarks measured in Table 2. H-Net loses performance across the board compared to the teacher, which i
+      FLAGGED kept p.38-38 markers=0 per100=0.0: LMB. Hella. PIQA ARC-e ARC-c Wino. Open. Average MMLU (5-shot) acc ↑ acc_n ↑ acc ↑ acc ↑ acc_n ↑ acc ↑ acc_n ↑ acc ↑ acc
+      FLAGGED kept p.38-38 markers=0 per100=0.0: before dechunking (i.e. right before and after feeding into the main stage). We train the model for 90000 gradient steps
+      FLAGGED kept p.38-38 markers=0 per100=0.0: tokenized model can produce useful output with. Thus, our training (besides using the standard next-byte prediction loss
+      FLAGGED kept p.38-38 markers=0 per100=0.0: the main network. 2. A hidden state matching loss that matches the post-adapter hidden state with the “correct" hidden s
+      FLAGGED kept p.38-38 markers=0 per100=0.0: is the first byte of its token, in which case we match the ztwith the previous token’s embedding. Embedding matching is 
+      FLAGGED kept p.38-38 markers=0 per100=0.0: main network would thus see exactly the representation it would see with a tokenizer + embedding setup. In practice, sen
+      FLAGGED kept p.38-39 markers=0 per100=0.0: fact, increasing the loss weight on the embedding-matching loss 28 69 69 29 20 46 61 73 74 20 74 72 61 69 6e 69 6e 67 20
+      FLAGGED kept p.39-39 markers=0 per100=0.0: s t t r a i n i n g a n d i n f e r e n c e : c o m p u t a t i o n Stage 0 61 6e 64 20 6d 65 6d 6f 72 79 73 63 61 6c 65
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 79 20 69 6e 20 73 65 71 75 65 6e 63 65 20 6c 65 6e 67 74 68 20 a n d m e m o r y s c a l e s l i n e a r l y i n s e q u
+      FLAGGED kept p.39-39 markers=0 per100=0.0: Stage 0 64 75 72 69 6e 67 74 72 61 69 6e 69 6e 67 2c 61 6e 64 20 75 6e 72 6f 6c 6c 69 6e 67 74 68 65 20 6d 6f 64 65 6c 2
+      FLAGGED kept p.39-39 markers=0 per100=0.0: g , a n d u n r o l l i n g t h e m o d e l a u t o r e g Stage 0 72 65 73 73 69 76 65 6c 79 64 75 72 69 6e 67 20 69 6e 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 69 72 65 73 20 6f 6e 6c 79 63 6f 6e 73 74 61 6e r e s s i v e l y d u r i n g i n f e r e n c e r e q u i r e s o n l y 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 0 74 20 74 69 6d 65 20 70 65 72 20 73 74 65 70 20 73 69 6e 63 65 20 69 74 20 64 6f 65 73 20 6e 6f 74 20 72 65 71 75 69 7
+      FLAGGED kept p.39-39 markers=0 per100=0.0: n c e i t d o e s n o t r e q u i r e a c Stage 0 Figure 16: Visualization of boundary positions dynamically drawn by H-
+      FLAGGED kept p.39-39 markers=0 per100=0.0: harm the language-modeling loss. Tokenization bias. We are not able to send all auxiliary losses to zero because online 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: into [_dist, ill] and [_distinct]. Prior use of this term has been to suggest that if an autoregressive language model i
+      FLAGGED kept p.39-39 markers=0 per100=0.0: not the i in _disti is the start of a new word until after seeing the next character. In fact, the problem can be even w
+      FLAGGED kept p.39-39 markers=0 per100=0.0: is not able to exactly match the behavior of the original tokenized model. Instead, it is finding slightly different rep
+      FLAGGED kept p.39-39 markers=0 per100=0.0: that the pretrained model could process. Remark. One might ask if our distilled model has simply learned to tokenize on 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: H-Net is able to recognize some, but not all, subword boundaries. Results. The results from our distillation procedure a
+      FLAGGED kept p.39-39 markers=0 per100=0.0: Byte-Latent Transformer (Pagnoni et al. 2024, Table 5) performs a similar experiment, and they see a greater gap among m
+      FLAGGED kept p.39-39 markers=0 per100=0.0: boundaries the way that end-to-end DC can.
+
+CONFIG B: pieces before 363, after 311, removed 52
+   attention          pieces   38 ->   32 (removed   6); words removed 944 of 6065 (p.10-12); flagged segments 7
+      first removed words: References [1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization.
+      last removed words : of the 51st Annual Meeting of the ACL (Volume 1: Long Papers), pages 434–443.
+      FLAGGED kept p.13-13 markers=0 per100=0.0: have passed new laws since 2009 making the registration or voting process more difficult . <EOS> <pad> <pad> <pad> <pad>
+      FLAGGED kept p.13-14 markers=0 per100=0.0: the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6. Many of the 
+      FLAGGED kept p.14-14 markers=0 per100=0.0: application should be just - this is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect , b
+      FLAGGED kept p.14-14 markers=0 per100=0.0: is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect , but its application should be just 
+      FLAGGED kept p.14-15 markers=0 per100=0.0: 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5 and 6. Note that the attentions are very s
+      FLAGGED kept p.15-15 markers=0 per100=0.0: its application should be just - this is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect
+      FLAGGED kept p.15-15 markers=0 per100=0.0: this is what we are missing , in my opinion . <EOS> <pad> Figure 5: Many of the attention heads exhibit behaviour that s
+   moshi              pieces  187 ->  162 (removed  25); words removed 4033 of 29913 (p.42-52); flagged segments 5
+      first removed words: References Scott Aaronson and Hendrik Kirchner. Watermarking gpt outputs, 2023. URL https: //www.scottaaronson.com/talks/watermark.ppt. 39
+      last removed words : Yu. Generative pre-trained speech language model with efficient hierarchical transformer. arXiv preprint arXiv:2406.00976, 2024.
+      FLAGGED kept p.43-43 markers=1 per100=1.7: Emily Reif, Nan Du, Benton C. Hutchinson, Reiner Pope, James Bradbury, Jacob Austin, Michael Isard, Guy Gur-Ari, Pengche
+      FLAGGED kept p.43-43 markers=2 per100=3.3: Dai, Thanumalayan Sankaranarayana Pillai, Marie Pellat, Aitor Lewkowycz, Erica Oliveira Moreira, Rewon Child, Oleksandr 
+      FLAGGED kept p.53-53 markers=0 per100=0.0: Moshi: a speech-text foundation model for real-time dialogue Appendix A. Additional ablation on Mimi codec Table 17: Abl
+      FLAGGED kept p.53-53 markers=0 per100=0.0: 50% of the time during training (independently from quantizer dropout), as described in Section 3.3. Quantization Transf
+      FLAGGED kept p.53-53 markers=0 per100=0.0: 23.6% 2.72 2.89 ✓ ✓ ✓ 23.3% 2.82 2.89 ✓ ✓ ✓ ✓ 6.5% 2.13 2.87 ✓ ✓ ✓ ✓ 10.8% 2.68 2.84 ✓ ✓ ✓ ✓ 8.1% 2.49 2.71 ✓ ✓ ✓ ✓ 8.0%
+   dynamic_chunking   pieces  138 ->  117 (removed  21); words removed 3294 of 21976 (p.25-30); flagged segments 91
+      first removed words: All Languages Cost the Same? Tokenization in the Era of Commercial Language Models”. In:
+      last removed words : of Highquality Chinese Datasets for LLM Training. 2025. arXiv: 2501.08197 [cs.CL]. url: https://arxiv.org/abs/ 2501.08197.
+      FLAGGED kept p.25-25 markers=2 per100=3.3: References [1] Orevaoghene Ahia, Sachin Kumar, Hila Gonen, Valentin Hofmann, Tomasz Limisiewicz, Yulia Tsvetkov, and Noa
+      FLAGGED kept p.30-31 markers=2 per100=3.3: Bisk, Ali Farhadi, and Yejin Choi. “HellaSwag: Can a Machine Really Finish Your Sentence?” In: Proceedings of the 57th A
+      FLAGGED kept p.31-31 markers=0 per100=0.0: computationally efficient representations manifests across multiple domains through implicit chunking processes. In lang
+      FLAGGED kept p.31-31 markers=0 per100=0.0: al. 2023; Grattafiori et al. 2024). Computer vision addresses similar challenges through spatial pooling operations (Ron
+      FLAGGED kept p.31-31 markers=0 per100=0.0: when handling adversarial inputs, and show lower performance on character-level tasks (Petrov et al. 2023; Ahia, Kumar, 
+      FLAGGED kept p.31-31 markers=0 per100=0.0: methods have emerged that avoid the reliance on predefined vocabularies. • In Appendix A.1, we discuss the most directly
+      FLAGGED kept p.31-31 markers=0 per100=0.0: which provide possible extensions of H-Net in future work. However, we provide this delineation because it marks an impo
+      FLAGGED kept p.31-31 markers=0 per100=0.0: prior work on autoregressive tokenizers for architectures can be divided into four categories: 1. Non-hierarchical isotr
+      FLAGGED kept p.31-31 markers=0 per100=0.0: where chunk boundaries are content-dependent and learned end-to-end. A.1.1 Isotropic Architectures The most direct appro
+      FLAGGED kept p.31-31 markers=0 per100=0.0: similarly use Mamba(-2) (Dao and Gu 2024) layers in the outer stages of an H-Net. Notably, through extensive ablations w
+      FLAGGED kept p.31-32 markers=0 per100=0.0: methods operate independently of input context, partitioning sequences using fixed-size intervals. Many strategies could
+      FLAGGED kept p.32-32 markers=0 per100=0.0: recent variants include the Block Transformer (Ho et al. 2024) and Multiscale Byte Language Model (MBLM) (Egli, Manica, 
+      FLAGGED kept p.32-32 markers=0 per100=0.0: (Krizhevsky, Sutskever, and Hinton 2012; He et al. 2016). While these content-agnostic methods have simple and efficient
+      FLAGGED kept p.32-32 markers=0 per100=0.0: be called “autoregressive U-Nets”, characterized by the U-Net multi-scale architecture (Ronneberger, Fischer, and Brox 2
+      FLAGGED kept p.32-32 markers=0 per100=0.0: language. SaShiMi specifically operated over 8-bit quantized audio inputs, hence also was a form of byte-level modeling 
+      FLAGGED kept p.32-32 markers=0 per100=0.0: propose using the boundaries provided by an external module, with two main variations appearing. Delimiter-based methods
+      FLAGGED kept p.32-32 markers=0 per100=0.0: token. SpaceByte (Slagle 2024) extends this to “space-like” delimiters (e.g., /, ], :) as natural boundary signals. This
+      FLAGGED kept p.32-32 markers=0 per100=0.0: be extended to multi-level hierarchical chunking due to ambiguities in defining natural delimiters at higher semantic le
+      FLAGGED kept p.32-32 markers=0 per100=0.0: In this work, we show that SpaceByte’s delimiter chunking strategy can be a very powerful baseline on appropriate langua
+      FLAGGED kept p.32-32 markers=0 per100=0.0: conditional entropy as a heuristic to identify semantic boundaries. This was first proposed by the Dynamic Pooling Trans
+      FLAGGED kept p.32-32 markers=0 per100=0.0: entropy-based approaches face several practical limitations. First, they require extensive domain-specific hyperparamete
+      FLAGGED kept p.32-33 markers=0 per100=0.0: computing cross-entropy loss requires access to target vocabularies, which are unavailable for intermediate latent repre
+      FLAGGED kept p.33-33 markers=0 per100=0.0: which can be considered an orthogonal architectural component which may be incorporated into H-Net as well if desired. I
+      FLAGGED kept p.33-33 markers=0 per100=0.0: Dynamic Chunking The ideal tokenizer-free architecture would incorporate a dynamic chunking method that attempts to lear
+      FLAGGED kept p.33-33 markers=0 per100=0.0: of that attempted a true dynamic chunking method is (one variant of) the Dynamic Pooling Transformer (DPT) (Nawrot, Chor
+      FLAGGED kept p.33-33 markers=0 per100=0.0: requires careful tuning of noise magnitudes and introduces high-variance gradients that destabilize training, making it 
+      FLAGGED kept p.33-33 markers=0 per100=0.0: from expanding to multiple hierarchical stages, constraining these methods to single-stage chunking. We additionally hig
+      FLAGGED kept p.33-33 markers=0 per100=0.0: from Appendix A.1 has corresponding non-autoregressive variants as well. Although these often have similar design princi
+      FLAGGED kept p.33-33 markers=0 per100=0.0: bytes using a bidirectional encoder-decoder architecture, showing improved performance with small models (because more p
+      FLAGGED kept p.33-33 markers=0 per100=0.0: with convolution-based static downsampling; their method also targets non-autoregressive language models. Charformer (Ta
+      FLAGGED kept p.33-33 markers=0 per100=0.0: also be endowed with implicit supervision from external tokenizers; for example, Canine proposes a variant that uses sub
+      FLAGGED kept p.33-34 markers=0 per100=0.0: modeling objective. Hierarchical (External). Thawani et al. (2023) propose the eByte method, which resembles MegaByte bu
+      FLAGGED kept p.34-34 markers=0 per100=0.0: method that predicts segmentation boundaries and pools bytes into blocks using a matching objective. MrT5 (Kallini et al
+      FLAGGED kept p.34-34 markers=0 per100=0.0: use tokenizers like BPE in the same way as language models do, they frequently need to turn raw perceptual data (images 
+      FLAGGED kept p.34-34 markers=0 per100=0.0: redundancies. A number of more recent approaches attempt to produce variable length tokenizations that adapt to the info
+      FLAGGED kept p.34-34 markers=0 per100=0.0: length encoding") with heuristics (Bolya et al. 2022; Choudhury et al. 2024). In the audio domain, SlowAE (Dieleman et a
+      FLAGGED kept p.34-34 markers=0 per100=0.0: Cosine Transform (DCT) with BPE. Vocabulary Scaling. While scaling laws for language models have generally kept tokenize
+      FLAGGED kept p.34-34 markers=0 per100=0.0: al. (2025) directly show that it is more optimal to scale an LLM’s vocabulary together with the rest of the model parame
+      FLAGGED kept p.34-34 markers=0 per100=0.0: one expects that more iterations of hierarchy can be added (increasing effective chunk size), or the chunk size can dire
+      FLAGGED kept p.34-34 markers=0 per100=0.0: boundaries can also improve performance. This is related to H-Net’s motivation of higher-level chunking of words into ph
+      FLAGGED kept p.34-34 markers=0 per100=0.0: example for cross-language or crossmodality usage, or for knowledge distillation). Other Effects of Tokenization. Lee et
+      FLAGGED kept p.34-34 markers=0 per100=0.0: trained on. Tokenization Theory. Schmidt et al. (2024) examined the hypothesis that the primary role of tokenization is 
+      FLAGGED kept p.34-35 markers=0 per100=0.0: against the hypothesis. Rajaraman, Jiao, and Ramchandran (2024) showed that for certain data distributions, applying tok
+      FLAGGED kept p.35-35 markers=0 per100=0.0: boundary" problem, the ability to compare different LLMs with different tokenizers, and simply produces better estimates
+      FLAGGED kept p.35-35 markers=0 per100=0.0: al. (2022) with two marginally updated computations: (1) add computations for Mamba2 (Dao and Gu 2024), and (2) modify c
+      FLAGGED kept p.35-35 markers=0 per100=0.0: • Attention: – QKVprojections: 2 × 3 × seq_len × d_model × (num_heads × head_dim) – Attention Logit Calculation: 2 × seq
+      FLAGGED kept p.35-35 markers=0 per100=0.0: × head_dim) × d_model • Mamba-2: – XZprojections: 2 × seq_len × d_model × (2 × expand × d_model) – BCΔtprojections: 2 × 
+      FLAGGED kept p.35-35 markers=0 per100=0.0: × d_model – Output projection: 2 × seq_len × d_model × d_model • Gated MLP: – In, Gate, Out projections: 2 × seq_len × (
+      FLAGGED kept p.35-35 markers=0 per100=0.0: C Learning Rate Modulation As discussed in Section 2.3, we employ modulated learning rates for each stage by multiplying
+      FLAGGED kept p.35-35 markers=0 per100=0.0: we follow previous works and set learning rates to be proportionally to the (1) square root of batch size (Malladi et al
+      FLAGGED kept p.35-36 markers=0 per100=0.0: Ni· DS Ds, NS= 1.0 (11) Mean/Max Pooling (b) Q KV KV Q Cross Attention Pooling (c) (a) Default 60B 80B 100B 120B 140B To
+      FLAGGED kept p.36-36 markers=0 per100=0.0: Channel-wise max and mean pooling within boundaries (left-b). XAttn: Cross-attention pooling within boundaries (left-c).
+      FLAGGED kept p.36-36 markers=0 per100=0.0: active area of research, and our scaling factors are just heuristics that can likely be improved. D Additional Experimen
+      FLAGGED kept p.36-36 markers=0 per100=0.0: . This score measures the percentage of original (unperturbed) performance that is captured by the model in the perturbe
+      FLAGGED kept p.36-36 markers=0 per100=0.0: Methods in the Chunking Layer Given the dynamically determined boundaries from the boundary predictor, we explore variou
+      FLAGGED kept p.36-37 markers=0 per100=0.0: in H-Net performs on-par with the other variants as demonstrated in Figure 13-right. This shows that the sequence mixing
+      FLAGGED kept p.37-37 markers=0 per100=0.0: + M4 66M 2.697 H-Net M4 + T15 + M4 62M 2.722 H-Net M4 + M15 + M4 64M 2.706 H-Net M4 + T1M13T1 + M4 64M 2.706 Table 7: En
+      FLAGGED kept p.37-37 markers=0 per100=0.0: 5). Transformers in the encoder network do not appear to be helpful for text (Figure 8), suggesting that this finding ma
+      FLAGGED kept p.37-37 markers=0 per100=0.0: training. The pure Mamba-2 model is more unstable with a loss spike. Adding Transformer layers to the main network near 
+      FLAGGED kept p.37-37 markers=0 per100=0.0: and on code, finding superior scaling for H-Net (2-stage) versus the other architectures. Here, we describe additional d
+      FLAGGED kept p.37-37 markers=0 per100=0.0: GPT-3 XL, including dmodel and encoder/decoder architecture for H-Net models. However, we adjusted the number of layers 
+      FLAGGED kept p.37-37 markers=0 per100=0.0: and results are also in Table 4. E.3 DNA Architecture Ablations H-Net (1-stage) with an M3T1 encoder achieves 3.6× the d
+      FLAGGED kept p.37-37 markers=0 per100=0.0: to be helpful for text (Figure 8). Thus, it is possible the Transformer being useful is a DNA-specific result. Interesti
+      FLAGGED kept p.37-37 markers=0 per100=0.0: for dealing directly with compressed input (see Figure 10). The new, principled main network architecture improved stabi
+      FLAGGED kept p.37-37 markers=0 per100=0.0: an embedding space that the main model backbone can process. Given this similarity, we investigated whether it would be 
+      FLAGGED kept p.37-38 markers=0 per100=0.0: for both the encoder and decoder with a hidden dimension of 1536. Because the Llama model has a hidden dimension of 3072
+      FLAGGED kept p.38-38 markers=0 per100=0.0: ... BCE Loss Ground Truth Embeddings Copy + Shift MSE Loss Figure 15: Auxiliary loss strategy for training the encoder o
+      FLAGGED kept p.38-38 markers=0 per100=0.0: we pass through to the main network. These losses encourage the encoder to tokenize once at the start of every token, wh
+      FLAGGED kept p.38-38 markers=0 per100=0.0: average of the benchmarks measured in Table 2. H-Net loses performance across the board compared to the teacher, which i
+      FLAGGED kept p.38-38 markers=0 per100=0.0: LMB. Hella. PIQA ARC-e ARC-c Wino. Open. Average MMLU (5-shot) acc ↑ acc_n ↑ acc ↑ acc ↑ acc_n ↑ acc ↑ acc_n ↑ acc ↑ acc
+      FLAGGED kept p.38-38 markers=0 per100=0.0: before dechunking (i.e. right before and after feeding into the main stage). We train the model for 90000 gradient steps
+      FLAGGED kept p.38-38 markers=0 per100=0.0: tokenized model can produce useful output with. Thus, our training (besides using the standard next-byte prediction loss
+      FLAGGED kept p.38-38 markers=0 per100=0.0: the main network. 2. A hidden state matching loss that matches the post-adapter hidden state with the “correct" hidden s
+      FLAGGED kept p.38-38 markers=0 per100=0.0: is the first byte of its token, in which case we match the ztwith the previous token’s embedding. Embedding matching is 
+      FLAGGED kept p.38-38 markers=0 per100=0.0: main network would thus see exactly the representation it would see with a tokenizer + embedding setup. In practice, sen
+      FLAGGED kept p.38-39 markers=0 per100=0.0: fact, increasing the loss weight on the embedding-matching loss 28 69 69 29 20 46 61 73 74 20 74 72 61 69 6e 69 6e 67 20
+      FLAGGED kept p.39-39 markers=0 per100=0.0: s t t r a i n i n g a n d i n f e r e n c e : c o m p u t a t i o n Stage 0 61 6e 64 20 6d 65 6d 6f 72 79 73 63 61 6c 65
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 79 20 69 6e 20 73 65 71 75 65 6e 63 65 20 6c 65 6e 67 74 68 20 a n d m e m o r y s c a l e s l i n e a r l y i n s e q u
+      FLAGGED kept p.39-39 markers=0 per100=0.0: Stage 0 64 75 72 69 6e 67 74 72 61 69 6e 69 6e 67 2c 61 6e 64 20 75 6e 72 6f 6c 6c 69 6e 67 74 68 65 20 6d 6f 64 65 6c 2
+      FLAGGED kept p.39-39 markers=0 per100=0.0: g , a n d u n r o l l i n g t h e m o d e l a u t o r e g Stage 0 72 65 73 73 69 76 65 6c 79 64 75 72 69 6e 67 20 69 6e 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 69 72 65 73 20 6f 6e 6c 79 63 6f 6e 73 74 61 6e r e s s i v e l y d u r i n g i n f e r e n c e r e q u i r e s o n l y 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 0 74 20 74 69 6d 65 20 70 65 72 20 73 74 65 70 20 73 69 6e 63 65 20 69 74 20 64 6f 65 73 20 6e 6f 74 20 72 65 71 75 69 7
+      FLAGGED kept p.39-39 markers=0 per100=0.0: n c e i t d o e s n o t r e q u i r e a c Stage 0 Figure 16: Visualization of boundary positions dynamically drawn by H-
+      FLAGGED kept p.39-39 markers=0 per100=0.0: harm the language-modeling loss. Tokenization bias. We are not able to send all auxiliary losses to zero because online 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: into [_dist, ill] and [_distinct]. Prior use of this term has been to suggest that if an autoregressive language model i
+      FLAGGED kept p.39-39 markers=0 per100=0.0: not the i in _disti is the start of a new word until after seeing the next character. In fact, the problem can be even w
+      FLAGGED kept p.39-39 markers=0 per100=0.0: is not able to exactly match the behavior of the original tokenized model. Instead, it is finding slightly different rep
+      FLAGGED kept p.39-39 markers=0 per100=0.0: that the pretrained model could process. Remark. One might ask if our distilled model has simply learned to tokenize on 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: H-Net is able to recognize some, but not all, subword boundaries. Results. The results from our distillation procedure a
+      FLAGGED kept p.39-39 markers=0 per100=0.0: Byte-Latent Transformer (Pagnoni et al. 2024, Table 5) performs a similar experiment, and they see a greater gap among m
+      FLAGGED kept p.39-39 markers=0 per100=0.0: boundaries the way that end-to-end DC can.
+
+CONFIG C: pieces before 243, after 208, removed 35
+   attention          pieces   26 ->   22 (removed   4); words removed 944 of 6065 (p.10-12); flagged segments 7
+      first removed words: References [1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization.
+      last removed words : of the 51st Annual Meeting of the ACL (Volume 1: Long Papers), pages 434–443.
+      FLAGGED kept p.13-13 markers=0 per100=0.0: have passed new laws since 2009 making the registration or voting process more difficult . <EOS> <pad> <pad> <pad> <pad>
+      FLAGGED kept p.13-14 markers=0 per100=0.0: the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6. Many of the 
+      FLAGGED kept p.14-14 markers=0 per100=0.0: application should be just - this is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect , b
+      FLAGGED kept p.14-14 markers=0 per100=0.0: is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect , but its application should be just 
+      FLAGGED kept p.14-15 markers=0 per100=0.0: 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5 and 6. Note that the attentions are very s
+      FLAGGED kept p.15-15 markers=0 per100=0.0: its application should be just - this is what we are missing , in my opinion . <EOS> <pad> The Law will never be perfect
+      FLAGGED kept p.15-15 markers=0 per100=0.0: this is what we are missing , in my opinion . <EOS> <pad> Figure 5: Many of the attention heads exhibit behaviour that s
+   moshi              pieces  125 ->  108 (removed  17); words removed 4033 of 29913 (p.42-52); flagged segments 5
+      first removed words: References Scott Aaronson and Hendrik Kirchner. Watermarking gpt outputs, 2023. URL https: //www.scottaaronson.com/talks/watermark.ppt. 39
+      last removed words : Yu. Generative pre-trained speech language model with efficient hierarchical transformer. arXiv preprint arXiv:2406.00976, 2024.
+      FLAGGED kept p.43-43 markers=1 per100=1.7: Emily Reif, Nan Du, Benton C. Hutchinson, Reiner Pope, James Bradbury, Jacob Austin, Michael Isard, Guy Gur-Ari, Pengche
+      FLAGGED kept p.43-43 markers=2 per100=3.3: Dai, Thanumalayan Sankaranarayana Pillai, Marie Pellat, Aitor Lewkowycz, Erica Oliveira Moreira, Rewon Child, Oleksandr 
+      FLAGGED kept p.53-53 markers=0 per100=0.0: Moshi: a speech-text foundation model for real-time dialogue Appendix A. Additional ablation on Mimi codec Table 17: Abl
+      FLAGGED kept p.53-53 markers=0 per100=0.0: 50% of the time during training (independently from quantizer dropout), as described in Section 3.3. Quantization Transf
+      FLAGGED kept p.53-53 markers=0 per100=0.0: 23.6% 2.72 2.89 ✓ ✓ ✓ 23.3% 2.82 2.89 ✓ ✓ ✓ ✓ 6.5% 2.13 2.87 ✓ ✓ ✓ ✓ 10.8% 2.68 2.84 ✓ ✓ ✓ ✓ 8.1% 2.49 2.71 ✓ ✓ ✓ ✓ 8.0%
+   dynamic_chunking   pieces   92 ->   78 (removed  14); words removed 3294 of 21976 (p.25-30); flagged segments 91
+      first removed words: All Languages Cost the Same? Tokenization in the Era of Commercial Language Models”. In:
+      last removed words : of Highquality Chinese Datasets for LLM Training. 2025. arXiv: 2501.08197 [cs.CL]. url: https://arxiv.org/abs/ 2501.08197.
+      FLAGGED kept p.25-25 markers=2 per100=3.3: References [1] Orevaoghene Ahia, Sachin Kumar, Hila Gonen, Valentin Hofmann, Tomasz Limisiewicz, Yulia Tsvetkov, and Noa
+      FLAGGED kept p.30-31 markers=2 per100=3.3: Bisk, Ali Farhadi, and Yejin Choi. “HellaSwag: Can a Machine Really Finish Your Sentence?” In: Proceedings of the 57th A
+      FLAGGED kept p.31-31 markers=0 per100=0.0: computationally efficient representations manifests across multiple domains through implicit chunking processes. In lang
+      FLAGGED kept p.31-31 markers=0 per100=0.0: al. 2023; Grattafiori et al. 2024). Computer vision addresses similar challenges through spatial pooling operations (Ron
+      FLAGGED kept p.31-31 markers=0 per100=0.0: when handling adversarial inputs, and show lower performance on character-level tasks (Petrov et al. 2023; Ahia, Kumar, 
+      FLAGGED kept p.31-31 markers=0 per100=0.0: methods have emerged that avoid the reliance on predefined vocabularies. • In Appendix A.1, we discuss the most directly
+      FLAGGED kept p.31-31 markers=0 per100=0.0: which provide possible extensions of H-Net in future work. However, we provide this delineation because it marks an impo
+      FLAGGED kept p.31-31 markers=0 per100=0.0: prior work on autoregressive tokenizers for architectures can be divided into four categories: 1. Non-hierarchical isotr
+      FLAGGED kept p.31-31 markers=0 per100=0.0: where chunk boundaries are content-dependent and learned end-to-end. A.1.1 Isotropic Architectures The most direct appro
+      FLAGGED kept p.31-31 markers=0 per100=0.0: similarly use Mamba(-2) (Dao and Gu 2024) layers in the outer stages of an H-Net. Notably, through extensive ablations w
+      FLAGGED kept p.31-32 markers=0 per100=0.0: methods operate independently of input context, partitioning sequences using fixed-size intervals. Many strategies could
+      FLAGGED kept p.32-32 markers=0 per100=0.0: recent variants include the Block Transformer (Ho et al. 2024) and Multiscale Byte Language Model (MBLM) (Egli, Manica, 
+      FLAGGED kept p.32-32 markers=0 per100=0.0: (Krizhevsky, Sutskever, and Hinton 2012; He et al. 2016). While these content-agnostic methods have simple and efficient
+      FLAGGED kept p.32-32 markers=0 per100=0.0: be called “autoregressive U-Nets”, characterized by the U-Net multi-scale architecture (Ronneberger, Fischer, and Brox 2
+      FLAGGED kept p.32-32 markers=0 per100=0.0: language. SaShiMi specifically operated over 8-bit quantized audio inputs, hence also was a form of byte-level modeling 
+      FLAGGED kept p.32-32 markers=0 per100=0.0: propose using the boundaries provided by an external module, with two main variations appearing. Delimiter-based methods
+      FLAGGED kept p.32-32 markers=0 per100=0.0: token. SpaceByte (Slagle 2024) extends this to “space-like” delimiters (e.g., /, ], :) as natural boundary signals. This
+      FLAGGED kept p.32-32 markers=0 per100=0.0: be extended to multi-level hierarchical chunking due to ambiguities in defining natural delimiters at higher semantic le
+      FLAGGED kept p.32-32 markers=0 per100=0.0: In this work, we show that SpaceByte’s delimiter chunking strategy can be a very powerful baseline on appropriate langua
+      FLAGGED kept p.32-32 markers=0 per100=0.0: conditional entropy as a heuristic to identify semantic boundaries. This was first proposed by the Dynamic Pooling Trans
+      FLAGGED kept p.32-32 markers=0 per100=0.0: entropy-based approaches face several practical limitations. First, they require extensive domain-specific hyperparamete
+      FLAGGED kept p.32-33 markers=0 per100=0.0: computing cross-entropy loss requires access to target vocabularies, which are unavailable for intermediate latent repre
+      FLAGGED kept p.33-33 markers=0 per100=0.0: which can be considered an orthogonal architectural component which may be incorporated into H-Net as well if desired. I
+      FLAGGED kept p.33-33 markers=0 per100=0.0: Dynamic Chunking The ideal tokenizer-free architecture would incorporate a dynamic chunking method that attempts to lear
+      FLAGGED kept p.33-33 markers=0 per100=0.0: of that attempted a true dynamic chunking method is (one variant of) the Dynamic Pooling Transformer (DPT) (Nawrot, Chor
+      FLAGGED kept p.33-33 markers=0 per100=0.0: requires careful tuning of noise magnitudes and introduces high-variance gradients that destabilize training, making it 
+      FLAGGED kept p.33-33 markers=0 per100=0.0: from expanding to multiple hierarchical stages, constraining these methods to single-stage chunking. We additionally hig
+      FLAGGED kept p.33-33 markers=0 per100=0.0: from Appendix A.1 has corresponding non-autoregressive variants as well. Although these often have similar design princi
+      FLAGGED kept p.33-33 markers=0 per100=0.0: bytes using a bidirectional encoder-decoder architecture, showing improved performance with small models (because more p
+      FLAGGED kept p.33-33 markers=0 per100=0.0: with convolution-based static downsampling; their method also targets non-autoregressive language models. Charformer (Ta
+      FLAGGED kept p.33-33 markers=0 per100=0.0: also be endowed with implicit supervision from external tokenizers; for example, Canine proposes a variant that uses sub
+      FLAGGED kept p.33-34 markers=0 per100=0.0: modeling objective. Hierarchical (External). Thawani et al. (2023) propose the eByte method, which resembles MegaByte bu
+      FLAGGED kept p.34-34 markers=0 per100=0.0: method that predicts segmentation boundaries and pools bytes into blocks using a matching objective. MrT5 (Kallini et al
+      FLAGGED kept p.34-34 markers=0 per100=0.0: use tokenizers like BPE in the same way as language models do, they frequently need to turn raw perceptual data (images 
+      FLAGGED kept p.34-34 markers=0 per100=0.0: redundancies. A number of more recent approaches attempt to produce variable length tokenizations that adapt to the info
+      FLAGGED kept p.34-34 markers=0 per100=0.0: length encoding") with heuristics (Bolya et al. 2022; Choudhury et al. 2024). In the audio domain, SlowAE (Dieleman et a
+      FLAGGED kept p.34-34 markers=0 per100=0.0: Cosine Transform (DCT) with BPE. Vocabulary Scaling. While scaling laws for language models have generally kept tokenize
+      FLAGGED kept p.34-34 markers=0 per100=0.0: al. (2025) directly show that it is more optimal to scale an LLM’s vocabulary together with the rest of the model parame
+      FLAGGED kept p.34-34 markers=0 per100=0.0: one expects that more iterations of hierarchy can be added (increasing effective chunk size), or the chunk size can dire
+      FLAGGED kept p.34-34 markers=0 per100=0.0: boundaries can also improve performance. This is related to H-Net’s motivation of higher-level chunking of words into ph
+      FLAGGED kept p.34-34 markers=0 per100=0.0: example for cross-language or crossmodality usage, or for knowledge distillation). Other Effects of Tokenization. Lee et
+      FLAGGED kept p.34-34 markers=0 per100=0.0: trained on. Tokenization Theory. Schmidt et al. (2024) examined the hypothesis that the primary role of tokenization is 
+      FLAGGED kept p.34-35 markers=0 per100=0.0: against the hypothesis. Rajaraman, Jiao, and Ramchandran (2024) showed that for certain data distributions, applying tok
+      FLAGGED kept p.35-35 markers=0 per100=0.0: boundary" problem, the ability to compare different LLMs with different tokenizers, and simply produces better estimates
+      FLAGGED kept p.35-35 markers=0 per100=0.0: al. (2022) with two marginally updated computations: (1) add computations for Mamba2 (Dao and Gu 2024), and (2) modify c
+      FLAGGED kept p.35-35 markers=0 per100=0.0: • Attention: – QKVprojections: 2 × 3 × seq_len × d_model × (num_heads × head_dim) – Attention Logit Calculation: 2 × seq
+      FLAGGED kept p.35-35 markers=0 per100=0.0: × head_dim) × d_model • Mamba-2: – XZprojections: 2 × seq_len × d_model × (2 × expand × d_model) – BCΔtprojections: 2 × 
+      FLAGGED kept p.35-35 markers=0 per100=0.0: × d_model – Output projection: 2 × seq_len × d_model × d_model • Gated MLP: – In, Gate, Out projections: 2 × seq_len × (
+      FLAGGED kept p.35-35 markers=0 per100=0.0: C Learning Rate Modulation As discussed in Section 2.3, we employ modulated learning rates for each stage by multiplying
+      FLAGGED kept p.35-35 markers=0 per100=0.0: we follow previous works and set learning rates to be proportionally to the (1) square root of batch size (Malladi et al
+      FLAGGED kept p.35-36 markers=0 per100=0.0: Ni· DS Ds, NS= 1.0 (11) Mean/Max Pooling (b) Q KV KV Q Cross Attention Pooling (c) (a) Default 60B 80B 100B 120B 140B To
+      FLAGGED kept p.36-36 markers=0 per100=0.0: Channel-wise max and mean pooling within boundaries (left-b). XAttn: Cross-attention pooling within boundaries (left-c).
+      FLAGGED kept p.36-36 markers=0 per100=0.0: active area of research, and our scaling factors are just heuristics that can likely be improved. D Additional Experimen
+      FLAGGED kept p.36-36 markers=0 per100=0.0: . This score measures the percentage of original (unperturbed) performance that is captured by the model in the perturbe
+      FLAGGED kept p.36-36 markers=0 per100=0.0: Methods in the Chunking Layer Given the dynamically determined boundaries from the boundary predictor, we explore variou
+      FLAGGED kept p.36-37 markers=0 per100=0.0: in H-Net performs on-par with the other variants as demonstrated in Figure 13-right. This shows that the sequence mixing
+      FLAGGED kept p.37-37 markers=0 per100=0.0: + M4 66M 2.697 H-Net M4 + T15 + M4 62M 2.722 H-Net M4 + M15 + M4 64M 2.706 H-Net M4 + T1M13T1 + M4 64M 2.706 Table 7: En
+      FLAGGED kept p.37-37 markers=0 per100=0.0: 5). Transformers in the encoder network do not appear to be helpful for text (Figure 8), suggesting that this finding ma
+      FLAGGED kept p.37-37 markers=0 per100=0.0: training. The pure Mamba-2 model is more unstable with a loss spike. Adding Transformer layers to the main network near 
+      FLAGGED kept p.37-37 markers=0 per100=0.0: and on code, finding superior scaling for H-Net (2-stage) versus the other architectures. Here, we describe additional d
+      FLAGGED kept p.37-37 markers=0 per100=0.0: GPT-3 XL, including dmodel and encoder/decoder architecture for H-Net models. However, we adjusted the number of layers 
+      FLAGGED kept p.37-37 markers=0 per100=0.0: and results are also in Table 4. E.3 DNA Architecture Ablations H-Net (1-stage) with an M3T1 encoder achieves 3.6× the d
+      FLAGGED kept p.37-37 markers=0 per100=0.0: to be helpful for text (Figure 8). Thus, it is possible the Transformer being useful is a DNA-specific result. Interesti
+      FLAGGED kept p.37-37 markers=0 per100=0.0: for dealing directly with compressed input (see Figure 10). The new, principled main network architecture improved stabi
+      FLAGGED kept p.37-37 markers=0 per100=0.0: an embedding space that the main model backbone can process. Given this similarity, we investigated whether it would be 
+      FLAGGED kept p.37-38 markers=0 per100=0.0: for both the encoder and decoder with a hidden dimension of 1536. Because the Llama model has a hidden dimension of 3072
+      FLAGGED kept p.38-38 markers=0 per100=0.0: ... BCE Loss Ground Truth Embeddings Copy + Shift MSE Loss Figure 15: Auxiliary loss strategy for training the encoder o
+      FLAGGED kept p.38-38 markers=0 per100=0.0: we pass through to the main network. These losses encourage the encoder to tokenize once at the start of every token, wh
+      FLAGGED kept p.38-38 markers=0 per100=0.0: average of the benchmarks measured in Table 2. H-Net loses performance across the board compared to the teacher, which i
+      FLAGGED kept p.38-38 markers=0 per100=0.0: LMB. Hella. PIQA ARC-e ARC-c Wino. Open. Average MMLU (5-shot) acc ↑ acc_n ↑ acc ↑ acc ↑ acc_n ↑ acc ↑ acc_n ↑ acc ↑ acc
+      FLAGGED kept p.38-38 markers=0 per100=0.0: before dechunking (i.e. right before and after feeding into the main stage). We train the model for 90000 gradient steps
+      FLAGGED kept p.38-38 markers=0 per100=0.0: tokenized model can produce useful output with. Thus, our training (besides using the standard next-byte prediction loss
+      FLAGGED kept p.38-38 markers=0 per100=0.0: the main network. 2. A hidden state matching loss that matches the post-adapter hidden state with the “correct" hidden s
+      FLAGGED kept p.38-38 markers=0 per100=0.0: is the first byte of its token, in which case we match the ztwith the previous token’s embedding. Embedding matching is 
+      FLAGGED kept p.38-38 markers=0 per100=0.0: main network would thus see exactly the representation it would see with a tokenizer + embedding setup. In practice, sen
+      FLAGGED kept p.38-39 markers=0 per100=0.0: fact, increasing the loss weight on the embedding-matching loss 28 69 69 29 20 46 61 73 74 20 74 72 61 69 6e 69 6e 67 20
+      FLAGGED kept p.39-39 markers=0 per100=0.0: s t t r a i n i n g a n d i n f e r e n c e : c o m p u t a t i o n Stage 0 61 6e 64 20 6d 65 6d 6f 72 79 73 63 61 6c 65
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 79 20 69 6e 20 73 65 71 75 65 6e 63 65 20 6c 65 6e 67 74 68 20 a n d m e m o r y s c a l e s l i n e a r l y i n s e q u
+      FLAGGED kept p.39-39 markers=0 per100=0.0: Stage 0 64 75 72 69 6e 67 74 72 61 69 6e 69 6e 67 2c 61 6e 64 20 75 6e 72 6f 6c 6c 69 6e 67 74 68 65 20 6d 6f 64 65 6c 2
+      FLAGGED kept p.39-39 markers=0 per100=0.0: g , a n d u n r o l l i n g t h e m o d e l a u t o r e g Stage 0 72 65 73 73 69 76 65 6c 79 64 75 72 69 6e 67 20 69 6e 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 69 72 65 73 20 6f 6e 6c 79 63 6f 6e 73 74 61 6e r e s s i v e l y d u r i n g i n f e r e n c e r e q u i r e s o n l y 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: 0 74 20 74 69 6d 65 20 70 65 72 20 73 74 65 70 20 73 69 6e 63 65 20 69 74 20 64 6f 65 73 20 6e 6f 74 20 72 65 71 75 69 7
+      FLAGGED kept p.39-39 markers=0 per100=0.0: n c e i t d o e s n o t r e q u i r e a c Stage 0 Figure 16: Visualization of boundary positions dynamically drawn by H-
+      FLAGGED kept p.39-39 markers=0 per100=0.0: harm the language-modeling loss. Tokenization bias. We are not able to send all auxiliary losses to zero because online 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: into [_dist, ill] and [_distinct]. Prior use of this term has been to suggest that if an autoregressive language model i
+      FLAGGED kept p.39-39 markers=0 per100=0.0: not the i in _disti is the start of a new word until after seeing the next character. In fact, the problem can be even w
+      FLAGGED kept p.39-39 markers=0 per100=0.0: is not able to exactly match the behavior of the original tokenized model. Instead, it is finding slightly different rep
+      FLAGGED kept p.39-39 markers=0 per100=0.0: that the pretrained model could process. Remark. One might ask if our distilled model has simply learned to tokenize on 
+      FLAGGED kept p.39-39 markers=0 per100=0.0: H-Net is able to recognize some, but not all, subword boundaries. Results. The results from our distillation procedure a
+      FLAGGED kept p.39-39 markers=0 per100=0.0: Byte-Latent Transformer (Pagnoni et al. 2024, Table 5) performs a similar experiment, and they see a greater gap among m
+      FLAGGED kept p.39-39 markers=0 per100=0.0: boundaries the way that end-to-end DC can.

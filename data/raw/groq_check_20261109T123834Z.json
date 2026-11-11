@@ -1,0 +1,26 @@
+{
+ "model": "openai/gpt-oss-20b",
+ "status": 200,
+ "latency_ms": 510.9,
+ "usage": {
+  "queue_time": 0.315200212,
+  "prompt_tokens": 78,
+  "prompt_time": 0.003678757,
+  "completion_tokens": 5,
+  "completion_time": 0.005095678,
+  "total_tokens": 83,
+  "total_time": 0.008774435,
+  "completion_tokens_details": {
+   "reasoning_tokens": 3
+  }
+ },
+ "headers": {
+  "x-ratelimit-limit-requests": "1000",
+  "x-ratelimit-limit-tokens": "8000",
+  "x-ratelimit-remaining-requests": "999",
+  "x-ratelimit-remaining-tokens": "7917",
+  "x-ratelimit-reset-requests": "1m26.4s",
+  "x-ratelimit-reset-tokens": "622ms"
+ },
+ "captured_at": "20261109T123834Z"
+}

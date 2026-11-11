@@ -1,0 +1,19 @@
+{
+  "caps": {
+    "A": 30000,
+    "B": 41000,
+    "C": 37000
+  },
+  "ceiling": 110000,
+  "prior": 0,
+  "spent": {
+    "A": 21978,
+    "B": 29448,
+    "C": 26380
+  },
+  "open": [],
+  "next": 49,
+  "halted": false,
+  "halt_reason": "",
+  "overruns": []
+}

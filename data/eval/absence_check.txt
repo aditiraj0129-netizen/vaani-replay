@@ -1,0 +1,33 @@
+===== 1706.03762v7.pdf =====
+  romanian      : 0 matches in the text layer
+  wmt 2016      : 0 matches in the text layer
+  newstest2016  : 0 matches in the text layer
+  en-ro / en→ro : 0 matches in the text layer
+  bleu          : on pages [1, 8, 9]
+     p.1: less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-
+     p.1: ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task,
+     p.1: our model establishes a new single-model state-of-the-art BLEU score of 41.8 after
+     p.8: Table 2: The Transformer achieves better BLEU scores than previous state-of-the-art models on the
+     p.8: BLEU
+     p.8: hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.
+     p.8: BLEU, establishing a new state-of-the-art BLEU score of 28.4. The configuration of this model is
+     p.8: On the WMT 2014 English-to-French translation task, our big model achieves a BLEU score of 41.0,
+     p.9: BLEU
+     p.9: attention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads.
+  pages with images to open by eye (page, share of page covered, words of text): none
+
+===== 2410.00037v1.pdf =====
+  romanian      : 0 matches in the text layer
+  wmt 2016      : 0 matches in the text layer
+  newstest2016  : 0 matches in the text layer
+  en-ro / en→ro : 0 matches in the text layer
+  bleu          : on pages []
+  pages with images to open by eye (page, share of page covered, words of text): none
+
+===== 2507.07955v2.pdf =====
+  romanian      : 0 matches in the text layer
+  wmt 2016      : 0 matches in the text layer
+  newstest2016  : 0 matches in the text layer
+  en-ro / en→ro : 0 matches in the text layer
+  bleu          : on pages []
+  pages with images to open by eye (page, share of page covered, words of text): none

@@ -1,0 +1,1120 @@
+{
+  "table1": {
+    "headers": [
+      "Limit",
+      "Value you found",
+      "How you found it",
+      "Confidence (high, medium, low)"
+    ],
+    "rows": [
+      [
+        "Requests per minute",
+        "Not measured (no real 429 of kind rpm; 40 real attempts logged)",
+        "Observed: no real rate-limit response named a per-minute request limit",
+        "n/a"
+      ],
+      [
+        "Tokens per minute",
+        "8,000 per minute",
+        "Observed: x-ratelimit-limit-tokens header on 40 responses; 3 real 429s quote 'Limit 8000'",
+        "high"
+      ],
+      [
+        "Requests per day",
+        "1,000 per day",
+        "Observed: x-ratelimit-limit-requests header on 40 responses; never exhausted, so the limit itself was not tested",
+        "medium"
+      ],
+      [
+        "Tokens per day",
+        "Not measured (no real 429 of kind tpd)",
+        "Observed: the service sends no per-day token header; the daily token limit was never reached",
+        "n/a"
+      ],
+      [
+        "Requests in flight at once",
+        "No rejection up to 8 simultaneous requests (not tested higher)",
+        "Observed: concurrency probe, waves [1, 2, 4, 8] of tiny requests, 15 requests",
+        "low"
+      ],
+      [
+        "What it returns when a limit is hit",
+        "HTTP 429; limit kinds {'tpm': 3}; Retry-After seconds seen: [1.0, 3.0, 5.0]",
+        "Observed: 3 real rate-limited responses. Example message: 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_<redacted>` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6699, R'",
+        "high"
+      ],
+      [
+        "Time until it recovers",
+        "Per-minute token limit: the first request sent 4.9 s after the 429 succeeded (Retry-After said 5.0 s). Daily limit: Not measured",
+        "Observed: limit probe, first 429 to first later success (an upper bound: the probe chose when to send; one episode)",
+        "low"
+      ]
+    ],
+    "notes": [
+      "40 real attempts read from data/raw/real. Values and 'How' text above are OBSERVED in your own probes.",
+      "Published limits (provider Limits page, NOT observed): Not measured (no values in data/eval/published_limits.json)"
+    ]
+  },
+  "table2a": {
+    "headers": [
+      "Scenario",
+      "Real or stand-in",
+      "Requests sent",
+      "Duration (s)",
+      "Offered rate (per min)",
+      "First token p50 / p95 / p99 (ms)",
+      "Total time p50 / p95 / p99 (ms)"
+    ],
+    "rows": [
+      [
+        "real_concurrency_probe",
+        "real",
+        "15",
+        "21.5",
+        "40.6",
+        "782 / 1,056 / 1,056",
+        "786 / 1,060 / 1,060"
+      ],
+      [
+        "real_latency_probe",
+        "real",
+        "12",
+        "114.7",
+        "5.8",
+        "1,133 / 2,364 / 2,364",
+        "1,137 / 2,387 / 2,387"
+      ],
+      [
+        "real_limit_probe",
+        "real",
+        "8",
+        "10.1",
+        "44.1",
+        "871 / 1,427 / 1,427",
+        "949 / 1,431 / 1,431"
+      ],
+      [
+        "real_reservation_probe",
+        "real",
+        "4",
+        "49.9",
+        "3.7",
+        "744 / 2,543 / 2,543",
+        "749 / 2,544 / 2,544"
+      ],
+      [
+        "real_smoke",
+        "real",
+        "1",
+        "0.9",
+        "Not measured",
+        "940 / 940 / 940",
+        "942 / 942 / 942"
+      ],
+      [
+        "steady (baseline)",
+        "stand-in",
+        "15",
+        "281.5",
+        "3.0",
+        "1,371 / 2,508 / 2,508",
+        "1,522 / 2,668 / 2,668"
+      ],
+      [
+        "steady (baseline_polite)",
+        "stand-in",
+        "15",
+        "281.4",
+        "3.0",
+        "1,357 / 2,502 / 2,502",
+        "1,444 / 2,692 / 2,692"
+      ],
+      [
+        "steady (controlled_no_degrade)",
+        "stand-in",
+        "15",
+        "281.5",
+        "3.0",
+        "1,434 / 2,573 / 2,573",
+        "1,511 / 2,773 / 2,773"
+      ],
+      [
+        "steady (controlled)",
+        "stand-in",
+        "15",
+        "281.5",
+        "3.0",
+        "1,382 / 2,575 / 2,575",
+        "1,474 / 2,779 / 2,779"
+      ],
+      [
+        "burst (baseline)",
+        "stand-in",
+        "20",
+        "8.1",
+        "240.0",
+        "1,176 / 1,412 / 1,412",
+        "1,313 / 1,501 / 1,501"
+      ],
+      [
+        "burst (baseline_polite)",
+        "stand-in",
+        "20",
+        "51.6",
+        "240.0",
+        "1,401 / 35,026 / 35,026",
+        "1,584 / 35,148 / 35,148"
+      ],
+      [
+        "burst (controlled_no_degrade)",
+        "stand-in",
+        "20",
+        "36.7",
+        "240.0",
+        "1,358 / 34,558 / 34,558",
+        "1,599 / 34,687 / 34,687"
+      ],
+      [
+        "burst (controlled)",
+        "stand-in",
+        "20",
+        "43.2",
+        "240.0",
+        "5,717 / 39,376 / 39,376",
+        "5,901 / 39,446 / 39,446"
+      ],
+      [
+        "overload (baseline)",
+        "stand-in",
+        "50",
+        "297.6",
+        "10.0",
+        "1,666 / 5,129 / 5,341",
+        "1,787 / 5,180 / 5,461"
+      ],
+      [
+        "overload (baseline_polite)",
+        "stand-in",
+        "50",
+        "329.0",
+        "10.0",
+        "5,737 / 33,152 / 40,934",
+        "5,816 / 33,225 / 40,988"
+      ],
+      [
+        "overload (controlled_no_degrade)",
+        "stand-in",
+        "50",
+        "320.5",
+        "10.0",
+        "35,247 / 40,055 / 40,971",
+        "35,286 / 40,184 / 41,030"
+      ],
+      [
+        "overload (controlled)",
+        "stand-in",
+        "50",
+        "323.5",
+        "10.0",
+        "30,558 / 38,486 / 38,711",
+        "30,629 / 38,543 / 38,945"
+      ],
+      [
+        "halved_limit (baseline)",
+        "stand-in",
+        "15",
+        "281.1",
+        "3.0",
+        "1,227 / 4,379 / 4,379",
+        "1,304 / 4,429 / 4,429"
+      ],
+      [
+        "halved_limit (baseline_polite)",
+        "stand-in",
+        "15",
+        "331.5",
+        "3.0",
+        "15,364 / 33,679 / 33,679",
+        "15,470 / 33,740 / 33,740"
+      ],
+      [
+        "halved_limit (controlled_no_degrade)",
+        "stand-in",
+        "15",
+        "292.7",
+        "3.0",
+        "13,994 / 40,182 / 40,182",
+        "14,190 / 40,244 / 40,244"
+      ],
+      [
+        "halved_limit (controlled)",
+        "stand-in",
+        "15",
+        "281.5",
+        "3.0",
+        "1,413 / 2,563 / 2,563",
+        "1,524 / 2,753 / 2,753"
+      ],
+      [
+        "daily_exhausted (baseline)",
+        "stand-in",
+        "15",
+        "283.6",
+        "3.0",
+        "1,188 / 2,566 / 2,566",
+        "1,238 / 2,756 / 2,756"
+      ],
+      [
+        "daily_exhausted (baseline_polite)",
+        "stand-in",
+        "15",
+        "521.8",
+        "3.0",
+        "1,151 / 2,566 / 2,566",
+        "1,258 / 2,768 / 2,768"
+      ],
+      [
+        "daily_exhausted (controlled_no_degrade)",
+        "stand-in",
+        "15",
+        "280.1",
+        "3.0",
+        "1,181 / 2,435 / 2,435",
+        "1,255 / 2,629 / 2,629"
+      ],
+      [
+        "daily_exhausted (controlled)",
+        "stand-in",
+        "15",
+        "280.1",
+        "3.0",
+        "1,178 / 2,600 / 2,600",
+        "1,261 / 2,812 / 2,812"
+      ],
+      [
+        "flaky (baseline)",
+        "stand-in",
+        "15",
+        "281.0",
+        "3.0",
+        "1,377 / 31,907 / 31,907",
+        "1,507 / 32,099 / 32,099"
+      ],
+      [
+        "flaky (baseline_polite)",
+        "stand-in",
+        "15",
+        "280.9",
+        "3.0",
+        "1,382 / 31,854 / 31,854",
+        "1,553 / 32,040 / 32,040"
+      ],
+      [
+        "flaky (controlled_no_degrade)",
+        "stand-in",
+        "15",
+        "281.0",
+        "3.0",
+        "1,411 / 32,313 / 32,313",
+        "1,556 / 32,510 / 32,510"
+      ],
+      [
+        "flaky (controlled)",
+        "stand-in",
+        "15",
+        "280.9",
+        "3.0",
+        "1,422 / 32,310 / 32,310",
+        "1,544 / 32,502 / 32,502"
+      ]
+    ],
+    "notes": [
+      "real_concurrency_probe [real]: percentiles over 15 ok of 15 requests",
+      "real_latency_probe [real]: percentiles over 12 ok of 12 requests",
+      "real_limit_probe [real]: percentiles over 5 ok of 8 requests",
+      "real_reservation_probe [real]: percentiles over 4 ok of 4 requests",
+      "real_smoke [real]: percentiles over 1 ok of 1 requests",
+      "steady (baseline) [stand-in]: percentiles over 15 ok of 15 requests",
+      "steady (baseline_polite) [stand-in]: percentiles over 15 ok of 15 requests",
+      "steady (controlled_no_degrade) [stand-in]: percentiles over 15 ok of 15 requests",
+      "steady (controlled) [stand-in]: percentiles over 15 ok of 15 requests",
+      "burst (baseline) [stand-in]: percentiles over 4 ok of 20 requests",
+      "burst (baseline_polite) [stand-in]: percentiles over 7 ok of 20 requests",
+      "burst (controlled_no_degrade) [stand-in]: percentiles over 6 ok of 20 requests",
+      "burst (controlled) [stand-in]: percentiles over 9 ok of 20 requests",
+      "overload (baseline) [stand-in]: percentiles over 25 ok of 50 requests",
+      "overload (baseline_polite) [stand-in]: percentiles over 26 ok of 50 requests",
+      "overload (controlled_no_degrade) [stand-in]: percentiles over 26 ok of 50 requests",
+      "overload (controlled) [stand-in]: percentiles over 38 ok of 50 requests",
+      "halved_limit (baseline) [stand-in]: percentiles over 12 ok of 15 requests",
+      "halved_limit (baseline_polite) [stand-in]: percentiles over 13 ok of 15 requests",
+      "halved_limit (controlled_no_degrade) [stand-in]: percentiles over 12 ok of 15 requests",
+      "halved_limit (controlled) [stand-in]: percentiles over 15 ok of 15 requests",
+      "daily_exhausted (baseline) [stand-in]: percentiles over 8 ok of 15 requests",
+      "daily_exhausted (baseline_polite) [stand-in]: percentiles over 8 ok of 15 requests",
+      "daily_exhausted (controlled_no_degrade) [stand-in]: percentiles over 8 ok of 15 requests",
+      "daily_exhausted (controlled) [stand-in]: percentiles over 8 ok of 15 requests",
+      "flaky (baseline) [stand-in]: percentiles over 15 ok of 15 requests",
+      "flaky (baseline_polite) [stand-in]: percentiles over 15 ok of 15 requests",
+      "flaky (controlled_no_degrade) [stand-in]: percentiles over 15 ok of 15 requests",
+      "flaky (controlled) [stand-in]: percentiles over 15 ok of 15 requests"
+    ]
+  },
+  "table2b": {
+    "headers": [
+      "Scenario",
+      "Succeeded %",
+      "Rate-limited %",
+      "Timed out or given up %",
+      "Retries per request",
+      "Peak queue length (accepted, not yet sent)",
+      "Tokens per answer",
+      "Cost per 1,000 answers"
+    ],
+    "rows": [
+      [
+        "real_concurrency_probe",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "Not measured (no queue telemetry)",
+        "95",
+        "free tier $0.00; paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "real_latency_probe",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "Not measured (no queue telemetry)",
+        "1,857",
+        "free tier $0.00; paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "real_limit_probe",
+        "62.5",
+        "37.5",
+        "0.0",
+        "0.00",
+        "Not measured (no queue telemetry)",
+        "1,795",
+        "free tier $0.00; paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "real_reservation_probe",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "Not measured (no queue telemetry)",
+        "95",
+        "free tier $0.00; paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "real_smoke",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "Not measured (no queue telemetry)",
+        "95",
+        "free tier $0.00; paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "steady (baseline)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "1",
+        "1,866",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "steady (baseline_polite)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "1",
+        "1,866",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "steady (controlled_no_degrade)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "1",
+        "1,866",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "steady (controlled)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "1",
+        "1,866",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "burst (baseline)",
+        "20.0",
+        "80.0",
+        "0.0",
+        "3.20",
+        "1",
+        "1,838",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "burst (baseline_polite)",
+        "35.0",
+        "60.0",
+        "5.0",
+        "2.90",
+        "1",
+        "1,814",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "burst (controlled_no_degrade)",
+        "30.0",
+        "0.0",
+        "70.0",
+        "0.00",
+        "4",
+        "1,854",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "burst (controlled)",
+        "45.0",
+        "0.0",
+        "55.0",
+        "0.00",
+        "6",
+        "1,320",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "overload (baseline)",
+        "50.0",
+        "50.0",
+        "0.0",
+        "2.58",
+        "1",
+        "1,871",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "overload (baseline_polite)",
+        "52.0",
+        "44.0",
+        "4.0",
+        "2.44",
+        "1",
+        "1,847",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "overload (controlled_no_degrade)",
+        "52.0",
+        "0.0",
+        "48.0",
+        "0.00",
+        "4",
+        "1,886",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "overload (controlled)",
+        "76.0",
+        "0.0",
+        "24.0",
+        "0.00",
+        "5",
+        "1,299",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "halved_limit (baseline)",
+        "80.0",
+        "20.0",
+        "0.0",
+        "1.13",
+        "1",
+        "1,838",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "halved_limit (baseline_polite)",
+        "86.7",
+        "6.7",
+        "6.7",
+        "1.20",
+        "1",
+        "1,847",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "halved_limit (controlled_no_degrade)",
+        "80.0",
+        "0.0",
+        "20.0",
+        "0.00",
+        "2",
+        "1,871",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "halved_limit (controlled)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.00",
+        "1",
+        "1,403",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "daily_exhausted (baseline)",
+        "53.3",
+        "46.7",
+        "0.0",
+        "1.87",
+        "1",
+        "1,886",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "daily_exhausted (baseline_polite)",
+        "53.3",
+        "46.7",
+        "0.0",
+        "1.87",
+        "1",
+        "1,886",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "daily_exhausted (controlled_no_degrade)",
+        "53.3",
+        "46.7",
+        "0.0",
+        "0.00",
+        "1",
+        "1,886",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "daily_exhausted (controlled)",
+        "53.3",
+        "46.7",
+        "0.0",
+        "0.00",
+        "1",
+        "1,886",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "flaky (baseline)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.13",
+        "1",
+        "1,862",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "flaky (baseline_polite)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.13",
+        "1",
+        "1,862",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "flaky (controlled_no_degrade)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.13",
+        "1",
+        "1,862",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ],
+      [
+        "flaky (controlled)",
+        "100.0",
+        "0.0",
+        "0.0",
+        "0.13",
+        "1",
+        "1,862",
+        "free tier n/a (simulated); paid-equivalent Not measured (no prices in pricing.json)"
+      ]
+    ],
+    "notes": [
+      "real_concurrency_probe [real]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=8 (includes requests already being processed)",
+      "real_latency_probe [real]: n=12; ok=12 rate_limited=0 timeout=0 error=0; tokens averaged over 12 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "real_limit_probe [real]: n=8; ok=5 rate_limited=3 timeout=0 error=0; tokens averaged over 5 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "real_reservation_probe [real]: n=4; ok=4 rate_limited=0 timeout=0 error=0; tokens averaged over 4 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "real_smoke [real]: n=1; ok=1 rate_limited=0 timeout=0 error=0; tokens averaged over 1 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "steady (baseline) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "steady (baseline_polite) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "steady (controlled_no_degrade) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "steady (controlled) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "burst (baseline) [stand-in]: n=20; ok=4 rate_limited=16 timeout=0 error=0; tokens averaged over 4 ok rows; peak_pending_to_first_response=14 (includes requests already being processed)",
+      "burst (baseline_polite) [stand-in]: n=20; ok=7 rate_limited=12 timeout=1 error=0; tokens averaged over 7 ok rows; peak_pending_to_first_response=16 (includes requests already being processed)",
+      "burst (controlled_no_degrade) [stand-in]: n=20; ok=6 rate_limited=0 timeout=14 error=0; tokens averaged over 6 ok rows; peak_pending_to_first_response=4 (includes requests already being processed)",
+      "burst (controlled) [stand-in]: n=20; ok=9 rate_limited=0 timeout=11 error=0; tokens averaged over 9 ok rows; peak_pending_to_first_response=6 (includes requests already being processed)",
+      "overload (baseline) [stand-in]: n=50; ok=25 rate_limited=25 timeout=0 error=0; tokens averaged over 25 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "overload (baseline_polite) [stand-in]: n=50; ok=26 rate_limited=22 timeout=2 error=0; tokens averaged over 26 ok rows; peak_pending_to_first_response=8 (includes requests already being processed)",
+      "overload (controlled_no_degrade) [stand-in]: n=50; ok=26 rate_limited=0 timeout=24 error=0; tokens averaged over 26 ok rows; peak_pending_to_first_response=4 (includes requests already being processed)",
+      "overload (controlled) [stand-in]: n=50; ok=38 rate_limited=0 timeout=12 error=0; tokens averaged over 38 ok rows; peak_pending_to_first_response=5 (includes requests already being processed)",
+      "halved_limit (baseline) [stand-in]: n=15; ok=12 rate_limited=3 timeout=0 error=0; tokens averaged over 12 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "halved_limit (baseline_polite) [stand-in]: n=15; ok=13 rate_limited=1 timeout=1 error=0; tokens averaged over 13 ok rows; peak_pending_to_first_response=3 (includes requests already being processed)",
+      "halved_limit (controlled_no_degrade) [stand-in]: n=15; ok=12 rate_limited=0 timeout=3 error=0; tokens averaged over 12 ok rows; peak_pending_to_first_response=2 (includes requests already being processed)",
+      "halved_limit (controlled) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "daily_exhausted (baseline) [stand-in]: n=15; ok=8 rate_limited=7 timeout=0 error=0; tokens averaged over 8 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "daily_exhausted (baseline_polite) [stand-in]: n=15; ok=8 rate_limited=7 timeout=0 error=0; tokens averaged over 8 ok rows; peak_pending_to_first_response=7 (includes requests already being processed)",
+      "daily_exhausted (controlled_no_degrade) [stand-in]: n=15; ok=8 rate_limited=7 timeout=0 error=0; tokens averaged over 8 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "daily_exhausted (controlled) [stand-in]: n=15; ok=8 rate_limited=7 timeout=0 error=0; tokens averaged over 8 ok rows; peak_pending_to_first_response=1 (includes requests already being processed)",
+      "flaky (baseline) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=2 (includes requests already being processed)",
+      "flaky (baseline_polite) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=2 (includes requests already being processed)",
+      "flaky (controlled_no_degrade) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=2 (includes requests already being processed)",
+      "flaky (controlled) [stand-in]: n=15; ok=15 rate_limited=0 timeout=0 error=0; tokens averaged over 15 ok rows; peak_pending_to_first_response=2 (includes requests already being processed)",
+      "Paid-equivalent prices: Not measured (no prices in data/eval/pricing.json). The free tier charged $0.00."
+    ]
+  },
+  "table2c": {
+    "headers": [
+      "Scenario",
+      "Requests sent",
+      "Provider 429",
+      "Local: queue full",
+      "Local: budget gate",
+      "Local: deadline shed",
+      "Late answer",
+      "Provider timeout",
+      "Provider error",
+      "Status inferred"
+    ],
+    "rows": [
+      [
+        "real_concurrency_probe",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "real_latency_probe",
+        "12",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "real_limit_probe",
+        "8",
+        "3",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "real_reservation_probe",
+        "4",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "real_smoke",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "steady (baseline)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "steady (baseline_polite)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "steady (controlled_no_degrade)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "steady (controlled)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "burst (baseline)",
+        "20",
+        "16",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "burst (baseline_polite)",
+        "20",
+        "12",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "burst (controlled_no_degrade)",
+        "20",
+        "0",
+        "0",
+        "0",
+        "14",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "burst (controlled)",
+        "20",
+        "0",
+        "0",
+        "0",
+        "11",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "overload (baseline)",
+        "50",
+        "25",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "overload (baseline_polite)",
+        "50",
+        "22",
+        "0",
+        "0",
+        "0",
+        "2",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "overload (controlled_no_degrade)",
+        "50",
+        "0",
+        "0",
+        "0",
+        "24",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "overload (controlled)",
+        "50",
+        "0",
+        "0",
+        "0",
+        "12",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "halved_limit (baseline)",
+        "15",
+        "3",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "halved_limit (baseline_polite)",
+        "15",
+        "1",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "halved_limit (controlled_no_degrade)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "3",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "halved_limit (controlled)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "daily_exhausted (baseline)",
+        "15",
+        "7",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "daily_exhausted (baseline_polite)",
+        "15",
+        "7",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "daily_exhausted (controlled_no_degrade)",
+        "15",
+        "0",
+        "0",
+        "7",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "daily_exhausted (controlled)",
+        "15",
+        "0",
+        "0",
+        "7",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "flaky (baseline)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "flaky (baseline_polite)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "flaky (controlled_no_degrade)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "flaky (controlled)",
+        "15",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    ],
+    "notes": [
+      "Local = OUR controller refused (queue full, budget gate, deadline shed). Provider = the service answered 429, timed out or failed. Late answer = a complete answer after the deadline. Status inferred = a failed job whose last call status was not recorded.",
+      "In results.csv, queue-full and budget-gate refusals have status rate_limited; deadline sheds and late answers have status timeout."
+    ]
+  },
+  "table3": {
+    "headers": [
+      "Setting (piece size, pieces fetched, re-rank)",
+      "Questions asked",
+      "Correct and cited %",
+      "Wrong %",
+      "Correctly refused %",
+      "Tokens per answer",
+      "First token p50 / p95 (ms)",
+      "Total time p50 / p95 (ms)"
+    ],
+    "rows": [
+      [
+        "A: 80-word pieces (20 overlap), 8 fetched, re-rank no",
+        "16",
+        "75.0",
+        "18.8",
+        "6.2",
+        "1,374",
+        "780 / 1,346",
+        "858 / 1,414"
+      ],
+      [
+        "B: 200-word pieces (40 overlap), 5 fetched, re-rank no",
+        "16",
+        "75.0",
+        "18.8",
+        "6.2",
+        "1,840",
+        "825 / 1,437",
+        "953 / 1,606"
+      ],
+      [
+        "C: 300-word pieces (60 overlap), 3 fetched, re-rank yes",
+        "16",
+        "75.0",
+        "18.8",
+        "6.2",
+        "1,649",
+        "733 / 964",
+        "869 / 1,129"
+      ]
+    ],
+    "notes": [
+      "A: asked=16, graded=16, answered (status ok)=16, not answered=0, correct=12 wrong=1 refused_correctly=1 refused_wrongly=2",
+      "A: citation provenance (pipeline check) over answered rows: cited=13, refusal=3; citation support (person check): not reviewed=3, supported=12, unsupported=1",
+      "B: asked=16, graded=16, answered (status ok)=16, not answered=0, correct=12 wrong=2 refused_correctly=1 refused_wrongly=1",
+      "B: citation provenance (pipeline check) over answered rows: cited=13, refusal=2, uncited=1; citation support (person check): not reviewed=3, supported=12, unsupported=1",
+      "C: asked=16, graded=16, answered (status ok)=16, not answered=0, correct=12 wrong=2 refused_correctly=1 refused_wrongly=1",
+      "C: citation provenance (pipeline check) over answered rows: cited=14, refusal=2; citation support (person check): not reviewed=2, supported=12, unsupported=2",
+      "'Correct and cited' = content correct AND pipeline provenance 'cited' AND a person confirmed citation_support=supported. 'Wrong' = wrong + refused_wrongly."
+    ]
+  }
+}
