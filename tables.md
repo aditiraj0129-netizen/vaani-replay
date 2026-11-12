@@ -179,20 +179,47 @@
 - Local = OUR controller refused (queue full, budget gate, deadline shed). Provider = the service answered 429, timed out or failed. Late answer = a complete answer after the deadline. Status inferred = a failed job whose last call status was not recorded.
 - In results.csv, queue-full and budget-gate refusals have status rate_limited; deadline sheds and late answers have status timeout.
 
-### Table 3: Retrieval settings (real evaluation)
+### Table 3: Retrieval settings, answer grade (real evaluation)
 
-| Setting (piece size, pieces fetched, re-rank) | Questions asked | Correct and cited % | Wrong % | Correctly refused % | Tokens per answer | First token p50 / p95 (ms) | Total time p50 / p95 (ms) |
-|---|---|---|---|---|---|---|---|
-| A: 80-word pieces (20 overlap), 8 fetched, re-rank no | 16 | 75.0 | 18.8 | 6.2 | 1,374 | 780 / 1,346 | 858 / 1,414 |
-| B: 200-word pieces (40 overlap), 5 fetched, re-rank no | 16 | 75.0 | 18.8 | 6.2 | 1,840 | 825 / 1,437 | 953 / 1,606 |
-| C: 300-word pieces (60 overlap), 3 fetched, re-rank yes | 16 | 75.0 | 18.8 | 6.2 | 1,649 | 733 / 964 | 869 / 1,129 |
+| Setting (piece size, pieces fetched, re-rank) | Questions asked | Correct n (%) | Partial n (%) | Wrong n (%) | Refused correctly n (%) | Refused wrongly n (%) | Not graded n (%) | Tokens per answer | First token p50 / p95 (ms) | Total time p50 / p95 (ms) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| A: 80-word pieces (20 overlap), 8 fetched, re-rank no | 16 | 11 (68.8%) | 1 (6.3%) | 1 (6.3%) | 1 (6.3%) | 2 (12.5%) | 0 (0.0%) | 1,374 | 780 / 1,346 | 858 / 1,414 |
+| B: 200-word pieces (40 overlap), 5 fetched, re-rank no | 16 | 12 (75.0%) | 1 (6.3%) | 1 (6.3%) | 1 (6.3%) | 1 (6.3%) | 0 (0.0%) | 1,840 | 825 / 1,437 | 953 / 1,606 |
+| C: 300-word pieces (60 overlap), 3 fetched, re-rank yes | 16 | 11 (68.8%) | 1 (6.3%) | 2 (12.5%) | 1 (6.3%) | 1 (6.3%) | 0 (0.0%) | 1,649 | 733 / 964 | 869 / 1,129 |
 
-- A: asked=16, graded=16, answered (status ok)=16, not answered=0, correct=12 wrong=1 refused_correctly=1 refused_wrongly=2
-- A: citation provenance (pipeline check) over answered rows: cited=13, refusal=3; citation support (person check): not reviewed=3, supported=12, unsupported=1
-- B: asked=16, graded=16, answered (status ok)=16, not answered=0, correct=12 wrong=2 refused_correctly=1 refused_wrongly=1
-- B: citation provenance (pipeline check) over answered rows: cited=13, refusal=2, uncited=1; citation support (person check): not reviewed=3, supported=12, unsupported=1
-- C: asked=16, graded=16, answered (status ok)=16, not answered=0, correct=12 wrong=2 refused_correctly=1 refused_wrongly=1
-- C: citation provenance (pipeline check) over answered rows: cited=14, refusal=2; citation support (person check): not reviewed=2, supported=12, unsupported=2
-- 'Correct and cited' = content correct AND pipeline provenance 'cited' AND a person confirmed citation_support=supported. 'Wrong' = wrong + refused_wrongly.
+- A: asked=16, graded=16, answered (status ok)=16, not answered=0
+- B: asked=16, graded=16, answered (status ok)=16, not answered=0
+- C: asked=16, graded=16, answered (status ok)=16, not answered=0
+- Answer grade only: does the answer's content match the papers. Whether the citation backs it is Table 3b. partial = right in direction but incomplete. Percent = count / questions asked (a failed or ungraded request is counted under Not graded). These grades mix manual-review rows and unverified assistant-first-pass rows: see Table 3c for how many of each; the table is not a human-graded result.
+
+### Table 3b: Retrieval settings, citation support split by review status (real evaluation, separate from the answer grade)
+
+| Setting | Rows in this line | Rows n (%) | Supported n (%) | Partial n (%) | Unsupported n (%) | Uncited n (%) | No citation (refused) n (%) | Support missing n (%) | Correct and supported n (%) | Correct, partial citation n (%) | Correct, unsupported n (%) | Correct, uncited n (%) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A | Manual review | 7 (43.8%) | 4 (25.0%) | 0 (0.0%) | 1 (6.3%) | 0 (0.0%) | 2 (12.5%) | 0 (0.0%) | 3 (18.8%) | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) |
+| A | Assistant first pass (unverified) | 9 (56.3%) | 8 (50.0%) | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) | 1 (6.3%) | 0 (0.0%) | 8 (50.0%) | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) |
+| A | ALL = mixture of the lines above | 16 (100.0%) | 12 (75.0%) | 0 (0.0%) | 1 (6.3%) | 0 (0.0%) | 3 (18.8%) | 0 (0.0%) | 11 (68.8%) | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) |
+| B | Manual review | 6 (37.5%) | 2 (12.5%) | 0 (0.0%) | 2 (12.5%) | 1 (6.3%) | 1 (6.3%) | 0 (0.0%) | 1 (6.3%) | 0 (0.0%) | 1 (6.3%) | 1 (6.3%) |
+| B | Assistant first pass (unverified) | 10 (62.5%) | 9 (56.3%) | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) | 1 (6.3%) | 0 (0.0%) | 9 (56.3%) | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) |
+| B | ALL = mixture of the lines above | 16 (100.0%) | 11 (68.8%) | 0 (0.0%) | 2 (12.5%) | 1 (6.3%) | 2 (12.5%) | 0 (0.0%) | 10 (62.5%) | 0 (0.0%) | 1 (6.3%) | 1 (6.3%) |
+| C | Manual review | 7 (43.8%) | 3 (18.8%) | 1 (6.3%) | 2 (12.5%) | 0 (0.0%) | 1 (6.3%) | 0 (0.0%) | 2 (12.5%) | 1 (6.3%) | 1 (6.3%) | 0 (0.0%) |
+| C | Assistant first pass (unverified) | 9 (56.3%) | 7 (43.8%) | 0 (0.0%) | 1 (6.3%) | 0 (0.0%) | 1 (6.3%) | 0 (0.0%) | 7 (43.8%) | 0 (0.0%) | 0 (0.0%) | 0 (0.0%) |
+| C | ALL = mixture of the lines above | 16 (100.0%) | 10 (62.5%) | 1 (6.3%) | 3 (18.8%) | 0 (0.0%) | 2 (12.5%) | 0 (0.0%) | 9 (56.3%) | 1 (6.3%) | 1 (6.3%) | 0 (0.0%) |
+
+- A: citation provenance (the pipeline's own mechanical check) over all 16 requests: cited=13, refusal=3
+- B: citation provenance (the pipeline's own mechanical check) over all 16 requests: cited=13, refusal=2, uncited=1
+- C: citation provenance (the pipeline's own mechanical check) over all 16 requests: cited=14, refusal=2
+- citation_support is a reading of the cited passage against the claim, kept separate from the answer grade, so a correct answer can have a partial, unsupported or missing citation. The ALL line MIXES manual-review findings with the assistant's first-pass readings; it is not an independently human-verified result. 'Support missing' = an answered row with no citation_support value; a refused row has no citation to judge and is counted under 'No citation (refused)'. Percent = count / 16 questions asked in the setting.
+
+### Table 3c: Review status of the 48 real evaluation grades
+
+| Setting | Questions asked | Manual review n (%) | Assistant first pass (unverified) n (%) | No grade row n (%) |
+|---|---|---|---|---|
+| A | 16 | 7 (43.8%) | 9 (56.3%) | 0 (0.0%) |
+| B | 16 | 6 (37.5%) | 10 (62.5%) | 0 (0.0%) |
+| C | 16 | 7 (43.8%) | 9 (56.3%) | 0 (0.0%) |
+| all settings | 48 | 20 (41.7%) | 28 (58.3%) | 0 (0.0%) |
+
+- manual_review = the row's grades come from a manual review (reviewer not named). assistant_first_pass = the assistant's first reading, not verified and not an independent human grade.
 
 Rows ending in (mode) are stand-in runs of one scenario under one pipeline mode; [seed S, run R] marks one of several independent runs of the same scenario and mode. Stand-in times and tokens are SIMULATED; stand-in start_time counts simulated seconds from 1970-01-01 (results_detail.csv time_basis = simulated).

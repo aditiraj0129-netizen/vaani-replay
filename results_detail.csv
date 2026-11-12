@@ -25,8 +25,8 @@ real-eval-B-65dae3d8-006,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cit
 real-eval-B-65dae3d8-007,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cited,supported,0,Q08,eval_jobs.jsonl,24
 real-eval-B-65dae3d8-008,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cited,supported,0,Q09,eval_jobs.jsonl,25
 real-eval-B-65dae3d8-009,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cited,supported,0,Q10,eval_jobs.jsonl,26
-real-eval-B-65dae3d8-010,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,uncited,,0,Q11,eval_jobs.jsonl,27
-real-eval-B-65dae3d8-011,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cited,supported,0,Q12,eval_jobs.jsonl,28
+real-eval-B-65dae3d8-010,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,uncited,uncited,0,Q11,eval_jobs.jsonl,27
+real-eval-B-65dae3d8-011,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cited,unsupported,0,Q12,eval_jobs.jsonl,28
 real-eval-B-65dae3d8-012,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cited,supported,0,Q13,eval_jobs.jsonl,29
 real-eval-B-65dae3d8-013,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cited,unsupported,0,Q14,eval_jobs.jsonl,30
 real-eval-B-65dae3d8-014,ok,recorded,,wall_clock,eval-B-65dae3d8,1,0,0,0,0.0,cited,supported,0,Q15,eval_jobs.jsonl,31
@@ -42,8 +42,8 @@ real-eval-C-8bb243df-007,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cit
 real-eval-C-8bb243df-008,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,unsupported,0,Q09,eval_jobs.jsonl,41
 real-eval-C-8bb243df-009,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,supported,0,Q10,eval_jobs.jsonl,42
 real-eval-C-8bb243df-010,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,supported,0,Q11,eval_jobs.jsonl,43
-real-eval-C-8bb243df-011,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,supported,0,Q12,eval_jobs.jsonl,44
-real-eval-C-8bb243df-012,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,supported,0,Q13,eval_jobs.jsonl,45
+real-eval-C-8bb243df-011,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,unsupported,0,Q12,eval_jobs.jsonl,44
+real-eval-C-8bb243df-012,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,partial,0,Q13,eval_jobs.jsonl,45
 real-eval-C-8bb243df-013,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,unsupported,0,Q14,eval_jobs.jsonl,46
 real-eval-C-8bb243df-014,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,cited,supported,0,Q15,eval_jobs.jsonl,47
 real-eval-C-8bb243df-015,ok,recorded,,wall_clock,eval-C-8bb243df,1,0,0,0,0.0,refusal,,0,Q16,eval_jobs.jsonl,48

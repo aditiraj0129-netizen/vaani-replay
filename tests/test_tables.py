@@ -69,18 +69,52 @@ def ev(rid, setting, status, first, total, tin, tout, grade):
     return row(rid, 0, first, total, status=status, tin=tin, tout=tout, setting=setting, grade=grade, scenario="eval", source="real")
 
 
-def test_table_3_matches_hand_computed_numbers_and_counts_refused_wrongly_as_wrong():
+def test_table_3_shows_counts_and_percent_of_questions_asked_for_every_answer_grade():
     rows = [ev("a1", "A", "ok", "800.0", "1500.0", "1000", "50", "correct"), ev("a2", "A", "ok", "1000.0", "2500.0", "1200", "70", "wrong"),
             ev("a3", "A", "ok", "900.0", "2000.0", "1100", "60", "refused_correctly"),
             ev("a4", "A", "timeout", "", "30000.0", "", "", ""),
             ev("b1", "B", "ok", "700.0", "1000.0", "1800", "60", ""), ev("b2", "B", "ok", "800.0", "1100.0", "1800", "60", "")]
     headers, body, notes = tb.table_3(rows, CFG)
-    assert len(headers) == 8
-    assert body[0] == ["A: 80-word pieces (20 overlap), 8 fetched, re-rank no", "4", "25.0", "25.0", "25.0", "1,160", "900 / 1,000", "2,000 / 2,500"]
-    assert body[1][2:5] == ["Not measured (no grades)"] * 3 and body[1][1] == "2"
+    assert len(headers) == 11 and headers[2:8] == ["Correct n (%)", "Partial n (%)", "Wrong n (%)", "Refused correctly n (%)",
+                                                    "Refused wrongly n (%)", "Not graded n (%)"]
+    assert body[0] == ["A: 80-word pieces (20 overlap), 8 fetched, re-rank no", "4", "1 (25.0%)", "0 (0.0%)", "1 (25.0%)", "1 (25.0%)",
+                       "0 (0.0%)", "1 (25.0%)", "1,160", "900 / 1,000", "2,000 / 2,500"]
+    assert body[1][2:8] == ["0 (0.0%)"] * 5 + ["2 (100.0%)"] and body[1][1] == "2"
     assert "not answered=1" in notes[0]
-    rows2 = [ev("c1", "A", "ok", "1.0", "2.0", "10", "1", "refused_wrongly"), ev("c2", "A", "ok", "1.0", "2.0", "10", "1", "wrong")]
-    assert tb.table_3(rows2, CFG)[1][0][3] == "100.0"  # wrong + refused_wrongly
+    rows2 = [ev("c1", "A", "ok", "1.0", "2.0", "10", "1", "refused_wrongly"), ev("c2", "A", "ok", "1.0", "2.0", "10", "1", "partial")]
+    b2 = tb.table_3(rows2, CFG)[1][0]
+    assert b2[3] == "1 (50.0%)" and b2[6] == "1 (50.0%)"   # partial and refused_wrongly are their own columns, never merged into "wrong"
+
+
+def test_table_3b_splits_by_review_status_and_labels_the_mixture():
+    rows = [ev("a1", "A", "ok", "1", "2", "1", "1", "correct"), ev("a2", "A", "ok", "1", "2", "1", "1", "correct"),
+            ev("a3", "A", "ok", "1", "2", "1", "1", "correct"), ev("a4", "A", "ok", "1", "2", "1", "1", "correct"),
+            ev("a5", "A", "ok", "1", "2", "1", "1", "partial"), ev("a6", "A", "ok", "1", "2", "1", "1", "refused_correctly"),
+            ev("a7", "A", "ok", "1", "2", "1", "1", "correct")]
+    detail = [det("a1", 1, prov="cited", sup="supported"), det("a2", 1, prov="uncited", sup="uncited"),
+              det("a3", 1, prov="cited", sup="unsupported"), det("a4", 1, prov="cited", sup="partial"),
+              det("a5", 1, prov="cited", sup="supported"), det("a6", 1, prov="refusal", sup=""), det("a7", 1, prov="cited", sup="")]
+    reviews = {"a1": "manual_review", "a2": "manual_review", "a3": "assistant_first_pass", "a4": "assistant_first_pass",
+               "a5": "assistant_first_pass", "a6": "assistant_first_pass", "a7": "assistant_first_pass"}
+    headers, body, notes = tb.table_3b(rows, CFG, detail, reviews)
+    by = {r[1]: dict(zip(headers, r)) for r in body}
+    assert list(by) == ["Manual review", "Assistant first pass (unverified)", "ALL = mixture of the lines above"]
+    m, f, al = by["Manual review"], by["Assistant first pass (unverified)"], by["ALL = mixture of the lines above"]
+    assert m["Rows n (%)"] == "2 (28.6%)" and f["Rows n (%)"] == "5 (71.4%)" and al["Rows n (%)"] == "7 (100.0%)"
+    assert (m["Supported n (%)"], m["Uncited n (%)"], m["Correct, uncited n (%)"]) == ("1 (14.3%)", "1 (14.3%)", "1 (14.3%)")
+    assert f["No citation (refused) n (%)"] == "1 (14.3%)" and f["Support missing n (%)"] == "1 (14.3%)"   # a7: answered, no support value
+    assert (al["Correct and supported n (%)"], al["Correct, partial citation n (%)"], al["Correct, unsupported n (%)"],
+            al["Correct, uncited n (%)"]) == ("1 (14.3%)",) * 4
+    assert any("MIXES" in n and "not an independently human-verified" in n for n in notes)
+
+
+def test_table_3c_counts_each_review_status_and_rounding_is_half_up():
+    rows = [ev(f"a{i}", "A", "ok", "1", "2", "1", "1", "correct") for i in range(16)]
+    reviews = {f"a{i}": ("manual_review" if i < 9 else "assistant_first_pass") for i in range(16)}
+    body = tb.table_3c(rows, reviews)[1]
+    assert body[0] == ["A", "16", "9 (56.3%)", "7 (43.8%)", "0 (0.0%)"] and body[-1][0] == "all settings"
+    assert tb.pct(9, 16) == "56.3" and tb.pct(1, 16) == "6.3" and tb.pct(3, 16) == "18.8" and tb.pct(1, 3) == "33.3"
+    assert tb.table_3c(rows, None)[1][0][0].startswith("Not measured")
 
 
 def test_table_3_without_real_evaluation_rows_says_not_measured():
@@ -231,11 +265,11 @@ def test_scenario_names_with_a_run_label_are_parsed_ordered_and_mode_filtered():
     assert [r[0] for r in tb.table_2a(rows, modes=["controlled"])[1]] == ["steady (controlled)", "burst (controlled) [seed 1, run r1]"]
 
 
-def test_table_3_notes_keep_provenance_and_support_separate():
+def test_table_3b_notes_keep_provenance_apart_from_support():
     rows = [ev("a1", "A", "ok", "800.0", "1500.0", "1000", "50", "correct"), ev("a2", "A", "ok", "1000.0", "2500.0", "1200", "70", "wrong")]
-    detail = [det("a1", 1, prov="cited", sup="supported"), det("a2", 1, prov="uncited", sup="unsupported")]
-    notes = tb.table_3(rows, CFG, detail)[2]
-    assert any("provenance" in n and "cited=1" in n and "uncited=1" in n and "supported=1" in n and "unsupported=1" in n for n in notes)
+    detail = [det("a1", 1, prov="cited", sup="supported"), det("a2", 1, prov="uncited", sup="uncited")]
+    notes = tb.table_3b(rows, CFG, detail)[2]
+    assert any("provenance" in n and "cited=1" in n and "uncited=1" in n for n in notes)
 
 
 def raw_published(tmp_path):
@@ -281,9 +315,9 @@ def test_end_to_end_tables_from_a_csv_file(tmp_path):
     ex.write_csv(out, ex.COLUMNS, BURST)
     ex.write_csv(tmp_path / "results_detail.csv", ex.DETAIL_COLUMNS, BURST_DETAIL)
     text, parts = tb.build_all(out, tmp_path / "noreal", None, None, configs=CFG, detail_path=tmp_path / "results_detail.csv")
-    for title in ("### Table 1", "### Table 2a", "### Table 2b", "### Table 2c", "### Table 3"):
+    for title in ("### Table 1", "### Table 2a", "### Table 2b", "### Table 2c", "### Table 3", "### Table 3b", "### Table 3c"):
         assert title in text
-    assert "burst (controlled)" in text and "Not measured" in text and set(parts) == {"table1", "table2a", "table2b", "table2c", "table3"}
+    assert "burst (controlled)" in text and "Not measured" in text and set(parts) == {"table1", "table2a", "table2b", "table2c", "table3", "table3b", "table3c"}
     assert "Paid-equivalent prices: Not measured" in text and "simulated" in text
     assert tb.main(["--results", str(out), "--real", str(tmp_path / "noreal"), "--detail", str(tmp_path / "results_detail.csv"),
                     "--out", str(tmp_path / "t.md")]) == 0

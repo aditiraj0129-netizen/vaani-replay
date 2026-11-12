@@ -3,10 +3,10 @@
     python -m app.grading_sheet            # writes data/eval/grading_sheet.md and data/eval/grades_template.csv (never overwrites grades.csv)
 
 You read grading_sheet.md, then copy grades_template.csv to data/eval/grades.csv and fill two columns per row:
-  answer_grade      correct | wrong | refused_correctly | refused_wrongly
-  citation_support  supported | unsupported      (does the cited passage really back the claim? a person decides)
+  answer_grade      correct | partial | wrong | refused_correctly | refused_wrongly
+  citation_support  supported | partial | unsupported | uncited   (does the cited passage back the claim? blank for a refusal)
 Rules: Q16 (unanswerable) is refused_correctly when the answer says it is not in the passages, wrong if it gives a BLEU number as the answer.
-'correct' needs: the content is right, the pipeline's citation provenance is 'cited', AND citation_support is 'supported'.
+Answer correctness and citation support are separate: a correct answer can have an unsupported, partial or missing citation.
 A request that failed or timed out gets no grade (leave the row out).
 """
 from __future__ import annotations

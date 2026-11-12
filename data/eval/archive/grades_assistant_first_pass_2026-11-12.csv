@@ -1,0 +1,49 @@
+request_id,answer_grade,citation_support,note
+real-eval-A-8e1c999f-000,correct,supported,
+real-eval-B-65dae3d8-000,correct,supported,
+real-eval-C-8bb243df-000,correct,supported,"CHECK C: is equation (1) inside cited passage [1]?"
+real-eval-A-8e1c999f-001,refused_wrongly,,
+real-eval-B-65dae3d8-001,refused_wrongly,,
+real-eval-C-8bb243df-001,refused_wrongly,,
+real-eval-A-8e1c999f-002,correct,supported,
+real-eval-B-65dae3d8-002,correct,supported,"CHECK B: 'jointly attend' sentence inside passage [4]?"
+real-eval-C-8bb243df-002,correct,supported,
+real-eval-A-8e1c999f-003,correct,supported,
+real-eval-B-65dae3d8-003,correct,supported,
+real-eval-C-8bb243df-003,correct,supported,"CHECK C: answer says 'linearly combined', paper says summed"
+real-eval-A-8e1c999f-004,correct,supported,
+real-eval-B-65dae3d8-004,correct,supported,
+real-eval-C-8bb243df-004,correct,supported,
+real-eval-A-8e1c999f-005,correct,supported,
+real-eval-B-65dae3d8-005,correct,supported,
+real-eval-C-8bb243df-005,correct,supported,
+real-eval-A-8e1c999f-006,correct,supported,"CHECK A: residual-quantizer claim not in cited passages"
+real-eval-B-65dae3d8-006,correct,supported,
+real-eval-C-8bb243df-006,correct,supported,"CHECK C"
+real-eval-A-8e1c999f-007,correct,supported,
+real-eval-B-65dae3d8-007,correct,supported,
+real-eval-C-8bb243df-007,correct,supported,"CHECK C: are Mimi RVQ/distillation details inside [1][2]?"
+real-eval-A-8e1c999f-008,correct,supported,"CHECK A: extra claim about non-linguistic info"
+real-eval-B-65dae3d8-008,correct,supported,"CHECK B: 'without significant inference cost' unsupported"
+real-eval-C-8bb243df-008,wrong,unsupported,"C describes thought stream of semantic+acoustic tokens; paper: text tokens before audio"
+real-eval-A-8e1c999f-009,correct,supported,
+real-eval-B-65dae3d8-009,correct,supported,"CHECK B: citation [2] is a dynamic_chunking passage"
+real-eval-C-8bb243df-009,correct,supported,
+real-eval-A-8e1c999f-010,correct,supported,"CHECK A: answer is about the training difficulty"
+real-eval-B-65dae3d8-010,wrong,,"B has no citation (uncited)"
+real-eval-C-8bb243df-010,correct,supported,
+real-eval-A-8e1c999f-011,wrong,unsupported,"A cites passages about other methods (MANTa, DPT)"
+real-eval-B-65dae3d8-011,correct,supported,"CHECK B: thin: does not say HOW (routing/similarity)"
+real-eval-C-8bb243df-011,correct,supported,"CHECK C: thin: does not say HOW"
+real-eval-A-8e1c999f-012,correct,supported,
+real-eval-B-65dae3d8-012,correct,supported,
+real-eval-C-8bb243df-012,correct,supported,
+real-eval-A-8e1c999f-013,refused_wrongly,,
+real-eval-B-65dae3d8-013,wrong,unsupported,"CHECK B: unstable training / less interpretable not in cited text"
+real-eval-C-8bb243df-013,wrong,unsupported,"CHECK C: same"
+real-eval-A-8e1c999f-014,correct,supported,
+real-eval-B-65dae3d8-014,correct,supported,"CHECK B"
+real-eval-C-8bb243df-014,correct,supported,
+real-eval-A-8e1c999f-015,refused_correctly,,
+real-eval-B-65dae3d8-015,refused_correctly,,
+real-eval-C-8bb243df-015,refused_correctly,,

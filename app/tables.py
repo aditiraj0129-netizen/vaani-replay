@@ -21,9 +21,12 @@ Definitions (also printed under each table):
   * Table 2c says where each refusal or failure came from (provider 429, our own queue-full refusal, our own budget gate, our own
     deadline shed, a late answer, provider timeout or error), from results_detail.csv. The status columns of Table 2b follow the
     brief's four values and cannot say who refused; Table 2c can.
-  * Table 3 percentages are of "Questions asked" (an unanswered or ungraded question is in no column). "Correct and
-    cited" = the answer's content is correct AND the pipeline's provenance check says cited AND a person confirmed the
-    citation supports the claim (citation_support = supported). "Wrong" = wrong + refused_wrongly.
+  * Table 3 shows two INDEPENDENT things and never combines them into one score. Table 3 = answer grade (correct, partial, wrong,
+    refused_correctly, refused_wrongly, not graded). Table 3b = citation support (supported, partial, unsupported, uncited, no
+    citation because the request was refused, support missing), split by review status and with an ALL line that is a MIXTURE of both, plus the correct answers split by citation support (so "correct but
+    uncited" and "correct but unsupported" are visible). Every cell is "count (percent)", percent = count / questions asked
+    (16 per setting). Percentages are rounded half up (9/16 = 56.3). The 'review' column of data/eval/grades.csv (assistant_first_pass | manual_review) is counted in Table 3c;
+    a first pass is not an independent human grade.
 
 Run:  python -m app.tables --results results.csv --out tables.md
 """
@@ -31,6 +34,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from decimal import ROUND_HALF_UP, Decimal
 import math
 import re
 import statistics
@@ -55,8 +59,13 @@ def percentile(values: Sequence[float], p: float) -> Optional[float]:
     return ordered[max(math.ceil(p / 100.0 * len(ordered)), 1) - 1]
 
 
+def pct_value(count: int, total: int) -> str:
+    """count / total * 100 to one decimal, rounded HALF UP (9/16 = 56.25 -> 56.3), computed exactly with Decimal, not with floats."""
+    return str((Decimal(count) * 100 / Decimal(total)).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP))
+
+
 def pct(count: int, total: int) -> str:
-    return NOT_MEASURED if total == 0 else f"{100.0 * count / total:.1f}"
+    return NOT_MEASURED if total == 0 else pct_value(count, total)
 
 
 def ms(value: Optional[float]) -> str:
@@ -265,14 +274,22 @@ def setting_label(name: str, cfg: Any) -> str:
             f"re-rank {'yes' if cfg.rerank else 'no'}")
 
 
+def cp(count: int, total: int) -> str:
+    return NOT_MEASURED if total == 0 else f"{count} ({pct_value(count, total)}%)"
+
+
+GRADE_COLUMNS = [("correct", "Correct"), ("partial", "Partial"), ("wrong", "Wrong"),
+                 ("refused_correctly", "Refused correctly"), ("refused_wrongly", "Refused wrongly")]
+
+
 def table_3(rows: Sequence[Dict[str, str]], configs: Dict[str, Any],
             detail: Optional[Sequence[Dict[str, str]]] = None) -> Tuple[List[str], List[List[str]], List[str]]:
-    headers = ["Setting (piece size, pieces fetched, re-rank)", "Questions asked", "Correct and cited %", "Wrong %",
-               "Correctly refused %", "Tokens per answer", "First token p50 / p95 (ms)", "Total time p50 / p95 (ms)"]
+    """Answer-grade distribution (count and percent of questions asked) plus tokens and latency. Citation quality is in table_3b."""
+    headers = ["Setting (piece size, pieces fetched, re-rank)", "Questions asked"] + [f"{label} n (%)" for _, label in GRADE_COLUMNS] + [
+        "Not graded n (%)", "Tokens per answer", "First token p50 / p95 (ms)", "Total time p50 / p95 (ms)"]
     out: List[List[str]] = []
     notes: List[str] = []
     evalrows = [r for r in rows if r["source"] == "real" and r["scenario"] == EVAL_SCENARIO]
-    by_id = {d["request_id"]: d for d in detail} if detail is not None else None
     for name in sorted({r["retrieval_setting"] for r in evalrows}):
         rs = [r for r in evalrows if r["retrieval_setting"] == name]
         n = len(rs)
@@ -283,22 +300,84 @@ def table_3(rows: Sequence[Dict[str, str]], configs: Dict[str, Any],
         total = [_f(r["total_ms"]) for r in ok]
         graded = sum(1 for r in rs if r["answer_grade"])
         label = setting_label(name, configs[name]) if name in configs else name
-        out.append([label, str(n), pct(grades["correct"], n) if graded else NOT_MEASURED + " (no grades)",
-                    pct(grades["wrong"] + grades["refused_wrongly"], n) if graded else NOT_MEASURED + " (no grades)",
-                    pct(grades["refused_correctly"], n) if graded else NOT_MEASURED + " (no grades)",
+        out.append([label, str(n)] + [cp(grades[key], n) for key, _ in GRADE_COLUMNS] + [cp(n - graded, n),
                     NOT_MEASURED if not toks else f"{statistics.mean(toks):,.0f}",
                     trio(first, (50, 95)), trio(total, (50, 95))])
-        notes.append(f"{name}: asked={n}, graded={graded}, answered (status ok)={len(ok)}, not answered={n - len(ok)}, "
-                     f"correct={grades['correct']} wrong={grades['wrong']} refused_correctly={grades['refused_correctly']} "
-                     f"refused_wrongly={grades['refused_wrongly']}")
-        if by_id is not None:
-            prov = Counter(by_id[r["request_id"]]["citation_provenance"] or "none" for r in ok)
-            sup = Counter(by_id[r["request_id"]]["citation_support"] or "not reviewed" for r in ok)
-            notes.append(f"{name}: citation provenance (pipeline check) over answered rows: " + ", ".join(f"{k}={v}" for k, v in sorted(prov.items()))
-                         + "; citation support (person check): " + ", ".join(f"{k}={v}" for k, v in sorted(sup.items())))
+        notes.append(f"{name}: asked={n}, graded={graded}, answered (status ok)={len(ok)}, not answered={n - len(ok)}")
     if not out:
-        out.append([NOT_MEASURED + " (no real evaluation rows yet)"] + [""] * 7)
+        out.append([NOT_MEASURED + " (no real evaluation rows yet)"] + [""] * (len(headers) - 1))
+    notes.append("Answer grade only: does the answer's content match the papers. Whether the citation backs it is Table 3b. "
+                 "partial = right in direction but incomplete. Percent = count / questions asked (a failed or ungraded request is counted under Not graded). "
+                 "These grades mix manual-review rows and unverified assistant-first-pass rows: see Table 3c for how many of each; the table is not a human-graded result.")
     return headers, out, notes
+
+
+SUPPORT_COLUMNS = [("supported", "Supported"), ("partial", "Partial"), ("unsupported", "Unsupported"), ("uncited", "Uncited")]
+REVIEW_ORDER = [("manual_review", "Manual review"), ("assistant_first_pass", "Assistant first pass (unverified)")]
+
+
+def _review_of(request_id: str, reviews: Optional[Dict[str, str]]) -> str:
+    if reviews is None:
+        return "not stated"
+    return reviews.get(request_id, "no grade row")
+
+
+def table_3b(rows: Sequence[Dict[str, str]], configs: Dict[str, Any], detail: Optional[Sequence[Dict[str, str]]],
+             reviews: Optional[Dict[str, str]] = None) -> Tuple[List[str], List[List[str]], List[str]]:
+    """Citation-support distribution, kept apart from the answer grade AND split by review status.
+    Per setting: one row for the manually reviewed rows, one for the assistant-first-pass rows (unverified), one for all rows
+    (a MIXTURE of the two, not a human-verified result). Every percent is of the 16 questions asked in that setting."""
+    headers = ["Setting", "Rows in this line", "Rows n (%)"] + [f"{label} n (%)" for _, label in SUPPORT_COLUMNS] + [
+        "No citation (refused) n (%)", "Support missing n (%)",
+        "Correct and supported n (%)", "Correct, partial citation n (%)", "Correct, unsupported n (%)", "Correct, uncited n (%)"]
+    out: List[List[str]] = []
+    notes: List[str] = []
+    if detail is None:
+        return headers, [[NOT_MEASURED + " (results_detail.csv not found)"] + [""] * (len(headers) - 1)], notes
+    by_id = {d["request_id"]: d for d in detail}
+    evalrows = [r for r in rows if r["source"] == "real" and r["scenario"] == EVAL_SCENARIO]
+    for name in sorted({r["retrieval_setting"] for r in evalrows}):
+        rs = [r for r in evalrows if r["retrieval_setting"] == name]
+        n = len(rs)
+        groups = [(key, label, [r for r in rs if _review_of(r["request_id"], reviews) == key]) for key, label in REVIEW_ORDER]
+        other = [r for r in rs if _review_of(r["request_id"], reviews) not in {k for k, _ in REVIEW_ORDER}]
+        if other:
+            groups.append(("other", "Review status missing", other))
+        groups.append(("all", "ALL = mixture of the lines above", rs))
+        for key, label, grp in groups:
+            sup = {r["request_id"]: by_id[r["request_id"]]["citation_support"] for r in grp}
+            count = Counter(sup.values())
+            refused = sum(1 for r in grp if r["answer_grade"] in ("refused_correctly", "refused_wrongly"))
+            missing = sum(1 for r in grp if r["answer_grade"] not in ("refused_correctly", "refused_wrongly") and sup[r["request_id"]] == "")
+            split = Counter(sup[r["request_id"]] for r in grp if r["answer_grade"] == "correct")
+            out.append([name, label, cp(len(grp), n)] + [cp(count[k], n) for k, _ in SUPPORT_COLUMNS] + [cp(refused, n), cp(missing, n)]
+                       + [cp(split[k], n) for k in ("supported", "partial", "unsupported", "uncited")])
+        prov = Counter(by_id[r["request_id"]]["citation_provenance"] or "none" for r in rs)
+        notes.append(f"{name}: citation provenance (the pipeline's own mechanical check) over all {n} requests: "
+                     + ", ".join(f"{k}={v}" for k, v in sorted(prov.items())))
+    if not out:
+        out.append([NOT_MEASURED + " (no real evaluation rows yet)"] + [""] * (len(headers) - 1))
+    notes.append("citation_support is a reading of the cited passage against the claim, kept separate from the answer grade, so a correct answer "
+                 "can have a partial, unsupported or missing citation. The ALL line MIXES manual-review findings with the assistant's first-pass readings; "
+                 "it is not an independently human-verified result. 'Support missing' = an answered row with no citation_support value; "
+                 "a refused row has no citation to judge and is counted under 'No citation (refused)'. Percent = count / 16 questions asked in the setting.")
+    return headers, out, notes
+
+
+def table_3c(rows: Sequence[Dict[str, str]], reviews: Optional[Dict[str, str]]) -> Tuple[List[str], List[List[str]], List[str]]:
+    """Review-status summary: how many of each setting's rows have manual-review findings and how many are unverified assistant first pass."""
+    headers = ["Setting", "Questions asked", "Manual review n (%)", "Assistant first pass (unverified) n (%)", "No grade row n (%)"]
+    out: List[List[str]] = []
+    if reviews is None:
+        return headers, [[NOT_MEASURED + " (grades.csv not found)"] + [""] * 4], []
+    evalrows = [r for r in rows if r["source"] == "real" and r["scenario"] == EVAL_SCENARIO]
+    for name in sorted({r["retrieval_setting"] for r in evalrows}) + ["all settings"]:
+        rs = evalrows if name == "all settings" else [r for r in evalrows if r["retrieval_setting"] == name]
+        n = len(rs)
+        c = Counter(_review_of(r["request_id"], reviews) for r in rs)
+        out.append([name, str(n), cp(c["manual_review"], n), cp(c["assistant_first_pass"], n), cp(c["no grade row"], n)])
+    return headers, out, ["manual_review = the row's grades come from a manual review (reviewer not named). assistant_first_pass = the assistant's "
+                          "first reading, not verified and not an independent human grade."]
 
 
 # ------------------------------------------------------------------------------------------------ table 1 (raw real evidence)
@@ -426,7 +505,7 @@ def md_table(title: str, headers: Sequence[str], rows: Sequence[Sequence[str]], 
 
 def build_all(results_path: Path, real_dir: Path, pricing_path: Optional[Path], published_path: Optional[Path],
               modes: Optional[Sequence[str]] = None, configs: Optional[Dict[str, Any]] = None,
-              detail_path: Optional[Path] = None) -> Tuple[str, Dict[str, Any]]:
+              detail_path: Optional[Path] = None, grades_path: Optional[Path] = None) -> Tuple[str, Dict[str, Any]]:
     header, rows = read_results(results_path)
     problems = validate_rows(rows, header)
     if problems:
@@ -446,15 +525,23 @@ def build_all(results_path: Path, real_dir: Path, pricing_path: Optional[Path], 
     md: List[str] = []
     b2 = table_2b(rows, pricing, modes, detail)
     b2[2].append(pricing_note(pricing))
+    reviews: Optional[Dict[str, str]] = None
+    if grades_path is not None and Path(grades_path).exists():
+        import csv as _csv
+        with Path(grades_path).open(newline="", encoding="utf-8") as fh:
+            reviews = {(g.get("request_id") or "").strip(): (g.get("review") or "").strip() or "not stated"
+                       for g in _csv.DictReader(fh) if (g.get("request_id") or "").strip()}
     b3 = table_3(rows, configs, detail)
-    b3[2].append("'Correct and cited' = content correct AND pipeline provenance 'cited' AND a person confirmed citation_support=supported. "
-                 "'Wrong' = wrong + refused_wrongly.")
+    b3b = table_3b(rows, configs, detail, reviews)
+    b3c = table_3c(rows, reviews)
     for key, title, built in (
         ("table1", "Table 1: Limits found in the real service", table_1(real_dir, published)),
         ("table2a", "Table 2a: Latency, one row per load scenario", table_2a(rows, modes)),
         ("table2b", "Table 2b: Outcomes, same rows", b2),
         ("table2c", "Table 2c (supplement): Where refusals and failures came from", table_2c(rows, detail, modes)),
-        ("table3", "Table 3: Retrieval settings (real evaluation)", b3),
+        ("table3", "Table 3: Retrieval settings, answer grade (real evaluation)", b3),
+        ("table3b", "Table 3b: Retrieval settings, citation support split by review status (real evaluation, separate from the answer grade)", b3b),
+        ("table3c", "Table 3c: Review status of the 48 real evaluation grades", b3c),
     ):
         headers, body, notes = built
         parts[key] = {"headers": headers, "rows": body, "notes": notes}
@@ -473,11 +560,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     ap.add_argument("--published", default="data/eval/published_limits.json")
     ap.add_argument("--detail", default="results_detail.csv")
     ap.add_argument("--modes", nargs="*", default=None, help="stand-in modes to show (default: all)")
+    ap.add_argument("--grades", default="data/eval/grades.csv")
     ap.add_argument("--out", default="tables.md")
     args = ap.parse_args(argv)
     try:
         text, parts = build_all(Path(args.results), Path(args.real), Path(args.pricing), Path(args.published), args.modes,
-                              detail_path=Path(args.detail))
+                              detail_path=Path(args.detail), grades_path=Path(args.grades))
     except (ValueError, FileNotFoundError) as exc:
         print(f"TABLES FAILED: {exc}")
         return 1

@@ -49,7 +49,8 @@ def test_columns_and_allowed_values_are_the_ones_in_the_brief():
     assert ex.COLUMNS == ["request_id", "scenario", "source", "start_time", "first_token_ms", "total_ms", "status", "retries",
                           "tokens_in", "tokens_out", "retrieval_setting", "answer_grade"]
     assert ex.SOURCES == ("real", "stand-in") and ex.STATUSES == ("ok", "rate_limited", "timeout", "error")
-    assert ex.GRADES == ("correct", "wrong", "refused_correctly", "refused_wrongly")
+    assert ex.GRADES == ("correct", "partial", "wrong", "refused_correctly", "refused_wrongly")
+    assert ex.CITATION_SUPPORT == ("supported", "partial", "unsupported", "uncited")
 
 
 def test_real_attempt_becomes_a_row_with_start_time_before_the_log_time(raw):
@@ -388,26 +389,48 @@ def citation_raw(tmp_path):
     return r
 
 
-def test_correct_needs_provenance_and_human_support_as_two_separate_checks(tmp_path):
+def test_answer_grade_and_citation_support_are_independent_and_only_contradictions_are_blocked(tmp_path):
     r = citation_raw(tmp_path)
-    grades = {"real-e-000": "correct", "real-e-001": "correct", "real-e-002": "correct"}
-    support = {"real-e-000": "supported", "real-e-001": "supported", "real-e-002": "unsupported"}
+    # correct + unsupported, correct + uncited (provenance uncited), partial + supported: all allowed
+    grades = {"real-e-000": "correct", "real-e-001": "correct", "real-e-002": "partial"}
+    support = {"real-e-000": "unsupported", "real-e-001": "uncited", "real-e-002": "supported"}
     rows, details = ex.build_rows(r, None, grades=grades, support=support)
-    problems = ex.check_grades_against_citations(rows, details)
-    by = {p.request_id: str(p) for p in problems}
-    assert set(by) == {"real-e-001", "real-e-002"}
-    assert "provenance" in by["real-e-001"] and "citation_support" not in by["real-e-001"]   # mechanical check failed, human said yes
-    assert "citation_support" in by["real-e-002"] and "provenance" not in by["real-e-002"]   # mechanical ok, human said no
-    assert [d["citation_provenance"] for d in details] == ["cited", "uncited", "cited"]
-    assert [d["citation_support"] for d in details] == ["supported", "supported", "unsupported"]
-
-
-def test_correct_without_any_human_support_check_is_refused_and_wrong_never_needs_one(tmp_path):
-    r = citation_raw(tmp_path)
-    rows, details = ex.build_rows(r, None, grades={"real-e-000": "correct"})
-    assert "citation_support" in str(ex.check_grades_against_citations(rows, details)[0])  # existence of a citation is not enough
-    rows, details = ex.build_rows(r, None, grades={"real-e-000": "wrong", "real-e-001": "refused_wrongly"}, support={"real-e-000": "unsupported"})
     assert ex.check_grades_against_citations(rows, details) == []
+    assert [d["citation_provenance"] for d in details] == ["cited", "uncited", "cited"]
+
+
+def test_contradictions_between_provenance_and_support_are_reported(tmp_path):
+    r = citation_raw(tmp_path)
+    # real-e-001 has provenance 'uncited'
+    rows, details = ex.build_rows(r, None, grades={"real-e-000": "correct", "real-e-001": "correct", "real-e-002": "wrong"},
+                                  support={"real-e-000": "uncited", "real-e-001": "supported", "real-e-002": "unsupported"})
+    by = {p.request_id: str(p) for p in ex.check_grades_against_citations(rows, details)}
+    assert set(by) == {"real-e-000", "real-e-001"}                       # 'uncited' on a cited row; 'supported' on an uncited row
+    rows, details = ex.build_rows(r, None, grades={"real-e-000": "correct"})
+    assert "needs a citation_support value" in str(ex.check_grades_against_citations(rows, details)[0])   # answered row, no support
+    rows, details = ex.build_rows(r, None, grades={"real-e-001": "partial"}, support={"real-e-001": "partial"})
+    assert "provenance" in str(ex.check_grades_against_citations(rows, details)[0])    # partial support needs provenance 'cited'
+
+
+def test_refusal_grades_need_a_refusal_and_no_citation_support(tmp_path):
+    r = citation_raw(tmp_path)
+    rows, details = ex.build_rows(r, None, grades={"real-e-000": "refused_wrongly"}, support={"real-e-000": "supported"})
+    msgs = " ".join(str(p) for p in ex.check_grades_against_citations(rows, details))
+    assert "not 'refusal'" in msgs and "no citation to judge" in msgs
+
+
+def test_new_vocabulary_is_accepted_by_the_row_validator(tmp_path):
+    r = citation_raw(tmp_path)
+    rows, details = ex.build_rows(r, None, grades={"real-e-000": "partial"}, support={"real-e-000": "partial"})
+    assert ex.validate_rows(rows, ex.COLUMNS) == [] and ex.validate_detail(ex.DETAIL_COLUMNS, details, rows) == []
+    with pytest.raises(ex.ExportError, match="citation_support"):
+        ex.load_support(_write_grades(tmp_path, "maybe"))
+
+
+def _write_grades(tmp_path, value):
+    path = tmp_path / "g.csv"
+    path.write_text(f"request_id,answer_grade,citation_support,note\nreal-e-000,correct,{value},\n", encoding="utf-8")
+    return path
 
 
 def test_grade_file_problems_are_errors(tmp_path):
@@ -468,6 +491,7 @@ def test_the_cli_reports_origins_and_inferred_rows(tmp_path, capsys):
     d = tmp_path / "s"
     write_jsonl(d / "scenario_jobs.jsonl", [job(0), job(1, outcome="shed_queue_full", attempts=0, ttft=None, p=None, c=None, latency=0.0),
                                             job(2, outcome="failed", attempts=2, ttft=None, p=None, c=None)])
-    assert ex.main(["--real", str(tmp_path / "x"), "--standin", str(d), "--out", str(tmp_path / "r.csv"), "--detail", str(tmp_path / "d.csv")]) == 0
+    assert ex.main(["--real", str(tmp_path / "x"), "--standin", str(d), "--out", str(tmp_path / "r.csv"), "--detail", str(tmp_path / "d.csv"),
+                    "--grades", str(tmp_path / "no_grades.csv")]) == 0
     text = capsys.readouterr().out
     assert "local_admission=1" in text and "unknown_inferred=1" in text and "status is inferred (no recorded terminal status): 1" in text

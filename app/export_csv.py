@@ -24,7 +24,9 @@ Column rules (all derived from the raw lines, nothing invented; an unknown value
   retries     attempts - 1 (0 when no call was sent)
   tokens_in, tokens_out  as reported by the service (empty when it did not report them)
   retrieval_setting  A | B | C when the raw line says so, else empty
-  answer_grade  only from data/eval/grades.csv (a person's grade), only for real rows with status ok; else empty
+  answer_grade  correct | partial | wrong | refused_correctly | refused_wrongly, only from data/eval/grades.csv, only for real rows with
+                status ok; else empty. Each grade row says in its 'review' column whether it is an assistant first pass or came from
+                a manual review (the reviewer is not named). A first pass is not an independent human grade.
 A sibling results_detail.csv keeps what the 12 columns cannot (raw outcome, where a refusal came from, queue wait, citation checks ...).
 
 Status is one of four values, so it cannot say WHO refused. results_detail.csv can, in refusal_origin:
@@ -39,9 +41,11 @@ A local refusal is not a provider 429 and a fast refusal is not a timeout of the
 four allowed values, refusal_origin keeps the difference.
 
 Citations are two separate checks. citation_provenance is MECHANICAL (from the pipeline: do the cited passage numbers exist, are the
-numbers in the answer found in the cited passages). citation_support is HUMAN (a person read the cited passage and says it backs the
-claim: supported | unsupported), read from data/eval/grades.csv. An answer may be graded "correct" only when its content is correct
-AND provenance is "cited" AND support is "supported".
+numbers in the answer found in the cited passages). citation_support is a READING of the cited passage against the claim
+(supported | partial | unsupported | uncited; empty for a refusal), read from data/eval/grades.csv. It is NOT checked by a person
+unless the grade row's 'review' column says manual_review. answer_grade and citation_support are INDEPENDENT: a correct answer
+may carry an unsupported, partial or missing citation. The validator only blocks contradictions (support supported/partial
+without provenance cited; uncited on a cited row; a refusal with support or an answer without it).
 
 Run:  python -m app.export_csv                      # writes results.csv and results_detail.csv, after validating
       python -m app.export_csv --validate-only results.csv
@@ -65,9 +69,11 @@ DETAIL_COLUMNS = ["request_id", "outcome", "status_basis", "refusal_origin", "ti
                   "unsupported_numbers", "question_id", "source_file", "source_line"]
 SOURCES = ("real", "stand-in")
 STATUSES = ("ok", "rate_limited", "timeout", "error")
-GRADES = ("correct", "wrong", "refused_correctly", "refused_wrongly")
+GRADES = ("correct", "partial", "wrong", "refused_correctly", "refused_wrongly")
+REFUSAL_GRADES = ("refused_correctly", "refused_wrongly")
+REVIEW_STATUS = ("assistant_first_pass", "manual_review")
 SETTINGS = ("A", "B", "C")
-CITATION_SUPPORT = ("supported", "unsupported")
+CITATION_SUPPORT = ("supported", "partial", "unsupported", "uncited")
 STATUS_BASES = ("recorded", "inferred")
 TIME_BASES = ("wall_clock", "simulated")
 # refusal_origin -> the status it must go with (checked by the validator)
@@ -360,7 +366,7 @@ def load_grades(path: Optional[Path]) -> Dict[str, str]:
 
 
 def load_support(path: Optional[Path]) -> Dict[str, str]:
-    """Human citation-support checks from the same grades file: column citation_support = supported | unsupported."""
+    """Citation-support readings from the same grades file: column citation_support = supported | partial | unsupported | uncited (blank for a refusal)."""
     if path is None or not Path(path).exists():
         return {}
     out: Dict[str, str] = {}
@@ -464,21 +470,33 @@ def validate_file(path: Path) -> List[Problem]:
 
 
 def check_grades_against_citations(rows: Sequence[Dict[str, str]], details: Sequence[Dict[str, str]]) -> List[Problem]:
-    """'correct' = content right AND provenance 'cited' (mechanical) AND support 'supported' (a person checked). Two separate checks."""
+    """Answer correctness and citation support are INDEPENDENT. Only contradictions are blocked (nothing here can raise a score):
+    a refusal has no citation_support; an answered row has one; supported/partial needs provenance 'cited'; 'uncited' goes only with provenance 'uncited'."""
     by_id = {d["request_id"]: d for d in details}
     out: List[Problem] = []
     for i, row in enumerate(rows, 1):
-        if row["answer_grade"] != "correct":
+        grade = row["answer_grade"]
+        if not grade:
             continue
         d = by_id.get(row["request_id"], {})
         prov, sup = d.get("citation_provenance", ""), d.get("citation_support", "")
-        if prov != "cited":
-            out.append(Problem(i, row["request_id"], "answer_grade",
-                               f"graded correct but citation provenance is {prov!r}, not 'cited' (the pipeline's own check failed or is missing)"))
-        if sup != "supported":
-            out.append(Problem(i, row["request_id"], "answer_grade",
-                               f"graded correct but citation_support is {sup!r}; a person must check the cited passage and set "
-                               "citation_support=supported in grades.csv. Right answer with a citation that does not back it: grade it 'wrong' and set unsupported"))
+        rid = row["request_id"]
+        if grade in REFUSAL_GRADES:
+            if prov != "refusal":
+                out.append(Problem(i, rid, "answer_grade", f"graded {grade} but the pipeline recorded provenance {prov!r}, not 'refusal'"))
+            if sup != "":
+                out.append(Problem(i, rid, "citation_support", f"a refusal has no citation to judge, but citation_support is {sup!r}"))
+            continue
+        if prov == "refusal":
+            out.append(Problem(i, rid, "answer_grade", f"graded {grade} but the pipeline recorded a refusal"))
+        if sup == "":
+            out.append(Problem(i, rid, "citation_support", f"an answered row graded {grade} needs a citation_support value ({', '.join(CITATION_SUPPORT)})"))
+        if sup in ("supported", "partial") and prov != "cited":
+            out.append(Problem(i, rid, "citation_support", f"citation_support is {sup!r} but the pipeline's provenance is {prov!r}, not 'cited'"))
+        if sup == "uncited" and prov != "uncited":
+            out.append(Problem(i, rid, "citation_support", f"citation_support is 'uncited' but the pipeline's provenance is {prov!r}"))
+        if prov == "uncited" and sup not in ("", "uncited"):
+            out.append(Problem(i, rid, "citation_support", f"the pipeline found no citation, but citation_support is {sup!r}"))
     return out
 
 
